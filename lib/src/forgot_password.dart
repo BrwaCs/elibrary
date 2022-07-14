@@ -9,13 +9,14 @@ class forgot_password extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      //when you unpress textfild that is deactive 
       onTap: ()=> FocusScope.of(context).unfocus(),
       child: Scaffold(
       body:Padding(
         padding: const EdgeInsets.all(25),
         child: Center(
-          child: SingleChildScrollView(
-            child: Column(
+          // add singlechildscrollview     but have some problem 
+          child:  Column(
               children: [
                 Row(
                   mainAxisAlignment:MainAxisAlignment.start,
@@ -114,7 +115,7 @@ class forgot_password extends StatelessWidget {
           ),
         ),
       )
-      ),
+    
     );
   }
 }
