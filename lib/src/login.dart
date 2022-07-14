@@ -1,8 +1,10 @@
+import 'package:elibrary/src/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Login extends StatelessWidget {
+  
   final Function togScreen;
   const Login({Key? key, required this.togScreen}) : super(key: key);
 
@@ -83,7 +85,9 @@ class Login extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton( 
-                      onPressed: (){},
+                      onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => forgot_password()));
+          },
                        child: Text(
                          "Forgot Password?",
                          style: TextStyle(
