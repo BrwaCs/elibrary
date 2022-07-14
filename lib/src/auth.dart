@@ -1,4 +1,5 @@
 import 'package:elibrary/src/login.dart';
+import 'package:elibrary/src/register.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -10,8 +11,20 @@ class Auth extends StatefulWidget {
 }
 
 class _AuthState extends State<Auth> {
+  bool switchescreen=true;
+void togScreen(){
+  setState(() {
+    switchescreen=!switchescreen;
+  });
+}
+
   @override
   Widget build(BuildContext context) {
-    return Login();
+    if(switchescreen){
+      return Login( togScreen:togScreen);
+
+    }
+    return Register(togScreen:togScreen);
+    
   }
 }

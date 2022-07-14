@@ -3,7 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+  final Function togScreen;
+  const Login({Key? key, required this.togScreen}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +138,7 @@ class Login extends StatelessWidget {
                  mainAxisAlignment:MainAxisAlignment.center,
                  children: [
                        GestureDetector(
-                         onTap: (){},
+                         onTap:() => togScreen(),
                          child: Text(
                                             "Create new account",
                                             style:TextStyle(
