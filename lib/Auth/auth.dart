@@ -1,5 +1,5 @@
-import 'package:elibrary/src/login.dart';
-import 'package:elibrary/src/register.dart';
+import 'package:elibrary/Auth/login.dart';
+import 'package:elibrary/Auth/register.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 

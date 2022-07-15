@@ -1,4 +1,4 @@
-import 'package:elibrary/src/forgot_password.dart';
+import 'package:elibrary/Auth/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';

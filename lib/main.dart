@@ -1,4 +1,4 @@
-import 'package:elibrary/src/auth.dart';
+import 'package:elibrary/Auth/auth.dart';
 import 'package:flutter/material.dart';
 
 void main() {
