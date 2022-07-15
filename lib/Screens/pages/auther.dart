@@ -14,7 +14,36 @@ class _AutherState extends State<Auther> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Auther")
+          backgroundColor:Colors.transparent,
+          elevation:0,
+        title: Text(
+          "Author ",
+          style: TextStyle(
+            fontSize:24,
+            fontWeight:FontWeight.normal,
+            color:Colors.black
+          )
+          ),
+          centerTitle: true,
+          leading: Icon(
+            Icons.menu,
+            color:Theme.of(context).primaryColor,
+          ),
+         
+      actions: <Widget>[
+       Padding(
+      padding: EdgeInsets.only(right: 18),
+      child: GestureDetector(
+        onTap: () {},
+        child: Icon(
+          Icons.person,
+          size: 26.0,
+          color:Theme.of(context).primaryColor,
+        ),
+      )
+    ),
+    ]
+  
       ),
       body: Center(
         child: Text(
