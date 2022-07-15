@@ -7,21 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class mainpages extends StatefulWidget {
+  const mainpages({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<mainpages> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<mainpages> {
   int currenttab=0;
   final List<Widget> screens=[
     Review(),
     Auther(),
     Category(),
     Setting(),
-    Home(),
+    home(),
 
   ];
 
