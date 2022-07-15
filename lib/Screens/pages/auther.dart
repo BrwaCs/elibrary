@@ -42,7 +42,15 @@ class _AutherState extends State<Auther> {
         ),
       )
     ),
-    ]
+    ],
+     // black line of the bottom AppBar
+bottom: PreferredSize(
+      child: Container(
+         color: Colors.black,
+         height: 1.0,
+      ),
+      preferredSize: Size.fromHeight(1.5)
+      ),
   
       ),
       body: Center(

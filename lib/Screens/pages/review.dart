@@ -14,6 +14,7 @@ class _ReviewState extends State<Review> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+   
           backgroundColor:Colors.transparent,
           elevation:0,
         title: Text(
@@ -42,16 +43,23 @@ class _ReviewState extends State<Review> {
         ),
       )
     ),
-    ]
-  
+    ],
+    // black line of the bottom AppBar
+bottom: PreferredSize(
+      child: Container(
+         color: Colors.black,
+         height: 1.0,
+      ),
+      preferredSize: Size.fromHeight(1.5)
+      ),
       ),
       body: Center(
-        child: Text(
-          "Review Screen",
-          style: TextStyle(
-            fontSize:40,
-            fontWeight:FontWeight.bold),
-           ),
+        child: Text("Review Screen",
+        style: TextStyle(
+          fontSize:24,
+          fontWeight: FontWeight.bold
+        )
+        ),
       )
     );
   }
