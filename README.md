@@ -9,7 +9,6 @@ elibrary application project
 
 ## Getting Started with this project details and future 
 Application screens :
-- landing page
 - login page
 - register page
 - review page
