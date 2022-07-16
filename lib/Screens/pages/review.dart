@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -75,26 +75,45 @@ bottom: PreferredSize(
         ),
             ),
             ListTile(
-              leading: Icon(Icons.book),
+              leading: Icon(Icons.book,
+              color: Theme.of(context).primaryColor,
+              ),
               title: Text("New books",
-              
+              style:TextStyle(
+                fontSize:16,
+                fontWeight:FontWeight.w500
+              ),
               ),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.star),
-              title: Text("Rating the app"),
+              leading: Icon(Icons.star,
+              color: Theme.of(context).primaryColor,),
+              title: Text("Rating the app",
+              style:TextStyle(
+                fontSize:16,
+                fontWeight:FontWeight.w500
+              ),),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(IconData(0xe6cb, fontFamily: 'MaterialIcons'),
-              ),
-              title: Text("About the application"),
+              leading: Icon(Icons.report,
+              color: Theme.of(context).primaryColor,),
+              title: Text("About the application",
+              style:TextStyle(
+                fontSize:16,
+                fontWeight:FontWeight.w500
+              ),),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.perm_contact_calendar_outlined),
-              title: Text("About us"),
+              leading: Icon(Icons.account_box,
+              color: Theme.of(context).primaryColor,),
+              title: Text("About us",
+              style:TextStyle(
+                fontSize:16,
+                fontWeight:FontWeight.w500
+              ),),
               onTap: () {},
             )
           ]
