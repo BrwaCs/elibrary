@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -79,11 +77,7 @@ bottom: PreferredSize(
             ListTile(
               leading: Icon(Icons.book),
               title: Text("New books",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                
-              ),
+              
               ),
               onTap: () {},
             ),
