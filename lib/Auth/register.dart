@@ -1,3 +1,4 @@
+import 'package:elibrary/Screens/mainpages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -141,7 +142,9 @@ class Register extends StatelessWidget {
                      color:Theme.of(context).primaryColor,
                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                   
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => mainpages()));
+                },
                 child: Text(
                   "Create",
                   style:TextStyle(
