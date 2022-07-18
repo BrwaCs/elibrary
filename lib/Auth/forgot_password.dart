@@ -14,9 +14,9 @@ class forgot_password extends StatelessWidget {
       child: Scaffold(
       body:Padding(
         padding: const EdgeInsets.all(25),
-        child: Center(
-          // add singlechildscrollview     but have some problem 
-          child:  Column(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment:MainAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment:MainAxisAlignment.start,
@@ -112,7 +112,7 @@ class forgot_password extends StatelessWidget {
               
               ],
             ),
-          ),
+        ),
         ),
       )
     
