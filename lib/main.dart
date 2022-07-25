@@ -1,6 +1,5 @@
 import 'package:elibrary/Auth/auth.dart';
 import 'package:elibrary/Screens/mainpages.dart';
-import 'package:elibrary/Screens/pages/profile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,8 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.blue,
       ),  
-      home: Profile(),
-    //  home:Auth(),
+     home:Auth(),
     );
   }
 }

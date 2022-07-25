@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_import
 
+import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/dataModels/author_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -31,7 +33,9 @@ class _AutherState extends State<Auther> {
        Padding(
       padding: EdgeInsets.only(right: 18),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+           Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+        },
         child: Icon(
           IconData(0xee35, fontFamily: 'MaterialIcons'),
           size: 26.0,   
@@ -121,39 +125,45 @@ bottom: PreferredSize(
       ),
       
       body: Center(  
-          child: GridView.extent(  
-            primary: false,  
-            padding: const EdgeInsets.all(16),  
-            crossAxisSpacing: 20,  
-            mainAxisSpacing: 30,  
-            maxCrossAxisExtent: 100.0,  
-            children: <Widget>[  
-             Card(
-               color: Colors.transparent,
-               elevation: 0,
-               child: Column(
-                 children: [
-                   Container(
-                    height: 60,
-                    width: 60,
-                     child: CircleAvatar(
-                     child: ClipRRect(
-                      child: Image.network('https://play-lh.googleusercontent.com/hEt8RoyMynASnKdlZvyBKDA9GkqHacTm0xDrYEyq50_SYnDnUEl1XnLMPsOqdY89auQ'),
-                      borderRadius: BorderRadius.circular(50.0),
-                                 ),
-                               ),
-                   ),
-                   SizedBox(height: 10,),
-                   Container(
-                     child: Text("data"),
-                   )
-                 ],
-               ),
-               
-             ),  
- 
-            ],  
-          )), 
-    );
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 15,
+            mainAxisSpacing: 5,
+        ),
+              itemCount: dataau.length,
+              itemBuilder: (context, index) => Card(
+                color: Colors.transparent,
+                elevation: 0,
+                child: Column(
+                  children: [
+                    Container(
+                     height: 60,
+                     width: 60,
+                      child: CircleAvatar(
+                      child: ClipRRect(
+                       child: Image.network(dataau[index]["image"].toString()),
+                       borderRadius: BorderRadius.circular(50.0),
+                                  ),
+                                ),
+                    ),
+                    SizedBox(height: 10,),
+                    Container(
+                      child: Text(dataau[index]["first_name"].toString()
+                      ),
+                      ),
+                    
+                  ],
+                ),
+                
+              ),
+              
+              ),
+          )
+          ),
+          );
+    
   }
 }

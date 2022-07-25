@@ -8,6 +8,30 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor:Colors.transparent,
+          elevation:0,
+        title: Text(
+          "Profile ",
+          style: TextStyle(
+            fontSize:24,
+            fontWeight:FontWeight.normal,
+            color:Colors.black
+          )
+          ),
+          centerTitle: true,    
+
+    // black line of the bottom AppBar
+bottom: PreferredSize(
+      // ignore: sort_child_properties_last
+      child: Container(
+         color: Colors.black,
+         height: 1.0,
+      ),
+      preferredSize: Size.fromHeight(1.5)
+      ),
+      iconTheme: IconThemeData(color:Theme.of(context).primaryColor),
+      ),
       body:Column(
         children: [
           Row(

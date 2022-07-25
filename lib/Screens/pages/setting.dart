@@ -1,3 +1,4 @@
+import 'package:elibrary/Screens/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -29,7 +30,9 @@ class _SettingState extends State<Setting> {
        Padding(
       padding: EdgeInsets.only(right: 18),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+        },
         child: Icon(
           IconData(0xee35, fontFamily: 'MaterialIcons'),
           size: 26.0,   
