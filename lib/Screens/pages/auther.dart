@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -118,14 +120,40 @@ bottom: PreferredSize(
         ),
       ),
       
-      body: Center(
-        child: Text(
-          "Auther Screen",
-          style: TextStyle(
-            fontSize:40,
-            fontWeight:FontWeight.bold),
-           ),
-      )
+      body: Center(  
+          child: GridView.extent(  
+            primary: false,  
+            padding: const EdgeInsets.all(16),  
+            crossAxisSpacing: 20,  
+            mainAxisSpacing: 30,  
+            maxCrossAxisExtent: 100.0,  
+            children: <Widget>[  
+             Card(
+               color: Colors.transparent,
+               elevation: 0,
+               child: Column(
+                 children: [
+                   Container(
+                    height: 60,
+                    width: 60,
+                     child: CircleAvatar(
+                     child: ClipRRect(
+                      child: Image.network('https://play-lh.googleusercontent.com/hEt8RoyMynASnKdlZvyBKDA9GkqHacTm0xDrYEyq50_SYnDnUEl1XnLMPsOqdY89auQ'),
+                      borderRadius: BorderRadius.circular(50.0),
+                                 ),
+                               ),
+                   ),
+                   SizedBox(height: 10,),
+                   Container(
+                     child: Text("data"),
+                   )
+                 ],
+               ),
+               
+             ),  
+ 
+            ],  
+          )), 
     );
   }
 }
