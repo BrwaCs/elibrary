@@ -1,7 +1,8 @@
 // ignore_for_file: unnecessary_import
 
 import 'package:elibrary/Screens/pages/profile.dart';
-import 'package:elibrary/dataModels/author_data_model.dart';
+import 'package:elibrary/dataModels/aothe_data_model.dart';
+import 'package:elibrary/dataModels/author_mock_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -134,7 +135,12 @@ bottom: PreferredSize(
             mainAxisSpacing: 5,
         ),
               itemCount: dataau.length,
-              itemBuilder: (context, index) => Card(
+              itemBuilder: (context, index) {
+                List<AutherModel> _authermodl=dataau.map((element){
+                  return AutherModel.fromMap(element);
+                }
+                 ).toList();
+                return Card(
                 color: Colors.transparent,
                 elevation: 0,
                 child: Column(
@@ -144,22 +150,22 @@ bottom: PreferredSize(
                      width: 60,
                       child: CircleAvatar(
                       child: ClipRRect(
-                       child: Image.network(dataau[index]["image"].toString()),
+                       child: Image.network(_authermodl[index].image.toString()),
                        borderRadius: BorderRadius.circular(50.0),
                                   ),
                                 ),
                     ),
                     SizedBox(height: 10,),
                     Container(
-                      child: Text(dataau[index]["first_name"].toString()
+                      child: Text(_authermodl[index].first_name.toString()
                       ),
                       ),
                     
                   ],
                 ),
                 
-              ),
-              
+              );
+              }
               ),
           )
           ),
