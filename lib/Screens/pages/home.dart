@@ -1,4 +1,6 @@
 import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/dataModels/book_datamodel.dart';
+import 'package:elibrary/dataModels/book_mockdata.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,6 +13,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
+  TextEditingController _searchController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +44,7 @@ class _homeState extends State<home> {
     ),
     ],
     // black line of the bottom AppBar
-bottom: PreferredSize(
+    bottom: PreferredSize(
       // ignore: sort_child_properties_last
       child: Container(
          color: Colors.black,
@@ -121,15 +124,104 @@ bottom: PreferredSize(
         ),
       ),
       
-      body: Center(
-        child: Text(
-          "Home Screen",
-          style: TextStyle(
-            fontSize:40,
-            fontWeight:FontWeight.bold),
+      body: Column(
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  height:35,
+                  width: 302,
+                  child: TextFormField(
+                    controller: _searchController,
+                    decoration:InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius:BorderRadius.circular(15)
+                      ),
+                      prefixIcon:Icon(Icons.search),
+                      labelText: "search for books",
+                      labelStyle: TextStyle(
+                        fontSize:16,
+                        fontWeight: FontWeight.normal,
+                      )
+                    )
+                  ),
+                ),
+            ),
+          ),
+          SizedBox(height: 10,),
+          Row(
+          mainAxisAlignment:MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left:10.0),
+              child: Text(
+                "Suggestion",
+                style: TextStyle(
+                  fontSize:16,
+                  fontWeight: FontWeight.w500
+                ),
+              ),
+            )
+          ],
+        ),
+     
+     Container(
+       height: 200,
+       child: ListView.builder(
+         
+         scrollDirection: Axis.horizontal,
+         itemCount: book_mockdata.length,
+         itemBuilder: ((context, index) {
+           List<book_datamodel> _bookmodel=book_mockdata.map((element){
+             return book_datamodel.fromMap(element);
+           }).toList();
+           return 
+          Padding(
+           padding: const EdgeInsets.all(12.0),
+           child: Row(
+             children: [
+               Container(
+                 height: 180,
+                 width: 100,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 133,
+                          width: 81,
+                          child: Image.network(_bookmodel[index].image.toString()),
+                        )
+                      ],
+                    ),
+                    SizedBox(height:10),
+                    Padding(
+                      padding: const EdgeInsets.only(left:15.0),
+                      child: Row(
+                        
+                        children: [
+                          Text(_bookmodel[index].book_name.toString()),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+               ),
+              
+               
+             ],
            ),
-      )
+         );
+       
+         }
+         )
+       ),
+     )
+            
+        ]
+      ),
     );
-    
+     
   }
 }
