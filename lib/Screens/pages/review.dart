@@ -122,13 +122,119 @@ bottom: PreferredSize(
           ]
         ),
       ),
-      body: Center(
-        child: Text("Review Screen",
-        style: TextStyle(
-          fontSize:24,
-          fontWeight: FontWeight.bold
-        )
-        ),
+      body: Column(
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 170,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                   color: Color.fromARGB(255, 235, 235,235),
+                ), 
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                       Flexible( 
+                      fit: FlexFit.tight,
+                         child: Container(
+                           height: 35,
+                           width: 320,
+                           child: Row(
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.all(8.0),
+                                 child: GestureDetector(
+                                 onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+                                           },
+                              child: Icon(
+                              IconData(0xee35, fontFamily: 'MaterialIcons'),
+                              size: 26.0,   
+                                 ),
+                                 ),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.only(top:10),
+                                 child: Text("Name",
+                                 style: TextStyle(
+                                   fontSize: 14,fontWeight: FontWeight.normal
+                                 ),),
+                               ),
+
+
+                             ],
+                           ),
+                         )
+                         )
+                      ],
+                    ),
+                    Divider(
+                      thickness: 0.5,
+                      color: Colors.black,
+                    ),
+                    Row(
+                      children: [
+                       Flexible( 
+                      fit: FlexFit.tight,
+                         child: Container(
+
+                           height: 66,
+                           width: 320,
+                           child: Row( 
+                            mainAxisAlignment:MainAxisAlignment.spaceAround,
+                            children: <Widget>[ 
+                            Container( width: 14.0, ),
+                           Flexible( 
+                          child: Text("Sit veniam excepteur et commodo consequat velitsdihfioshe reprehenderit reprehenderit veniam voluptate incididunt magna culpa.",
+                          style: TextStyle(
+                        fontSize: 14,
+                       height: 1.25
+                 )
+                 ),
+               ) 
+               ], 
+               ), 
+                         )
+                         )
+                      ],
+                    ),
+                     Divider(
+                      thickness: 0.5,
+                      color: Colors.black,
+                    ),
+                    Row(
+                      
+                      children: [
+                       Flexible( 
+                      fit: FlexFit.tight,
+                         child: Container(
+                         
+                           height: 35,
+                           width: 320,
+                           child: Center(
+                             child: Text("book name", 
+                             style: 
+                             TextStyle(
+                               fontSize: 16,
+                               fontWeight: FontWeight.normal,
+                             ),),
+                           ),
+                         )
+                         )
+                      ],
+                    ),
+                  ],
+                )
+                ),
+              ),
+            ),
+          
+    
+        ]
       )
     
     );
