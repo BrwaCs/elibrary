@@ -168,6 +168,7 @@ class _homeState extends State<home> {
      
      Container(
        height: 200,
+       width: double.infinity,
        child: ListView.builder(
          
          scrollDirection: Axis.horizontal,
@@ -186,24 +187,25 @@ class _homeState extends State<home> {
                  width: 100,
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 133,
-                          width: 81,
-                          child: Image.network(_bookmodel[index].image.toString()),
-                        )
-                      ],
-                    ),
-                    SizedBox(height:10),
-                    Padding(
-                      padding: const EdgeInsets.only(left:15.0),
+                    Expanded(
                       child: Row(
-                        
                         children: [
-                          Text(_bookmodel[index].book_name.toString()),
+                          Container(
+                            height: 133,
+                            width: 81,
+                            child:FittedBox(
+                              child: Image.network(_bookmodel[index].image.toString()),
+                              fit: BoxFit.fill,
+                            ) 
+                          )
                         ],
                       ),
+                    ),
+                    SizedBox(height:10),
+                    Row(
+                      children: [
+                        Text(_bookmodel[index].book_name.toString()),
+                      ],
                     )
                   ],
                 ),
