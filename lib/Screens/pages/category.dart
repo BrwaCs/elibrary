@@ -1,4 +1,6 @@
 import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/dataModels/category_data_model.dart';
+import 'package:elibrary/dataModels/category_mock_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -121,14 +123,51 @@ bottom: PreferredSize(
         ),
       ),
     
-      body: Center(
-        child: Text(
-          "Category Screen",
-          style: TextStyle(
-            fontSize:40,
-            fontWeight:FontWeight.bold),
-           ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+           crossAxisCount: 3,
+           
+          ), 
+          itemCount: category_mock.length,
+          itemBuilder: (context, index) {
+          List<Category_datamodel> _catygoryModel=category_mock.map((element){
+            return Category_datamodel.fromMap(element);
+          }
+           ).toList();
+            return Card(
+                color: Colors.transparent,
+                elevation: 0,
+                child: Column(
+                  children: [
+                    Container(
+                     height: 75,
+                     width: 75,
+                      child: CircleAvatar(
+                      child: ClipRRect(
+                       child: Image.network(_catygoryModel[index].image.toString()),
+                       borderRadius: BorderRadius.circular(50.0),
+                                  ),
+                                ),
+                    ),
+                    SizedBox(height: 8,),
+                    Container(
+                      child: Text(_catygoryModel[index].first_name.toString()
+                      ),
+                      ),
+                    
+                  ],
+                ),
+                
+              );
+                  
+        }
+         
+
+        ),
       )
-    );
+   
+   );
   }
 }

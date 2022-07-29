@@ -45,8 +45,8 @@ class Login extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius:BorderRadius.circular(15),
                       ),
-                    prefixIcon:Icon(Icons.phone),
-                    labelText: "Phone number",
+                    prefixIcon:Icon(Icons.email),
+                    labelText: "Email",
                     labelStyle: TextStyle(
                       fontSize:20,
                       fontWeight: FontWeight.normal,

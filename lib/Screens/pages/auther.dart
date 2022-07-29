@@ -131,8 +131,7 @@ bottom: PreferredSize(
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 5,
+          
         ),
               itemCount: dataau.length,
               itemBuilder: (context, index) {
@@ -146,8 +145,8 @@ bottom: PreferredSize(
                 child: Column(
                   children: [
                     Container(
-                     height: 60,
-                     width: 60,
+                     height: 75,
+                     width: 75,
                       child: CircleAvatar(
                       child: ClipRRect(
                        child: Image.network(_authermodl[index].image.toString()),
@@ -155,7 +154,7 @@ bottom: PreferredSize(
                                   ),
                                 ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 8,),
                     Container(
                       child: Text(_authermodl[index].first_name.toString()
                       ),

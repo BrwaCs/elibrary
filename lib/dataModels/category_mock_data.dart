@@ -1,0 +1,84 @@
+const category_mock = [{
+  "id": 1,
+  "first_name": "Sonny",
+  "image": "http://unsplash.it/100/100?random&gravity=center"
+}, {
+  "id": 2,
+  "first_name": "Beauregard",
+  "image": "http://unsplash.it/100/100?random&gravity=center"
+}, 
+{
+  "id": 3,
+  "first_name": "Annmaria",
+  "image": "http://unsplash.it/100/100?random&gravity=center"
+}, 
+{
+  "id": 4,
+  "first_name": "Sibilla",
+  "image": "http://dummyimage.com/171x100.png/dddddd/000000"
+}, {
+  "id": 5,
+  "first_name": "Nathanial",
+  "image": "http://dummyimage.com/140x100.png/dddddd/000000"
+}, {
+  "id": 6,
+  "first_name": "Tiphani",
+  "image": "http://dummyimage.com/186x100.png/cc0000/ffffff"
+}, {
+  "id": 7,
+  "first_name": "Elvis",
+  "image": "http://dummyimage.com/166x100.png/dddddd/000000"
+}, {
+  "id": 8,
+  "first_name": "Roth",
+  "image": "http://dummyimage.com/138x100.png/dddddd/000000"
+}, {
+  "id": 9,
+  "first_name": "Alric",
+  "image": "http://dummyimage.com/193x100.png/cc0000/ffffff"
+}, {
+  "id": 10,
+  "first_name": "Vyky",
+  "image": "http://dummyimage.com/178x100.png/dddddd/000000"
+}, {
+  "id": 11,
+  "first_name": "Meier",
+  "image": "http://dummyimage.com/104x100.png/cc0000/ffffff"
+}, {
+  "id": 12,
+  "first_name": "Skipp",
+  "image": "http://dummyimage.com/183x100.png/cc0000/ffffff"
+}, {
+  "id": 13,
+  "first_name": "Martino",
+  "image": "http://dummyimage.com/238x100.png/ff4444/ffffff"
+}, {
+  "id": 14,
+  "first_name": "Sarina",
+  "image": "http://dummyimage.com/117x100.png/5fa2dd/ffffff"
+}, {
+  "id": 15,
+  "first_name": "Becki",
+  "image": "http://dummyimage.com/143x100.png/ff4444/ffffff"
+}, {
+  "id": 16,
+  "first_name": "Bartholomew",
+  "image": "http://dummyimage.com/168x100.png/dddddd/000000"
+}, {
+  "id": 17,
+  "first_name": "Norrie",
+  "image": "http://dummyimage.com/216x100.png/cc0000/ffffff"
+}, {
+  "id": 18,
+  "first_name": "Pacorro",
+  "image": "http://dummyimage.com/240x100.png/5fa2dd/ffffff"
+}, {
+  "id": 19,
+  "first_name": "Maddy",
+  "image": "http://dummyimage.com/165x100.png/cc0000/ffffff"
+}, {
+  "id": 20,
+  "first_name": "Talya",
+  "image": "http://dummyimage.com/228x100.png/5fa2dd/ffffff"
+},
+];

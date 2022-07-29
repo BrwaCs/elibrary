@@ -104,10 +104,9 @@ bottom: PreferredSize(
            CircleAvatar(
              backgroundColor: Colors.transparent,
              radius: 60,
-             child: ClipRRect(
-             child: Image.network("https://scontent.fisu1-4.fna.fbcdn.net/v/t39.30808-6/277813966_658645465433217_6596572273282071965_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=uVJAMcTEE4MAX-7TQjv&_nc_oc=AQmJ6M4FPIsBIGTtBCZfQBK8enzmZtEDS2iojxd_zFFzZAmljshKY0LqjuRpo87hAbQ&_nc_ht=scontent.fisu1-4.fna&oh=00_AT_utjSMYSpmePyfhISMkn4G9igxlkiP-_yS7Bf-Fq7wpA&oe=62E30D2A"),
-               borderRadius: BorderRadius.circular(60),
-             ),
+              backgroundImage:
+      NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
+
            )
          ],
           ),
