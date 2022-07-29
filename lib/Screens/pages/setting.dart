@@ -1,7 +1,9 @@
 import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class Setting extends StatefulWidget {
   const Setting({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
      appBar: AppBar(
+       
           backgroundColor:Colors.transparent,
           elevation:0,
         title: Text(
@@ -120,13 +123,50 @@ bottom: PreferredSize(
           ]
         ),
       ),
-      body: Center(
-        child: Text(
-          "Setting Screen",
-          style: TextStyle(
-            fontSize:40,
-            fontWeight:FontWeight.bold),
-           ),
+      body:Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: Row(
+              mainAxisAlignment:MainAxisAlignment.start,
+              children: [
+                
+                IconButton(onPressed: (){}, icon:Icon(Icons.dark_mode)),
+                  Text("Darkmode",
+                  style:TextStyle(
+                    fontSize:16,
+                    fontWeight: FontWeight.bold
+                  ) ,
+                  ),
+            Padding(
+              padding: const EdgeInsets.only(left:180.0),
+              child: IconButton(
+                icon: const Icon(Icons.lightbulb),
+                onPressed: () {
+                  Get.isDarkMode
+                      ? Get.changeTheme(ThemeData.light())
+                      : Get.changeTheme(ThemeData.dark());
+                }),
+            )
+        ],
+              
+            ),
+          ),
+          Row(
+            children: [
+              
+              IconButton(
+                onPressed: (){},
+               icon: Icon(Icons.update)
+               ), Text("Darkmode",
+                  style:TextStyle(
+                    fontSize:16,
+                    fontWeight: FontWeight.bold
+                  ) ,
+                  ),
+            ],
+          )
+        ],
       )
     );
   }
