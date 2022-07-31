@@ -7,7 +7,14 @@ import 'package:flutter/src/widgets/framework.dart';
 class Login extends StatelessWidget {
   
   final Function togScreen;
-  const Login({Key? key, required this.togScreen}) : super(key: key);
+  Login({Key? key, required this.togScreen}) : super(key: key);
+
+  // editing controller
+final TextEditingController _emailController= new TextEditingController();
+final TextEditingController _passwordController= new TextEditingController();
+// firebase auth
+// final _auth=FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,8 @@ class Login extends StatelessWidget {
                 SizedBox(height:70),
                 Container(
                     height:50,
-                  child: TextFormField(   
+                  child: TextFormField(  
+                   controller: _emailController,
                     decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius:BorderRadius.circular(15),
@@ -62,7 +70,9 @@ class Login extends StatelessWidget {
                 SizedBox(height:30),
                   Container(
                     height:50,
-                  child: TextFormField(   
+                  child: TextFormField( 
+                     controller: _passwordController,
+                    obscureText: true, 
                     decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius:BorderRadius.circular(15),

@@ -6,8 +6,11 @@ import 'package:flutter/src/widgets/framework.dart';
 class Register extends StatelessWidget {
 
   final Function togScreen;
-  const Register({Key? key, required this.togScreen}) : super(key: key);
-
+   Register({Key? key, required this.togScreen}) : super(key: key);
+TextEditingController _emailController= TextEditingController();
+TextEditingController _nameController=TextEditingController();
+TextEditingController _passwordController= TextEditingController();
+TextEditingController _repasswordController= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -47,7 +50,8 @@ class Register extends StatelessWidget {
                   SizedBox(height:50),
                   Container(
                       height:50,
-                    child: TextFormField(   
+                    child: TextFormField( 
+                      controller: _emailController,  
                       decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
@@ -69,7 +73,8 @@ class Register extends StatelessWidget {
                   SizedBox(height:30),
                    Container(
                       height:50,
-                    child: TextFormField(   
+                    child: TextFormField( 
+                      controller: _nameController,  
                       decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
@@ -91,12 +96,14 @@ class Register extends StatelessWidget {
                   SizedBox(height:30),
                     Container(
                       height:50,
-                    child: TextFormField(   
+                    child: TextFormField( 
+                      obscureText: true,
+                      controller: _passwordController,  
                       decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),
-                      prefixIcon:Icon(Icons.lock),
+                      prefixIcon:Icon(Icons.vpn_key),
                       labelText: "Password",
                       labelStyle: TextStyle(
                         fontSize:20,
@@ -113,12 +120,14 @@ class Register extends StatelessWidget {
                    SizedBox(height:30),
                     Container(
                       height:50,
-                    child: TextFormField(   
+                    child: TextFormField( 
+                      obscureText: true,  
+                      controller: _repasswordController,
                       decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),
-                      prefixIcon:Icon(Icons.lock),
+                      prefixIcon:Icon(Icons.vpn_key),
                       labelText: "Re-Password",
                       labelStyle: TextStyle(
                         fontSize:20,
@@ -189,4 +198,6 @@ class Register extends StatelessWidget {
       ),
     );
   }
+
+ 
 }
