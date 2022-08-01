@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -77,7 +78,9 @@ bottom: PreferredSize(
                   primary: Color.fromARGB(255, 212, 0, 0),
                             ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0),
                             ),
-                    onPressed: (){},
+                    onPressed: (){
+                       FirebaseAuth.instance.signOut();
+                    },
                             child: Row(
                               children: [
                                 Text("Logout ",
