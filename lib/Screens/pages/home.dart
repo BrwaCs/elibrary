@@ -1,6 +1,7 @@
 import 'package:elibrary/Screens/pages/profile.dart';
 import 'package:elibrary/dataModels/book_datamodel.dart';
 import 'package:elibrary/dataModels/book_mockdata.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -233,9 +234,15 @@ class _homeState extends State<home> {
                   fontWeight: FontWeight.w500
                 ),
               ),
-            )
+            ),
+             ElevatedButton(onPressed: (){
+  
+          FirebaseAuth.instance.signOut();
+  
+        }, child: Text("signout"))
           ],
         ),
+        
      
      Container(
        height: 200,
@@ -293,7 +300,9 @@ class _homeState extends State<home> {
      )
             
         ]
+        
       ),
+      
     );
      
   }
