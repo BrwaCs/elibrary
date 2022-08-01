@@ -1,24 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elibrary/Auth/login.dart';
 import 'package:elibrary/Screens/mainpages.dart';
 import 'package:elibrary/dataModels/User_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
 
-  final Function togScreen;
-   Register({Key? key, required this.togScreen}) : super(key: key);
+  
+   Register({Key? key,}) : super(key: key);
+
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
      String? errorMessage;
-
 
   // our form key
   final _formKey = GlobalKey<FormState>();
+
 final _auth=FirebaseAuth.instance;
+
 TextEditingController _emailController= TextEditingController();
+
 TextEditingController _nameController=TextEditingController();
+
 TextEditingController _passwordController= TextEditingController();
+
 TextEditingController _repasswordController= TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
@@ -191,7 +203,7 @@ final emailfield= Container(
                        )
                        ),
                         GestureDetector(
-                           onTap: ()=>togScreen(),
+                           onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>Login())),
                            child: Text(
                           " Login",
                            style:TextStyle(
@@ -222,7 +234,7 @@ final emailfield= Container(
                         icon:Icon(Icons.arrow_back,
                          size:30,
                          color:Theme.of(context).primaryColor,
-                        ), onPressed: () =>togScreen(),
+                        ), onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=>Login())),
                        
                       )
                     ],
@@ -259,15 +271,12 @@ final emailfield= Container(
     );
   }
 
- 
-
-
 void Signup(String email,String password,Context)async{
   if(_formKey.currentState!.validate()){
 
     try{
       await _auth.createUserWithEmailAndPassword(email: email, password: password)
-  .then((value) => {postDetailForFireStore(Context)})
+  .then((value) => {postDetailForFireStore()})
   .catchError((e){
      Fluttertoast.showToast(msg: e!.message);
      });
@@ -299,7 +308,8 @@ void Signup(String email,String password,Context)async{
   
 }
 }
-postDetailForFireStore(Context)async{
+
+postDetailForFireStore()async{
   FirebaseFirestore firebasefirestore= FirebaseFirestore.instance;
 
 User? user=_auth.currentUser;
@@ -312,10 +322,19 @@ usermodel.fullName=_nameController.text;
 await firebasefirestore.collection("user").doc(user.uid).set(usermodel.toMap());
 Fluttertoast.showToast(msg: "Account created successfully");
 
-Navigator.push(
-  (Context), MaterialPageRoute(
-    builder: (context)=> mainpages()),
-   );
+Navigator.pushAndRemoveUntil(
+        (context),
+        MaterialPageRoute(builder: (context) => mainpages()),
+        (route) => false);
+}
 }
 
-}
+
+
+
+
+
+
+
+
+

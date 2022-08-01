@@ -21,10 +21,10 @@ void togScreen(){
   @override
   Widget build(BuildContext context) {
     if(switchescreen){
-      return Login(togScreen: togScreen, );
+      return Login();
 
     }
-    return Register(togScreen:togScreen);
+    return Register();
     
   }
 }

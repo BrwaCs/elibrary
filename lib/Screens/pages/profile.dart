@@ -1,10 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elibrary/Auth/login.dart';
+import 'package:elibrary/dataModels/User_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+
+User? user=FirebaseAuth.instance.currentUser;
+UserModel logedInUser=UserModel();
+
+void initState(){
+  super.initState();
+  FirebaseFirestore.instance.collection("user")
+  .doc(user!.uid)
+  .get()
+  .then((value) => {
+  this.logedInUser=UserModel.fromMap(value.data())
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +102,7 @@ bottom: PreferredSize(
                             ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0),
                             ),
                     onPressed: (){
-                       FirebaseAuth.instance.signOut();
+                       logout(context);
                     },
                             child: Row(
                               children: [
@@ -192,4 +215,12 @@ bottom: PreferredSize(
     );
     
   }
+Future<void>logout(BuildContext context)async{
+
+await FirebaseAuth.instance.signOut();
+
+Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+
+}
+
 }

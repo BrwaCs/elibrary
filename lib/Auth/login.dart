@@ -1,4 +1,5 @@
 import 'package:elibrary/Auth/forgot_password.dart';
+import 'package:elibrary/Auth/register.dart';
 import 'package:elibrary/Screens/mainpages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   
-  final Function togScreen;
-  Login({Key? key, required this.togScreen}) : super(key: key);
+  
+  Login({Key? key, }) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -204,7 +205,7 @@ return Scaffold(
                    mainAxisAlignment:MainAxisAlignment.center,
                    children: [
                          GestureDetector(
-                           onTap:() => widget.togScreen(),
+                           onTap:() => Navigator.push(context, MaterialPageRoute(builder: (context)=>Register())),
                            child: Text(
                            "Create new account",
                            style:TextStyle(
