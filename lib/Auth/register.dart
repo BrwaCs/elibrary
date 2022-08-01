@@ -1,54 +1,33 @@
+
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elibrary/Auth/login.dart';
 import 'package:elibrary/Screens/mainpages.dart';
+import 'package:elibrary/dataModels/User_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Register extends StatelessWidget {
 
   final Function togScreen;
    Register({Key? key, required this.togScreen}) : super(key: key);
+     String? errorMessage;
+
+
+  // our form key
+  final _formKey = GlobalKey<FormState>();
+final _auth=FirebaseAuth.instance;
 TextEditingController _emailController= TextEditingController();
 TextEditingController _nameController=TextEditingController();
 TextEditingController _passwordController= TextEditingController();
 TextEditingController _repasswordController= TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap:() =>FocusScope.of(context).unfocus(), 
-      child: Scaffold(
-        body:Padding(padding: EdgeInsets.all(20),
-        child:Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment:MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      icon:Icon(Icons.arrow_back,
-                       size:30,
-                       color:Theme.of(context).primaryColor,
-                      ), onPressed: () =>togScreen(),
-                     
 
-                    )
-                  ],
-
-
-                ),
-           
-                Text(
-                  "Create Account",
-                  style: TextStyle(
-                    fontSize:32,
-                    fontWeight: FontWeight.w400,
-                    color:Colors.blue,
-                    
-                  ),
-                  ),
-                 
-                  SizedBox(height:50),
-                  Container(
+final emailfield= Container(
                       height:50,
                     child: TextFormField( 
                       controller: _emailController,  
@@ -69,9 +48,8 @@ TextEditingController _repasswordController= TextEditingController();
           
                     ),
           
-                  ),
-                  SizedBox(height:30),
-                   Container(
+                  );
+    final namefield= Container(
                       height:50,
                     child: TextFormField( 
                       controller: _nameController,  
@@ -92,9 +70,8 @@ TextEditingController _repasswordController= TextEditingController();
           
                     ),
           
-                  ),
-                  SizedBox(height:30),
-                    Container(
+                  );
+    final passswordfild=       Container(
                       height:50,
                     child: TextFormField( 
                       obscureText: true,
@@ -116,9 +93,8 @@ TextEditingController _repasswordController= TextEditingController();
           
                     ),
           
-                  ),
-                   SizedBox(height:30),
-                    Container(
+                  );
+    final repasswordfild=Container(
                       height:50,
                     child: TextFormField( 
                       obscureText: true,  
@@ -140,11 +116,8 @@ TextEditingController _repasswordController= TextEditingController();
           
                     ),
           
-                  ),
-                
-          
-                 SizedBox(height:35),
-                 SizedBox(
+                  );
+    final createbutton=   SizedBox(
                    height:42,
                    width:210,
                    child: FlatButton(
@@ -152,7 +125,7 @@ TextEditingController _repasswordController= TextEditingController();
                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                   
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => mainpages()));
+                 Signup(_emailController.text, _passwordController.text,dynamic);
                 },
                 child: Text(
                   "Create",
@@ -164,9 +137,9 @@ TextEditingController _repasswordController= TextEditingController();
                   )
                 ),
               ),
-                 ),
-                 SizedBox(height:30),
-                 Row(
+                 );
+
+    final haveAccountTextButt0n=Row(
                    mainAxisAlignment:MainAxisAlignment.center,
                    children: [
                      Text(
@@ -189,7 +162,51 @@ TextEditingController _repasswordController= TextEditingController();
                           ),
                        ),
                    ],
-                 ),
+                 );
+
+    
+    return GestureDetector(
+      onTap:() =>FocusScope.of(context).unfocus(), 
+      child: Scaffold(
+        body:Padding(padding: EdgeInsets.all(20),
+        child:Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment:MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      icon:Icon(Icons.arrow_back,
+                       size:30,
+                       color:Theme.of(context).primaryColor,
+                      ), onPressed: () =>togScreen(),
+                     
+                    )
+                  ],
+                ),
+                Text(
+                  "Create Account",
+                  style: TextStyle(
+                    fontSize:32,
+                    fontWeight: FontWeight.w400,
+                    color:Colors.blue,
+                    
+                  ),
+                  ),
+                 
+                  SizedBox(height:50),
+                 emailfield,
+                  SizedBox(height:30),
+                  namefield,
+                  SizedBox(height:30),
+             passswordfild,
+                   SizedBox(height:30),
+                repasswordfild,
+                 SizedBox(height:35),
+              createbutton,
+                 SizedBox(height:30),
+                 haveAccountTextButt0n
               ],
             ),
           ),
@@ -200,4 +217,32 @@ TextEditingController _repasswordController= TextEditingController();
   }
 
  
+
+
+void Signup(String email,String password,Context)async{
+  await _auth.createUserWithEmailAndPassword(email: email, password: password)
+  .then((value) => {postDetailForFireStore(Context)})
+  .catchError((e){
+     Fluttertoast.showToast(msg: e!.message);
+     });
+}
+postDetailForFireStore(Context)async{
+  FirebaseFirestore firebasefirestore= FirebaseFirestore.instance;
+
+User? user=_auth.currentUser;
+UserModel usermodel=UserModel();
+
+usermodel.email=user!.email;
+usermodel.uid=user.uid;
+usermodel.fullName=_nameController.text;
+
+await firebasefirestore.collection("user").doc(user.uid).set(usermodel.toMap());
+Fluttertoast.showToast(msg: "Account created successfully");
+
+Navigator.pushAndRemoveUntil(
+  (Context), MaterialPageRoute(
+    builder: (context)=> Login(togScreen: togScreen,)),
+   (route) => false);
+}
+
 }
