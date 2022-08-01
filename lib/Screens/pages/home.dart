@@ -234,11 +234,6 @@ class _homeState extends State<home> {
                 ),
               ),
             ),
-             ElevatedButton(onPressed: (){
-  
-          FirebaseAuth.instance.signOut();
-  
-        }, child: Text("signout"))
           ],
         ),
         
