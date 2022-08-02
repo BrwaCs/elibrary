@@ -29,6 +29,42 @@ final _auth=FirebaseAuth.instance;
 
  final _formKey = GlobalKey<FormState>();
 
+
+ // password strength check
+RegExp pass_valid = RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)");
+  double password_strength = 0; 
+ bool validatePassword(String pass){
+    String _password = pass.trim();
+    if(_password.isEmpty){
+      setState(() {
+        password_strength = 0;
+      });
+    }else if(_password.length < 6 ){
+      setState(() {
+        password_strength = 1 / 4;
+      });
+    }else if(_password.length < 8){
+      setState(() {
+        password_strength = 2 / 4;
+      });
+    }else{
+      if(pass_valid.hasMatch(_password)){
+        setState(() {
+          password_strength = 4 / 4;
+        });
+        return true;
+      }else{
+        setState(() {
+          password_strength = 3 / 4;
+        });
+        return false;
+      }
+    }
+    return false;
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
   final emailFild= Container(
@@ -71,14 +107,22 @@ final _auth=FirebaseAuth.instance;
 final passwordFild= Container(
                       height:50,
                     child: TextFormField( 
-                              validator: (value) {
-                    RegExp regex = new RegExp(r'^.{6,}$');
-                    if (value!.isEmpty) {
-                      return ("Password is required for login");
-                    }
-                    if (!regex.hasMatch(value)) {
-                      return ("Enter Valid Password(Min. 6 Character)");
-                    }
+                      onChanged: (value){
+                    _formKey.currentState!.validate();
+                  },
+                     validator: (value){
+                      if(value!.isEmpty){
+                        return "Please enter password";
+                      }else{
+                       //call function to check password
+                        bool result = validatePassword(value);
+                        if(result){
+                          // create account event
+                         return null;
+                        }else{
+                          return "Password should contain Capital & small letter & Number & Special";
+                        }
+                      }
                   },
                   onSaved: (value) {
             _passwordController.text = value!;
@@ -110,13 +154,14 @@ final loginButton=  SizedBox(
                      color:Theme.of(context).primaryColor,
                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                   
-                onPressed: () async {
-          
+                onPressed: () async {password_strength != 1 ? null : (){
+                
+              
                   debugPrint("username: ${_emailController.text}");
                             debugPrint("password: ${_passwordController.text}");
           
                        signIn(_emailController.text, _passwordController.text);
-                                
+                           };     
                 },
                 child: Text(
                   "Login",
@@ -130,99 +175,223 @@ final loginButton=  SizedBox(
               ),
                  );
 return Scaffold(
+
       body:Padding(padding: EdgeInsets.all(25),
+
       child:Center(
+
         child: SingleChildScrollView(
+
           child: Form(
+
             key:_formKey,
+
             child: Column(
+
               children: [
+
                    
+
                 Text(
+
                   "Welcome to elibrary",
+
                   style: TextStyle(
+
                     fontSize:32,
+
                     fontWeight: FontWeight.w400,
+
                     color:Colors.blue,
+
                     
+
                   ),
+
                   ),
+
                   SizedBox(height: 10),
+
                    Text(
+
                   "sign in to continue",
+
                   style: TextStyle(
+
                     fontSize:16,
+
                     fontWeight: FontWeight.normal,
+
                     color:Colors.grey,
+
                     
+
                   ),
+
                   ),
+
                   SizedBox(height:70),
+
                  emailFild,
+
                   SizedBox(height:30),
+
                    passwordFild,
+
+                    Padding(
+
+                padding: const EdgeInsets.all(12.0),
+
+                child: LinearProgressIndicator(
+
+                  value: password_strength,
+
+                  backgroundColor: Colors.grey[300],
+
+                  minHeight: 5,
+
+                  color: password_strength <= 1 / 4
+
+                      ? Colors.red
+
+                      : password_strength == 2 / 4
+
+                      ? Colors.yellow
+
+                      : password_strength == 3 / 4
+
+                      ? Colors.blue
+
+                      : Colors.green,
+
+                ),
+
+              ),
+
                   
+
                   Row(
+
                     mainAxisAlignment: MainAxisAlignment.end,
+
                     children: [
+
                       TextButton( 
+
                         onPressed: (){
+
               Navigator.push(context, MaterialPageRoute(builder: (context) => forgot_password()));
+
             },
+
                          child: Text(
+
                            "Forgot Password?",
+
                            style: TextStyle(
+
                              fontSize:14,
+
                              fontWeight: FontWeight.w500,
+
                              color:Theme.of(context).primaryColor,
+
                            ),
+
                            )
+
                          
+
                          
+
                          )
+
                     ],
+
                   ),
+
                   
+
                  SizedBox(height:20),
+
                  loginButton,
+
                  SizedBox(height:30),
+
                  Row(
+
                    mainAxisAlignment:MainAxisAlignment.center,
+
                    children: [
+
                      Text(
+
                        "Dont have account?\n",
+
                        style:TextStyle(
+
                          fontSize:16,
+
                          fontWeight: FontWeight.normal,
+
                          color:Colors.grey,
+
                        )
+
                        ),
+
           
+
                    ],
+
           
+
                  ),
+
                  Row(
+
                    mainAxisAlignment:MainAxisAlignment.center,
+
                    children: [
+
                          GestureDetector(
+
                            onTap:() => Navigator.push(context, MaterialPageRoute(builder: (context)=>Register())),
+
                            child: Text(
+
                            "Create new account",
+
                            style:TextStyle(
+
                            fontSize:16,
+
                            fontWeight: FontWeight.bold,
+
                            color:Theme.of(context).primaryColor,
+
                          )
+
                        ),
+
                      ),
+
                    ],
+
                  )
+
               ],       
+
             ),
+
           ),
+
         ),
+
       )
+
      ),
+
     );   
  }
 
@@ -266,3 +435,33 @@ switch (error.code) {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 
