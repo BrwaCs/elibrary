@@ -105,7 +105,8 @@ late String _email;
                     shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                     onPressed: (){
                       FirebaseAuth.instance.sendPasswordResetEmail(email:_email);
-                      Navigator.of(context).pop();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Request is send')),);
                     },
                      child: Text(
                        "Send Request",
@@ -123,7 +124,11 @@ late String _email;
                     mainAxisAlignment:MainAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          FirebaseAuth.instance.sendPasswordResetEmail(email:_email);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('again Request is send')),);
+                        },
                         child: Text(
                           "didnt recive the code?",
                           style: TextStyle(
