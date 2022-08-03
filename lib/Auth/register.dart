@@ -44,7 +44,7 @@ final emailfield= Container(
                         return ("Please Enter Your Email");
                           }
                          // reg expression for email validation
-                         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                         if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                          .hasMatch(value)) {
                         return ("Please Enter a valid email");
                           }
@@ -109,12 +109,12 @@ final emailfield= Container(
                       autofocus: false,
                       textInputAction: TextInputAction.next,
                       validator: (value) {
-                     RegExp regex = new RegExp(r'^.{6,}$');
+                     RegExp regex = new RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)");
                      if (value!.isEmpty) {
                      return ("Password is required for login");
                        }
                      if (!regex.hasMatch(value)) {
-                      return ("Enter Valid Password(Min. 6 Character)");
+                      return ("Password should contain Capital, small letter & Number & Special");
                        }
                        },
                       obscureText: true,

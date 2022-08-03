@@ -13,6 +13,8 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => _ProfileState();
 }
 
+// when we login user name in profile is null after hot relod in display name why ?
+
 class _ProfileState extends State<Profile> {
 
 User? user=FirebaseAuth.instance.currentUser;
@@ -141,7 +143,7 @@ bottom: PreferredSize(
             mainAxisAlignment:MainAxisAlignment.center,
             children: [
             Text(
-              "Brwa Nahman",
+              "${logedInUser.fullName}",
               style: TextStyle(
                 fontSize:18,
                 fontWeight: FontWeight.w500
