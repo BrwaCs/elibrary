@@ -1,11 +1,19 @@
 import 'package:elibrary/Auth/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class forgot_password extends StatelessWidget {
+class forgot_password extends StatefulWidget {
   const forgot_password({Key? key,  }) : super(key: key);
- 
+
+  @override
+  State<forgot_password> createState() => _forgot_passwordState();
+}
+
+class _forgot_passwordState extends State<forgot_password> {
+late String _email;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -59,6 +67,22 @@ class forgot_password extends StatelessWidget {
                 Container(
                   height:50,
                   child: TextFormField(
+                     validator: (value) {
+                     if (value!.isEmpty) {
+                      return ("Please Enter Your Email");
+                       }
+                        // reg expression for email validation
+                      if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value)) {
+                    return ("Please Enter a valid email");
+                            }
+                              return null;
+                          },
+                    onChanged: (value){
+                    setState(() {
+                      _email=value.trim();
+                    });
+                    },
                     decoration:InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15)
@@ -79,9 +103,12 @@ class forgot_password extends StatelessWidget {
                   child: FlatButton(
                     color:Theme.of(context).primaryColor,
                     shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
-                    onPressed: (){},
+                    onPressed: (){
+                      FirebaseAuth.instance.sendPasswordResetEmail(email:_email);
+                      Navigator.of(context).pop();
+                    },
                      child: Text(
-                       "Send code",
+                       "Send Request",
                        style: TextStyle(
                          fontSize:16,
                          fontWeight: FontWeight.bold,
