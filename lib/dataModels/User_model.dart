@@ -2,7 +2,7 @@ class UserModel {
   String? uid;
   String? email;
   String? fullName;
-
+// why wen we create data model by data class genarater the profile name always null after relod?
 
   UserModel({this.uid, this.email, this.fullName});
 

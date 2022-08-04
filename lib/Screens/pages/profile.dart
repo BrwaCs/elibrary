@@ -20,13 +20,14 @@ class _ProfileState extends State<Profile> {
 User? user=FirebaseAuth.instance.currentUser;
 UserModel logedInUser=UserModel();
 
-void initState(){
+ initState() {
   super.initState();
-  FirebaseFirestore.instance.collection("user")
+   
+   FirebaseFirestore.instance.collection("user")
   .doc(user!.uid)
   .get()
   .then((value) => {
-  this.logedInUser=UserModel.fromMap(value.data())
+  this.logedInUser=UserModel.fromMap(value.data() as Map<String, dynamic>) 
   });
 }
 
