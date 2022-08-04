@@ -1,3 +1,7 @@
+
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Auth/login.dart';
 import 'package:elibrary/dataModels/User_model.dart';
@@ -5,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -16,6 +21,8 @@ class Profile extends StatefulWidget {
 // when we login user name in profile is null after hot relod in display name why ?
 
 class _ProfileState extends State<Profile> {
+
+  
 
 User? user=FirebaseAuth.instance.currentUser;
 UserModel logedInUser=UserModel();
@@ -31,7 +38,8 @@ UserModel logedInUser=UserModel();
   });
 }
 
-
+  final ImagePicker _picker= ImagePicker();
+XFile? _selectImage;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +55,9 @@ UserModel logedInUser=UserModel();
           )
           ),
           centerTitle: true,    
-
+    
     // black line of the bottom AppBar
-bottom: PreferredSize(
+    bottom: PreferredSize(
       // ignore: sort_child_properties_last
       child: Container(
          color: Colors.black,
@@ -126,18 +134,39 @@ bottom: PreferredSize(
               ),
             ]
           ),
-          Row(
-         mainAxisAlignment:MainAxisAlignment.center,
-         children: [
+          GestureDetector(
+           onTap: ()async{
+                      XFile? image=  await _picker.pickImage(source: ImageSource.gallery);
+                      setState(() {
+                        _selectImage=image;
+                      });
+                    },
+            child: Row(
+                   mainAxisAlignment:MainAxisAlignment.center,
+                   children: [
+              Container(
+              
+              child: _selectImage==null ?
+               Container( child:CircleAvatar(
+               backgroundColor: Colors.transparent,
+               radius: 60,
+                backgroundImage:
+                NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
+              
+             ))
+             :Container(
+                child:CircleAvatar(
+               backgroundColor: Colors.transparent,
+               radius: 60,
+                backgroundImage:
+                FileImage(File(_selectImage!.path)),
 
-           CircleAvatar(
-             backgroundColor: Colors.transparent,
-             radius: 60,
-              backgroundImage:
-      NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
-
-           )
-         ],
+             )
+              )
+            )
+             
+                   ],
+            ),
           ),
           SizedBox(height: 10,),
           Row(
@@ -148,7 +177,7 @@ bottom: PreferredSize(
               style: TextStyle(
                 fontSize:18,
                 fontWeight: FontWeight.w500
-
+    
               ),
             )
           ],
@@ -213,7 +242,9 @@ bottom: PreferredSize(
               )
             ],
           ),
+          
         ],
+      
       )
     );
     
