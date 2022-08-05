@@ -135,34 +135,82 @@ XFile? _selectImage;
             ]
           ),
           GestureDetector(
-           onTap: ()async{
-                      XFile? image=  await _picker.pickImage(source: ImageSource.gallery);
-                      setState(() {
-                        _selectImage=image;
-                      });
-                    },
+          
             child: Row(
                    mainAxisAlignment:MainAxisAlignment.center,
                    children: [
               Container(
               
               child: _selectImage==null ?
-               Container( child:CircleAvatar(
-               backgroundColor: Colors.transparent,
+              Stack(
+               children: [
+               Container(
+                  height: 108,
+                  width: 100,
+                   child:
+               CircleAvatar(
+               backgroundColor: Colors.red,
                radius: 60,
                 backgroundImage:
                 NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
-              
-             ))
-             :Container(
-                child:CircleAvatar(
-               backgroundColor: Colors.transparent,
-               radius: 60,
-                backgroundImage:
-                FileImage(File(_selectImage!.path)),
-
              )
-              )
+              ),
+                Positioned(
+                  top:46,
+                  left:22,
+                  height: 100,
+                  width: 60,
+                  child: IconButton(
+                    onPressed: ()async{
+                      XFile? image=  await _picker.pickImage(source: ImageSource.gallery);
+                      setState(() {
+                        _selectImage=image;
+                      });
+                    }, 
+                     icon: Icon(Icons.add_circle,color: Colors.red,),   
+                     iconSize: 24,
+                     )
+                  )
+               ],             
+             )
+              
+            //    Container( child:CircleAvatar(
+            //    backgroundColor: Colors.transparent,
+            //    radius: 60,
+            //     backgroundImage:
+            //     NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
+              
+            //  ))
+             :Stack(
+               children: [
+                   Container(
+                  height: 108,
+                  width: 100,
+                  child:CircleAvatar(
+                 backgroundColor: Colors.transparent,
+                 radius: 60,
+                  backgroundImage:
+                  FileImage(File(_selectImage!.path)),
+               )
+                ),
+               Positioned(
+                  top:46,
+                  left:22,
+                  height: 100,
+                  width: 60,
+                  child: IconButton(
+                    onPressed: ()async{
+                      XFile? image=  await _picker.pickImage(source: ImageSource.gallery);
+                      setState(() {
+                        _selectImage=image;
+                      });
+                    }, 
+                     icon: Icon(Icons.add_circle,color: Colors.red,),   
+                     iconSize: 24,
+                     )
+                  )
+               ],             
+             )
             )
              
                    ],
