@@ -1,15 +1,19 @@
 
 
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Auth/login.dart';
 import 'package:elibrary/dataModels/User_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -37,9 +41,9 @@ UserModel logedInUser=UserModel();
   this.logedInUser=UserModel.fromMap(value.data() as Map<String, dynamic>) 
   });
 }
-
-  final ImagePicker _picker= ImagePicker();
-XFile? _selectImage;
+String imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU';
+//   final ImagePicker _picker= ImagePicker();
+// XFile? _selectImage;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +145,7 @@ XFile? _selectImage;
                    children: [
               Container(
               
-              child: _selectImage==null ?
+              child: imageUrl==null ?
               Stack(
                children: [
                Container(
@@ -162,10 +166,7 @@ XFile? _selectImage;
                   width: 60,
                   child: IconButton(
                     onPressed: ()async{
-                      XFile? image=  await _picker.pickImage(source: ImageSource.gallery);
-                      setState(() {
-                        _selectImage=image;
-                      });
+                     uploadImage();
                     }, 
                      icon: Icon(Icons.add_circle,color: Colors.red,),   
                      iconSize: 24,
@@ -190,7 +191,7 @@ XFile? _selectImage;
                  backgroundColor: Colors.transparent,
                  radius: 60,
                   backgroundImage:
-                  FileImage(File(_selectImage!.path)),
+                  NetworkImage(imageUrl)
                )
                 ),
                Positioned(
@@ -200,10 +201,7 @@ XFile? _selectImage;
                   width: 60,
                   child: IconButton(
                     onPressed: ()async{
-                      XFile? image=  await _picker.pickImage(source: ImageSource.gallery);
-                      setState(() {
-                        _selectImage=image;
-                      });
+                     uploadImage();
                     }, 
                      icon: Icon(Icons.add_circle,color: Colors.red,),   
                      iconSize: 24,
@@ -305,4 +303,37 @@ Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()
 
 }
 
+
+
+
+uploadImage() async {
+    final _firebaseStorage = FirebaseStorage.instance;
+    final _imagePicker = ImagePicker();
+    XFile image;
+    //Check Permissions
+    await Permission.photos.request();
+
+    var permissionStatus = await Permission.photos.status;
+
+    if (permissionStatus.isGranted){
+      //select images
+
+      XFile? image=await _imagePicker.pickImage(source: ImageSource.gallery);
+      var file=File(image!.path);
+      if(image !=null){
+      //upload image to firebase
+      var snapshot=await _firebaseStorage.ref()
+      .child('images/${imageUrl}').putFile(file);
+      var downlodeURL=await snapshot.ref.getDownloadURL();
+      setState(() {
+        imageUrl=downlodeURL;
+      });
+      
+      }else{
+        print("No Image Path Recived");
+      }
+    }else{
+      print("Permission not granted. Try Again with permission access");
+    }
+  }
 }
