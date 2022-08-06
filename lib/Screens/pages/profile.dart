@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Profile extends StatefulWidget {
@@ -307,6 +308,7 @@ Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()
 
 
 uploadImage() async {
+
     final _firebaseStorage = FirebaseStorage.instance;
     final _imagePicker = ImagePicker();
     XFile image;
@@ -320,10 +322,11 @@ uploadImage() async {
 
       XFile? image=await _imagePicker.pickImage(source: ImageSource.gallery);
       var file=File(image!.path);
+      final fileName = basename(file.path);
       if(image !=null){
       //upload image to firebase
       var snapshot=await _firebaseStorage.ref()
-      .child('images/${imageUrl}').putFile(file);
+      .child('images/$fileName').putFile(file);
       var downlodeURL=await snapshot.ref.getDownloadURL();
       setState(() {
         imageUrl=downlodeURL;
