@@ -28,25 +28,26 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
 
   
-
+//auth statechange
 User? user=FirebaseAuth.instance.currentUser;
 UserModel logedInUser=UserModel();
 
- initState() {
-  super.initState();
+//  initState() {
+//   super.initState();
    
-   FirebaseFirestore.instance.collection("user")
-  .doc(user!.uid)
-  .get()
-  .then((value) => {
-  this.logedInUser=UserModel.fromMap(value.data() as Map<String, dynamic>) 
-  });
-}
-String imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU';
+//    FirebaseFirestore.instance.collection("user")
+//   .doc(user!.uid)
+//   .get()
+//   .then((value) => {
+//   this.logedInUser=UserModel.fromMap(value.data() as Map<String, dynamic>) 
+//   });
+// }
+String? imageUrl;
 //   final ImagePicker _picker= ImagePicker();
 // XFile? _selectImage;
   @override
   Widget build(BuildContext context) {
+    //future biulder
     return Scaffold(
         appBar: AppBar(
           backgroundColor:Colors.transparent,
@@ -72,227 +73,242 @@ String imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzm
       ),
       iconTheme: IconThemeData(color:Theme.of(context).primaryColor),
       ),
-      body:Column(
-        children: [
-          Row(
-            mainAxisAlignment:MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SafeArea(
-                  child: ElevatedButton(
-                   style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  minimumSize: Size(95, 27),
-                  // Foreground color
-                  onPrimary: Colors.white,
-                  // Background color
-                  primary: Color.fromARGB(255, 30, 212, 0),
-                            ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0),
-                            ),
-                    onPressed: (){},
-                            child: Text("Edit",
-                            style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                            ),
-                            ),
-                            ),
+ body:FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+future: FirebaseFirestore.instance.collection("user").doc(user!.uid).get(),
+builder: (context,snapshot) {
+  if(snapshot.connectionState==ConnectionState.waiting){
+    return Text("Loding ..");
+  }else if(snapshot.hasError){
+    return Text("Error...");
+  }else if(snapshot.data ==null){
+    return Text("Data is null");
+  }
+
+  UserModel theUserModel=UserModel.fromSnapShot(snapshot.data as DocumentSnapshot);
+
+  return Column(
+          children: [
+            Row(
+              mainAxisAlignment:MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SafeArea(
+                    child: ElevatedButton(
+                     style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    minimumSize: Size(95, 27),
+                    // Foreground color
+                    onPrimary: Colors.white,
+                    // Background color
+                    primary: Color.fromARGB(255, 30, 212, 0),
+                              ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0),
+                              ),
+                      onPressed: (){},
+                              child: Text("Edit",
+                              style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                              ),
+                              ),
+                              ),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SafeArea(
-                  child: ElevatedButton(
-                    
-                   style: ElevatedButton.styleFrom(
-                     
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  minimumSize: Size(95, 27),
-                  // Foreground color
-                  onPrimary: Colors.white,
-                  // Background color
-                  primary: Color.fromARGB(255, 212, 0, 0),
-                            ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0),
-                            ),
-                    onPressed: (){
-                       logout(context);
-                    },
-                            child: Row(
-                              children: [
-                                Text("Logout ",
-                                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
-                                ),
-                                ),
-                                Icon(
-                                  Icons.logout_outlined,
-                                  size: 16
-                                )
-                              ],
-                            ),
-                            ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SafeArea(
+                    child: ElevatedButton(
+                      
+                     style: ElevatedButton.styleFrom(
+                       
+                        shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    minimumSize: Size(95, 27),
+                    // Foreground color
+                    onPrimary: Colors.white,
+                    // Background color
+                    primary: Color.fromARGB(255, 212, 0, 0),
+                              ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0),
+                              ),
+                      onPressed: (){
+                         logout(context);
+                      },
+                              child: Row(
+                                children: [
+                                  Text("Logout ",
+                                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                                  ),
+                                  ),
+                                  Icon(
+                                    Icons.logout_outlined,
+                                    size: 16
+                                  )
+                                ],
+                              ),
+                              ),
+                  ),
                 ),
-              ),
-            ]
-          ),
-          GestureDetector(
-          
-            child: Row(
-                   mainAxisAlignment:MainAxisAlignment.center,
-                   children: [
-              Container(
-              
-              child: imageUrl==null ?
-              Stack(
-               children: [
-               Container(
-                  height: 108,
-                  width: 100,
-                   child:
-               CircleAvatar(
-               backgroundColor: Colors.red,
-               radius: 60,
-                backgroundImage:
-                NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
-             )
-              ),
-                Positioned(
-                  top:46,
-                  left:22,
-                  height: 100,
-                  width: 60,
-                  child: IconButton(
-                    onPressed: ()async{
-                     uploadImage();
-                    }, 
-                     icon: Icon(Icons.add_circle,color: Colors.red,),   
-                     iconSize: 24,
-                     )
-                  )
-               ],             
-             )
-              
-            //    Container( child:CircleAvatar(
-            //    backgroundColor: Colors.transparent,
-            //    radius: 60,
-            //     backgroundImage:
-            //     NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
-              
-            //  ))
-             :Stack(
-               children: [
-                   Container(
-                  height: 108,
-                  width: 100,
-                  child:CircleAvatar(
-                 backgroundColor: Colors.transparent,
+              ]
+            ),
+            GestureDetector(
+            
+              child: Row(
+                     mainAxisAlignment:MainAxisAlignment.center,
+                     children: [
+                Container(
+                
+                child: imageUrl==null ?
+                Stack(
+                 children: [
+                 Container(
+                    height: 108,
+                    width: 100,
+                     child:
+                 CircleAvatar(
+                 backgroundColor: Colors.red,
                  radius: 60,
                   backgroundImage:
-                  NetworkImage(imageUrl)
+                  NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
                )
                 ),
-               Positioned(
-                  top:46,
-                  left:22,
-                  height: 100,
-                  width: 60,
-                  child: IconButton(
-                    onPressed: ()async{
-                     uploadImage();
-                    }, 
-                     icon: Icon(Icons.add_circle,color: Colors.red,),   
-                     iconSize: 24,
-                     )
-                  )
-               ],             
-             )
-            )
-             
-                   ],
-            ),
-          ),
-          SizedBox(height: 10,),
-          Row(
-            mainAxisAlignment:MainAxisAlignment.center,
-            children: [
-            Text(
-              "${logedInUser.fullName}",
-              style: TextStyle(
-                fontSize:18,
-                fontWeight: FontWeight.w500
-    
+                  Positioned(
+                    top:46,
+                    left:22,
+                    height: 100,
+                    width: 60,
+                    child: IconButton(
+                      onPressed: ()async{
+                       uploadImage();
+                      }, 
+                       icon: Icon(Icons.add_circle,color: Colors.red,),   
+                       iconSize: 24,
+                       )
+                    )
+                 ],             
+               )
+                
+              //    Container( child:CircleAvatar(
+              //    backgroundColor: Colors.transparent,
+              //    radius: 60,
+              //     backgroundImage:
+              //     NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
+                
+              //  ))
+               :Stack(
+                 children: [
+                     Container(
+                    height: 108,
+                    width: 100,
+                    child:CircleAvatar(
+                   backgroundColor: Colors.transparent,
+                   radius: 60,
+                    backgroundImage:
+                    NetworkImage(imageUrl!)
+                 )
+                  ),
+                 Positioned(
+                    top:46,
+                    left:22,
+                    height: 100,
+                    width: 60,
+                    child: IconButton(
+                      onPressed: ()async{
+                       uploadImage();
+                      }, 
+                       icon: Icon(Icons.add_circle,color: Colors.red,),   
+                       iconSize: 24,
+                       )
+                    )
+                 ],             
+               )
+              )
+               
+                     ],
               ),
-            )
-          ],
-          ),
-          SizedBox(height: 10,),
-          Row(
-            mainAxisAlignment:MainAxisAlignment.center,
-            children: [
+            ),
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment:MainAxisAlignment.center,
+              children: [
               Text(
-                "Reviews 10",
+                "${theUserModel.fullName}",
                 style: TextStyle(
-                  fontSize:16,
-                  fontWeight: FontWeight.bold
+                  fontSize:18,
+                  fontWeight: FontWeight.w500
+      
                 ),
               )
             ],
-          ),
-          SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.only(left:10.0),
-            child: Row(
-              mainAxisAlignment:MainAxisAlignment.start,
+            ),
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment:MainAxisAlignment.center,
               children: [
-                Text("bio",
-                style: TextStyle(
-                  fontSize:16,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.grey
-                ),
+                Text(
+                  "Reviews 10",
+                  style: TextStyle(
+                    fontSize:16,
+                    fontWeight: FontWeight.bold
+                  ),
                 )
               ],
             ),
-          ),
-          SizedBox(height: 8,),
-          Row( 
-            mainAxisAlignment:MainAxisAlignment.spaceAround,
-            children: <Widget>[ 
-              Container( width: 14.0, ),
-               Flexible( 
-                 child: Text("Sit veniam excepteur et commodo consequat velitsdihfioshe reprehenderit reprehenderit veniam voluptate incididunt magna culpa.Cillum duis enim pariatur adipisicing qui do non sint culpa.",
-                 style: TextStyle(
-                  fontSize: 14,
-                  height: 1.25
-                 )
-                 ),
-               ) 
-               ], 
-               ),
-               SizedBox(height: 20,),
-          Row(
-            mainAxisAlignment:MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left:10.0),
-                child: Text(
-                  "Reviews",
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.only(left:10.0),
+              child: Row(
+                mainAxisAlignment:MainAxisAlignment.start,
+                children: [
+                  Text("bio",
                   style: TextStyle(
                     fontSize:16,
-                    fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey
                   ),
-                ),
-              )
-            ],
-          ),
-          
-        ],
-      
-      )
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 8,),
+            Row( 
+              mainAxisAlignment:MainAxisAlignment.spaceAround,
+              children: <Widget>[ 
+                Container( width: 14.0, ),
+                 Flexible( 
+                   child: Text("Sit veniam excepteur et commodo consequat velitsdihfioshe reprehenderit reprehenderit veniam voluptate incididunt magna culpa.Cillum duis enim pariatur adipisicing qui do non sint culpa.",
+                   style: TextStyle(
+                    fontSize: 14,
+                    height: 1.25
+                   )
+                   ),
+                 ) 
+                 ], 
+                 ),
+                 SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment:MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left:10.0),
+                  child: Text(
+                    "Reviews",
+                    style: TextStyle(
+                      fontSize:16,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                )
+              ],
+            ),
+            
+          ],
+        
+        );
+        }
+ )
     );
     
   }

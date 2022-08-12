@@ -177,7 +177,8 @@ final emailfield= Container(
                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                   
                 onPressed: (){
-                 Signup(_emailController.text, _passwordController.text,dynamic);
+                 Signup(_emailController.text.trim(), _passwordController.text,dynamic);
+                 postDetailForFireStore();
                 },
                 child: Text(
                   "Create",
