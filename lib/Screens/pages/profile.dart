@@ -1,11 +1,11 @@
 
-
 // ignore_for_file: deprecated_member_use
 
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Auth/login.dart';
+import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/User_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -77,7 +77,7 @@ String? imageUrl;
 future: FirebaseFirestore.instance.collection("user").doc(user!.uid).get(),
 builder: (context,snapshot) {
   if(snapshot.connectionState==ConnectionState.waiting){
-    return Text("Loding ..");
+    return LoadingIndicator();
   }else if(snapshot.hasError){
     return Text("Error...");
   }else if(snapshot.data ==null){
