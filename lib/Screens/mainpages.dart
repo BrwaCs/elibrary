@@ -49,14 +49,16 @@ class _HomeState extends State<mainpages> {
     // shape:CircularNotchedRectangle(),
    // notchMargin: 10,
     child: Container(
-      height:50,
+      height:55,
       child: Row(
-        mainAxisAlignment:MainAxisAlignment.spaceBetween,
+        crossAxisAlignment:CrossAxisAlignment.center,
+        mainAxisAlignment:MainAxisAlignment.spaceEvenly,
         children:<Widget>[ // why type widget here?
 
-        // left tabbar icons
+        //  tabbar icons
           Row(
-            crossAxisAlignment:CrossAxisAlignment.start,
+            mainAxisAlignment:MainAxisAlignment.spaceBetween,
+            crossAxisAlignment:CrossAxisAlignment.center,
             children: [
               MaterialButton(
                 minWidth:40,
@@ -69,7 +71,8 @@ class _HomeState extends State<mainpages> {
 
                 },
                 child:Column(
-                  mainAxisAlignment:MainAxisAlignment.center,
+                  crossAxisAlignment:CrossAxisAlignment.center,
+                  mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(
                       Icons.star,
@@ -97,7 +100,8 @@ class _HomeState extends State<mainpages> {
 
                 },
                 child:Column(
-                  mainAxisAlignment:MainAxisAlignment.center,
+                  mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment:CrossAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.person,
@@ -125,7 +129,8 @@ class _HomeState extends State<mainpages> {
 
                 },
                 child:Column(
-                  mainAxisAlignment:MainAxisAlignment.center,
+                  mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment:CrossAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.home,
@@ -142,15 +147,7 @@ class _HomeState extends State<mainpages> {
                   ],
                 )
                 ),
-            
-            ],
-          ),
-        
-        // right tabbar Icons
-         Row(
-            crossAxisAlignment:CrossAxisAlignment.start,
-            children: [
-              MaterialButton(
+                 MaterialButton(
                 minWidth:40,
                 onPressed: (){
                   setState(() {
@@ -161,7 +158,8 @@ class _HomeState extends State<mainpages> {
 
                 },
                 child:Column(
-                  mainAxisAlignment:MainAxisAlignment.center,
+                       crossAxisAlignment:CrossAxisAlignment.center,
+                  mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(
                       Icons.category,
@@ -189,7 +187,8 @@ class _HomeState extends State<mainpages> {
 
                 },
                 child:Column(
-                  mainAxisAlignment:MainAxisAlignment.center,
+                  crossAxisAlignment:CrossAxisAlignment.center,
+                  mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(
                       Icons.settings,
@@ -208,8 +207,7 @@ class _HomeState extends State<mainpages> {
                 ),
             
             ],
-          )
-        
+          ),        
         ],
 
       ),
