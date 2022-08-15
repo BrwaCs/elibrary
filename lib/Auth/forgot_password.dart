@@ -1,4 +1,5 @@
 import 'package:elibrary/Auth/login.dart';
+import 'package:elibrary/service/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -15,6 +16,9 @@ class forgot_password extends StatefulWidget {
 
 class _forgot_passwordState extends State<forgot_password> {
 late String _email;
+
+final auth=FirebaseAuth.instance;
+AuthenticationService firebaseauth= AuthenticationService();
 
   @override
   Widget build(BuildContext context) {
@@ -105,10 +109,19 @@ late String _email;
                   child: FlatButton(
                     color:Theme.of(context).primaryColor,
                     shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
-                    onPressed: (){
-                      FirebaseAuth.instance.sendPasswordResetEmail(email:_email);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Request is send')),);
+                    onPressed: ()async{
+           
+      final _status = await firebaseauth.resetPassword(
+          email: _email.trim());
+      if (_status == AuthStatus.successful) {
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Request is send")),);
+      } else {
+      
+        final error = AuthExceptionHandler.generateErrorMessage(_status);
+       ScaffoldMessenger.of(context).showSnackBar(
+                     SnackBar(content: Text("email not valid")),);
+      }
                     },
                      child: Text(
                        "Send Request",
@@ -126,11 +139,20 @@ late String _email;
                     mainAxisAlignment:MainAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          FirebaseAuth.instance.sendPasswordResetEmail(email:_email);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('again Request is send')),);
-                        },
+                                onTap: ()async{
+           
+      final _status = await firebaseauth.resetPassword(
+          email: _email.trim());
+      if (_status == AuthStatus.successful) {
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Request is send")),);
+      } else {
+      
+        final error = AuthExceptionHandler.generateErrorMessage(_status);
+       ScaffoldMessenger.of(context).showSnackBar(
+                     SnackBar(content: Text("email not valid")),);
+      }
+                    },
                         child: Text(
                           "didnt recive the code?",
                           style: TextStyle(
@@ -151,7 +173,7 @@ late String _email;
       )
     
     );
+    
   }
+
 }
-
-
