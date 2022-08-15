@@ -72,7 +72,7 @@ bottom: PreferredSize(
                   ) ,
                   ),
             Padding(
-              padding: const EdgeInsets.only(left:210.0,top:10.0,),
+              padding: const EdgeInsets.only(left:180.0,top:10.0,),
               child: IconButton(
                 icon: const Icon(Icons.lightbulb),
                 onPressed: () {
