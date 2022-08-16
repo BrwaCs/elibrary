@@ -1,9 +1,14 @@
 // ignore_for_file: unnecessary_import
 
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/aothe_data_model.dart';
 import 'package:elibrary/dataModels/author_mock_data.dart';
+import 'package:elibrary/dataModels/books_authers_datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -57,49 +62,60 @@ bottom: PreferredSize(
       iconTheme: IconThemeData(color:Theme.of(context).primaryColor),
       ),
        drawer: Drawar(),
-      body: Center(  
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-          
-        ),
-              itemCount: dataau.length,
-              itemBuilder: (context, index) {
-                List<AutherModel> _authermodl=dataau.map((element){
-                  return AutherModel.fromMap(element);
-                }
-                 ).toList();
-                return Card(
-                color: Colors.transparent,
-                elevation: 0,
-                child: Column(
-                  children: [
-                    Container(
-                     height: 75,
-                     width: 75,
-                      child: CircleAvatar(
-                      child: ClipRRect(
-                       child: Image.network(_authermodl[index].image.toString()),
-                       borderRadius: BorderRadius.circular(50.0),
-                                  ),
-                                ),
-                    ),
-                    SizedBox(height: 8,),
-                    Container(
-                      child: Text(_authermodl[index].first_name.toString()
-                      ),
-                      ),
-                    
-                  ],
-                ),
-                
-              );
-              }
-              ),
-          )
+      body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        future: FirebaseFirestore.instance.collection("books").get(),
+builder: (context,snapshot) {
+  if(snapshot.connectionState==ConnectionState.waiting){
+    return LoadingIndicator();
+  }else if(snapshot.hasError){
+    return Text("Error...");
+  }else if(snapshot.data ==null){
+    return Text("Data is null");
+  }
+// create a liat of book models from fire store  query snapshot
+List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) ).toList();
+      
+        return Center(  
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+            
           ),
+                itemCount: books.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                  color: Colors.transparent,
+                  elevation: 0,
+                  child: Column(
+                    children: [
+                      Container(
+                       height: 75,
+                       width: 75,
+                        child: CircleAvatar(
+                        child: ClipRRect(
+                         child: Image.network(books[index].autherImage),
+                         borderRadius: BorderRadius.circular(50.0),
+                                    ),
+                                  ),
+                      ),
+                      SizedBox(height: 8,),
+                      Container(
+                        child: Text(books[index].auther
+                        ),
+                        ),
+                      
+                    ],
+                  ),
+                  
+                );
+                }
+                ),
+            )
+            );
+}
+      ),
           );
     
   }

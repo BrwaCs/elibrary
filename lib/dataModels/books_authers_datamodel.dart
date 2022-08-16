@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class booksAndAutherDatamodel {
+class BookModel {
 
 String uid;
 String bookName;
@@ -15,7 +15,7 @@ String bookImage;
 String? bookDescription;
 String autherImage;
  DocumentReference? reference;
-  booksAndAutherDatamodel({
+  BookModel({
     required this.uid,
     required this.bookName,
     required this.auther,
@@ -32,7 +32,7 @@ String autherImage;
 
 
 
-  booksAndAutherDatamodel copyWith({
+  BookModel copyWith({
     String? uid,
     String? bookName,
     String? auther,
@@ -43,7 +43,7 @@ String autherImage;
     String? bookDescription,
     String? autherImage,
   }) {
-    return booksAndAutherDatamodel(
+    return BookModel(
       uid: uid ?? this.uid,
       bookName: bookName ?? this.bookName,
       auther: auther ?? this.auther,
@@ -69,12 +69,12 @@ String autherImage;
       'autherImage': autherImage,
     };
   }
-  factory booksAndAutherDatamodel.fromSnapShot(DocumentSnapshot documentSnapshot) {
-    return booksAndAutherDatamodel.fromMap(documentSnapshot.data() as Map<String, dynamic>,
+  factory BookModel.fromSnapShot(DocumentSnapshot documentSnapshot) {
+    return BookModel.fromMap(documentSnapshot.data() as Map<String, dynamic>,
         reference: documentSnapshot.reference);
   }
-  factory booksAndAutherDatamodel.fromMap(Map<String, dynamic> map,{required DocumentReference? reference}) {
-    return booksAndAutherDatamodel(
+  factory BookModel.fromMap(Map<String, dynamic> map,{required DocumentReference? reference}) {
+    return BookModel(
       uid: map['uid'] as String,
       bookName: map['bookName'] as String,
       auther: map['auther'] as String,
@@ -91,15 +91,15 @@ String autherImage;
 
   String toJson() => json.encode(toMap());
 
-  factory booksAndAutherDatamodel.fromJson(String source) => booksAndAutherDatamodel.fromMap(json.decode(source) as Map<String, dynamic>, reference: null);
+  factory BookModel.fromJson(String source) => BookModel.fromMap(json.decode(source) as Map<String, dynamic>, reference: null);
 
   @override
   String toString() {
-    return 'booksAndAutherDatamodel(uid: $uid, bookName: $bookName, auther: $auther, category: $category, dateAndTime: $dateAndTime, review: $review, bookImage: $bookImage, bookDescription: $bookDescription, autherImage: $autherImage)';
+    return 'BookModel(uid: $uid, bookName: $bookName, auther: $auther, category: $category, dateAndTime: $dateAndTime, review: $review, bookImage: $bookImage, bookDescription: $bookDescription, autherImage: $autherImage)';
   }
 
   @override
-  bool operator ==(covariant booksAndAutherDatamodel other) {
+  bool operator ==(covariant BookModel other) {
     if (identical(this, other)) return true;
   
     return 
