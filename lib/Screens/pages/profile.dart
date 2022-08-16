@@ -168,10 +168,10 @@ builder: (context,snapshot) {
                     width: 100,
                      child:
                  CircleAvatar(
-                 backgroundColor: Colors.red,
+                 backgroundColor: Colors.black,
                  radius: 60,
                   backgroundImage:
-                  NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjC0aAIzmF7cePLylt4ObVinrZRkqGn-4Gv3fHf7J4fQHyppZp_MZ8HQm2KtQCPvfWIyQ&usqp=CAU'),
+                  AssetImage("assets/images/profile.png"),
                )
                 ),
                   Positioned(

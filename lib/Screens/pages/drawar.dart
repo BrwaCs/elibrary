@@ -20,8 +20,8 @@ class Drawar extends StatelessWidget {
                 accountName: null,
                 accountEmail: null,
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://i.pinimg.com/originals/dd/64/da/dd64da585bc57cb05e5fd4d8ce873f57.png"),
+                  backgroundImage: AssetImage(
+                      "assets/images/applogo.png"),
                 ),
                 decoration: BoxDecoration(
                   image: DecorationImage(

@@ -1,5 +1,6 @@
 
 import 'package:elibrary/Auth/auth.dart';
+import 'package:elibrary/Screens/pages/Abotus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.blue,
         ),  
          darkTheme: ThemeData.dark(),
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.light,
+        
        home:Auth(),
       );
     
