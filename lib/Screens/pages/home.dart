@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/Screens/pages/show_books.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
-import 'package:elibrary/dataModels/book_datamodel.dart';
-import 'package:elibrary/dataModels/book_mockdata.dart';
 import 'package:elibrary/dataModels/books_authers_datamodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -159,105 +158,112 @@ List<BookModel> books=snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e)).
        
   
        Container(
-  
+       
          height: 200,
-  
+       
          width: double.infinity,
-  
+       
          child: ListView.builder(
-  
+       
            
-  
+       
            scrollDirection: Axis.horizontal,
-  
+       
            itemCount: books.length,
-  
+       
            itemBuilder: ((context, index) {
-  
+       
              return 
-  
+       
             Padding(
-  
+       
              padding: const EdgeInsets.all(12.0),
-  
-             child: Row(
-  
-               children: [
-  
-                 Container(
-  
-                   height: 180,
-  
-                   width: 100,
-  
-                  child: Column(
-  
-                    children: [
-  
-                      Expanded(
-  
-                        child: Row(
-  
-                          children: [
-  
-                            Container(
-  
-                              height: 133,
-  
-                              width: 81,
-  
-                              child:FittedBox(
-  
-                                child: Image.network(books[index].bookImage),
-  
-                                fit: BoxFit.fill,
-  
-                              ) 
-  
-                            )
-  
-                          ],
-  
+       
+             child: GestureDetector(
+               onTap: (){
+           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
+             ShowBooks(authername:books[index].auther, bookname: books[index].bookName, image: books[index].bookImage, description: books[index].bookDescription.toString())
+           ));
+         },
+               child: Row(
+                    
+                 children: [
+                    
+                   Container(
+                    
+                     height: 180,
+                    
+                     width: 100,
+                    
+                    child: Column(
+                    
+                      children: [
+                    
+                        Expanded(
+                    
+                          child: Row(
+                    
+                            children: [
+                    
+                              Container(
+                    
+                                height: 133,
+                    
+                                width: 81,
+                    
+                                child:FittedBox(
+                    
+                                  child: Image.network(books[index].bookImage),
+                    
+                                  fit: BoxFit.fill,
+                    
+                                ) 
+                    
+                              )
+                    
+                            ],
+                    
+                          ),
+                    
                         ),
-  
-                      ),
-  
-                      SizedBox(height:10),
-  
-                      Row(
-  
-                        children: [
-  
-                          Text(books[index].bookName),
-  
-                        ],
-  
-                      )
-  
-                    ],
-  
-                  ),
-  
-                 ),
-  
-                
-  
-                 
-  
-               ],
-  
+                    
+                        SizedBox(height:10),
+                    
+                        Row(
+                    
+                          children: [
+                    
+                            Text(books[index].bookName),
+                    
+                          ],
+                    
+                        )
+                    
+                      ],
+                    
+                    ),
+                    
+                   ),
+                    
+                  
+                    
+                   
+                    
+                 ],
+                    
+               ),
              ),
-  
+       
            );
-  
+       
          
-  
+       
            }
-  
+       
            )
-  
+       
          ),
-  
+       
        ),
   
        SizedBox(height: 10,),
@@ -319,86 +325,77 @@ List<BookModel> books=snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e)).
   
              padding: const EdgeInsets.all(12.0),
   
-             child: Row(
-  
-               children: [
-  
-                 Container(
-  
-                   height: 180,
-  
-                   width: 100,
-  
-                  child: Column(
-  
-                    children: [
-  
-                      Expanded(
-  
-                        child: Row(
-  
-                          children: [
-  
-                            Container(
-  
-                              height: 133,
-  
-                              width: 81,
-  
-                              child:FittedBox(
-  
-                                child: Image.network(books[index].bookImage),
-  
-                                fit: BoxFit.fill,
-  
-                              ) 
-  
-                            )
-  
-                          ],
-  
+             child: GestureDetector(
+                    onTap: (){
+           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
+             ShowBooks(authername:books[index].auther, bookname: books[index].bookName, image: books[index].bookImage, description: books[index].bookDescription.toString())
+           ));
+         },
+               child: Row(
+               
+                 children: [
+               
+                   Container(
+               
+                     height: 180,
+               
+                     width: 100,
+               
+                    child: Column(
+               
+                      children: [
+               
+                        Expanded(
+               
+                          child: Row(
+               
+                            children: [
+               
+                              Container(
+               
+                                height: 133,
+               
+                                width: 81,
+               
+                                child:FittedBox(
+               
+                                  child: Image.network(books[index].bookImage),
+               
+                                  fit: BoxFit.fill,
+               
+                                ) 
+               
+                              )
+               
+                            ],
+               
+                          ),
+               
                         ),
-  
-                      ),
-  
-                      SizedBox(height:10),
-  
-                      Row(
-  
-                        children: [
-  
-                          Text(books[index].bookName),
-  
-                        ],
-  
-                      )
-  
-                    ],
-                  ),
-  
-                 ),
-               ],
-  
+               
+                        SizedBox(height:10),
+               
+                        Row(
+               
+                          children: [
+               
+                            Text(books[index].bookName),
+               
+                          ],
+               
+                        )
+                      ],
+                    ),
+                   ),
+                 ],
+               ),
              ),
-  
-           );
-  
-         
-  
+           );  
            }
-  
            )
-  
          ),
-  
-       )
-  
-              
-  
-          ]
-  
-          
-  
+         )
+          ]  
         );
   },
 ),

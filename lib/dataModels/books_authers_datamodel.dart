@@ -47,13 +47,14 @@ String file;
     String? bookDescription,
     String? autherImage,
     String? file,
+    String? categoryImage,
   }) {
     return BookModel(
       uid: uid ?? this.uid,
       bookName: bookName ?? this.bookName,
       auther: auther ?? this.auther,
       category: category ?? this.category,
-      categoryImage: categoryImage ?? this.categoryImage,
+      categoryImage:categoryImage ?? this.categoryImage,
       dateAndTime: dateAndTime ?? this.dateAndTime,
       review: review ?? this.review,
       bookImage: bookImage ?? this.bookImage,
