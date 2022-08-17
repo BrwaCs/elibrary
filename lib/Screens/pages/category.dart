@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
-import 'package:elibrary/dataModels/category_data_model.dart';
-import 'package:elibrary/dataModels/category_mock_data.dart';
+import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
+import 'package:elibrary/dataModels/books_authers_datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -56,50 +57,98 @@ bottom: PreferredSize(
       ),
      drawer: Drawar(),
     
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-           crossAxisCount: 3,
-           
-          ), 
-          itemCount: category_mock.length,
-          itemBuilder: (context, index) {
-          List<Category_datamodel> _catygoryModel=category_mock.map((element){
-            return Category_datamodel.fromMap(element);
-          }
-           ).toList();
-            return Card(
-                color: Colors.transparent,
-                elevation: 0,
-                child: Column(
-                  children: [
-                    Container(
-                     height: 75,
-                     width: 75,
-                      child: CircleAvatar(
-                      child: ClipRRect(
-                       child: Image.network(_catygoryModel[index].image.toString()),
-                       borderRadius: BorderRadius.circular(50.0),
+body:FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+  future: FirebaseFirestore.instance.collection("books").get(),
+     builder: (context,snapshot) {
+  if(snapshot.connectionState==ConnectionState.waiting){
+    return LoadingIndicator();
+  }else if(snapshot.hasError){
+    return Center(child: Text("Error..."));
+  }else if(snapshot.data ==null){
+    return Center(child: Text("Data is null"));
+  }
+// create a liat of book models from fire store  query snapshot
+List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) ).toList();
+  return  Padding(
+  
+          padding: const EdgeInsets.all(8.0),
+  
+          child: GridView.builder(
+  
+            gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+  
+             crossAxisCount: 3,
+  
+             
+  
+            ), 
+  
+            itemCount:books.length,
+  
+            itemBuilder: (context, index) {
+              return Card(
+  
+                  color: Colors.transparent,
+  
+                  elevation: 0,
+  
+                  child: Column(
+  
+                    children: [
+  
+                      Container(
+  
+                       height: 75,
+  
+                       width: 75,
+  
+                        child: CircleAvatar(
+  
+                        child: ClipRRect(
+  
+                         child: Image.network(books[index].autherImage),
+  
+                         borderRadius: BorderRadius.circular(50.0),
+  
+                                    ),
+  
                                   ),
-                                ),
-                    ),
-                    SizedBox(height: 8,),
-                    Container(
-                      child: Text(_catygoryModel[index].first_name.toString()
+  
                       ),
-                      ),
-                    
-                  ],
-                ),
-                
-              );
+  
+                      SizedBox(height: 8,),
+  
+                      Container(
+  
+                        child: Text(books[index].auther
+  
+                        ),
+  
+                        ),
+  
+                      
+  
+                    ],
+  
+                  ),
+  
                   
-        }
-         
-
-        ),
-      )
+  
+                );
+  
+                    
+  
+          }
+  
+           
+  
+  
+  
+          ),
+  
+        );
+     }
+)
    
    );
   }

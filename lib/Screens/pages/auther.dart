@@ -6,8 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
-import 'package:elibrary/dataModels/aothe_data_model.dart';
-import 'package:elibrary/dataModels/author_mock_data.dart';
 import 'package:elibrary/dataModels/books_authers_datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -62,9 +60,9 @@ bottom: PreferredSize(
       iconTheme: IconThemeData(color:Theme.of(context).primaryColor),
       ),
        drawer: Drawar(),
-      body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance.collection("books").get(),
-builder: (context,snapshot) {
+     builder: (context,snapshot) {
   if(snapshot.connectionState==ConnectionState.waiting){
     return LoadingIndicator();
   }else if(snapshot.hasError){
