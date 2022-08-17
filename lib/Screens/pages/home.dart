@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/book_datamodel.dart';
 import 'package:elibrary/dataModels/book_mockdata.dart';
+import 'package:elibrary/dataModels/books_authers_datamodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -57,179 +60,348 @@ class _homeState extends State<home> {
       ),
         drawer: Drawar(),
       
-      body: ListView(
-        children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  height:35,
-                  width: 302,
-                  child: TextFormField(
-                    controller: _searchController,
-                    decoration:InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: OutlineInputBorder(
-                        borderRadius:BorderRadius.circular(15)
-                      ),
-                      prefixIcon:Icon(Icons.search),
-                      labelText: "search for books",
-                      labelStyle: TextStyle(
-                        fontSize:16,
-                        fontWeight: FontWeight.normal,
+body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+  future: FirebaseFirestore.instance.collection("books").get(),
+  builder: (context, snapshot){
+    if(snapshot.connectionState==ConnectionState.waiting){
+      return LoadingIndicator();
+    }
+    else if(snapshot.data==null){
+      return Center(child: Text("data is null"),);
+    }else if(snapshot.hasError){
+      return Center(child: Text("error"),);
+    }
+List<BookModel> books=snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e)).toList();
+ return   ListView(
+  
+          children: [
+  
+            Center(
+  
+              child: Padding(
+  
+                padding: const EdgeInsets.all(8.0),
+  
+                child: Container(
+  
+                    height:35,
+  
+                    width: 302,
+  
+                    child: TextFormField(
+  
+                      controller: _searchController,
+  
+                      decoration:InputDecoration(
+  
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+  
+                        border: OutlineInputBorder(
+  
+                          borderRadius:BorderRadius.circular(15)
+  
+                        ),
+  
+                        prefixIcon:Icon(Icons.search),
+  
+                        labelText: "search for books",
+  
+                        labelStyle: TextStyle(
+  
+                          fontSize:16,
+  
+                          fontWeight: FontWeight.normal,
+  
+                        )
+  
                       )
-                    )
+  
+                    ),
+  
                   ),
-                ),
+  
+              ),
+  
             ),
+  
+            SizedBox(height: 10,),
+  
+            Row(
+  
+            mainAxisAlignment:MainAxisAlignment.start,
+  
+            children: [
+  
+              Padding(
+  
+                padding: const EdgeInsets.only(left:10.0),
+  
+                child: Text(
+  
+                  "Suggestion",
+  
+                  style: TextStyle(
+  
+                    fontSize:16,
+  
+                    fontWeight: FontWeight.w500
+  
+                  ),
+  
+                ),
+  
+              )
+  
+            ],
+  
           ),
-          SizedBox(height: 10,),
-          Row(
-          mainAxisAlignment:MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left:10.0),
-              child: Text(
-                "Suggestion",
-                style: TextStyle(
-                  fontSize:16,
-                  fontWeight: FontWeight.w500
-                ),
-              ),
-            )
-          ],
-        ),
-     
-     Container(
-       height: 200,
-       width: double.infinity,
-       child: ListView.builder(
-         
-         scrollDirection: Axis.horizontal,
-         itemCount: book_mockdata.length,
-         itemBuilder: ((context, index) {
-           List<book_datamodel> _bookmodel=book_mockdata.map((element){
-             return book_datamodel.fromMap(element);
-           }).toList();
-           return 
-          Padding(
-           padding: const EdgeInsets.all(12.0),
-           child: Row(
-             children: [
-               Container(
-                 height: 180,
-                 width: 100,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 133,
-                            width: 81,
-                            child:FittedBox(
-                              child: Image.network(_bookmodel[index].image.toString()),
-                              fit: BoxFit.fill,
-                            ) 
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(height:10),
-                    Row(
-                      children: [
-                        Text(_bookmodel[index].book_name.toString()),
-                      ],
-                    )
-                  ],
-                ),
-               ),
-              
-               
-             ],
-           ),
-         );
+  
        
-         }
-         )
-       ),
-     ),
-     SizedBox(height: 10,),
-          Row(
-          mainAxisAlignment:MainAxisAlignment.start,
-          children: [
+  
+       Container(
+  
+         height: 200,
+  
+         width: double.infinity,
+  
+         child: ListView.builder(
+  
+           
+  
+           scrollDirection: Axis.horizontal,
+  
+           itemCount: books.length,
+  
+           itemBuilder: ((context, index) {
+  
+             return 
+  
             Padding(
-              padding: const EdgeInsets.only(left:10.0),
-              child: Text(
-                "Newest",
-                style: TextStyle(
-                  fontSize:16,
-                  fontWeight: FontWeight.w500
-                ),
-              ),
-            ),
-          ],
-        ),
-        
-     
-     Container(
-       height: 200,
-       width: double.infinity,
-       child: ListView.builder(
-         
-         scrollDirection: Axis.horizontal,
-         itemCount: book_mockdata.length,
-         itemBuilder: ((context, index) {
-           List<book_datamodel> _bookmodel=book_mockdata.map((element){
-             return book_datamodel.fromMap(element);
-           }).toList();
-           return 
-          Padding(
-           padding: const EdgeInsets.all(12.0),
-           child: Row(
-             children: [
-               Container(
-                 height: 180,
-                 width: 100,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 133,
-                            width: 81,
-                            child:FittedBox(
-                              child: Image.network(_bookmodel[index].image.toString()),
-                              fit: BoxFit.fill,
-                            ) 
-                          )
-                        ],
+  
+             padding: const EdgeInsets.all(12.0),
+  
+             child: Row(
+  
+               children: [
+  
+                 Container(
+  
+                   height: 180,
+  
+                   width: 100,
+  
+                  child: Column(
+  
+                    children: [
+  
+                      Expanded(
+  
+                        child: Row(
+  
+                          children: [
+  
+                            Container(
+  
+                              height: 133,
+  
+                              width: 81,
+  
+                              child:FittedBox(
+  
+                                child: Image.network(books[index].bookImage),
+  
+                                fit: BoxFit.fill,
+  
+                              ) 
+  
+                            )
+  
+                          ],
+  
+                        ),
+  
                       ),
-                    ),
-                    SizedBox(height:10),
-                    Row(
-                      children: [
-                        Text(_bookmodel[index].book_name.toString()),
-                      ],
-                    )
-                  ],
-                ),
-               ),
-              
-               
-             ],
-           ),
-         );
-       
-         }
-         )
+  
+                      SizedBox(height:10),
+  
+                      Row(
+  
+                        children: [
+  
+                          Text(books[index].bookName),
+  
+                        ],
+  
+                      )
+  
+                    ],
+  
+                  ),
+  
+                 ),
+  
+                
+  
+                 
+  
+               ],
+  
+             ),
+  
+           );
+  
+         
+  
+           }
+  
+           )
+  
+         ),
+  
        ),
-     )
-            
-        ]
-        
-      ),
+  
+       SizedBox(height: 10,),
+  
+            Row(
+  
+            mainAxisAlignment:MainAxisAlignment.start,
+  
+            children: [
+  
+              Padding(
+  
+                padding: const EdgeInsets.only(left:10.0),
+  
+                child: Text(
+  
+                  "Newest",
+  
+                  style: TextStyle(
+  
+                    fontSize:16,
+  
+                    fontWeight: FontWeight.w500
+  
+                  ),
+  
+                ),
+  
+              ),
+  
+            ],
+  
+          ),
+  
+          
+  
+       
+  
+       Container(
+  
+         height: 200,
+  
+         width: double.infinity,
+  
+         child: ListView.builder(
+  
+           
+  
+           scrollDirection: Axis.horizontal,
+  
+           itemCount: books.length,
+  
+           itemBuilder: ((context, index) {
+
+  
+             return 
+  
+            Padding(
+  
+             padding: const EdgeInsets.all(12.0),
+  
+             child: Row(
+  
+               children: [
+  
+                 Container(
+  
+                   height: 180,
+  
+                   width: 100,
+  
+                  child: Column(
+  
+                    children: [
+  
+                      Expanded(
+  
+                        child: Row(
+  
+                          children: [
+  
+                            Container(
+  
+                              height: 133,
+  
+                              width: 81,
+  
+                              child:FittedBox(
+  
+                                child: Image.network(books[index].bookImage),
+  
+                                fit: BoxFit.fill,
+  
+                              ) 
+  
+                            )
+  
+                          ],
+  
+                        ),
+  
+                      ),
+  
+                      SizedBox(height:10),
+  
+                      Row(
+  
+                        children: [
+  
+                          Text(books[index].bookName),
+  
+                        ],
+  
+                      )
+  
+                    ],
+                  ),
+  
+                 ),
+               ],
+  
+             ),
+  
+           );
+  
+         
+  
+           }
+  
+           )
+  
+         ),
+  
+       )
+  
+              
+  
+          ]
+  
+          
+  
+        );
+  },
+),
       
     );
      

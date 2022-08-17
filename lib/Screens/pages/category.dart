@@ -106,7 +106,7 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
   
                         child: ClipRRect(
   
-                         child: Image.network(books[index].autherImage),
+                         child: Image.network(books[index].categoryImage),
   
                          borderRadius: BorderRadius.circular(50.0),
   
@@ -115,35 +115,15 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
                                   ),
   
                       ),
-  
                       SizedBox(height: 8,),
-  
-                      Container(
-  
-                        child: Text(books[index].auther
-  
+                      Container( 
+                        child: Text(books[index].category
+                          ),
                         ),
-  
-                        ),
-  
-                      
-  
                     ],
-  
                   ),
-  
-                  
-  
                 );
-  
-                    
-  
           }
-  
-           
-  
-  
-  
           ),
   
         );

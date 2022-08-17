@@ -9,20 +9,24 @@ String uid;
 String bookName;
 String auther;
 String category;
+String categoryImage;
 String dateAndTime;
 String? review;
 String bookImage;
 String? bookDescription;
 String autherImage;
+String file;
  DocumentReference? reference;
   BookModel({
     required this.uid,
     required this.bookName,
     required this.auther,
     required this.category,
+    required this.categoryImage,
     required this.dateAndTime,
     this.review,
     required this.bookImage,
+    required this.file,
     this.bookDescription,
     required this.autherImage,
     this.reference
@@ -42,17 +46,20 @@ String autherImage;
     String? bookImage,
     String? bookDescription,
     String? autherImage,
+    String? file,
   }) {
     return BookModel(
       uid: uid ?? this.uid,
       bookName: bookName ?? this.bookName,
       auther: auther ?? this.auther,
       category: category ?? this.category,
+      categoryImage: categoryImage ?? this.categoryImage,
       dateAndTime: dateAndTime ?? this.dateAndTime,
       review: review ?? this.review,
       bookImage: bookImage ?? this.bookImage,
       bookDescription: bookDescription ?? this.bookDescription,
       autherImage: autherImage ?? this.autherImage,
+      file:file ?? this.file
     );
   }
 
@@ -67,6 +74,8 @@ String autherImage;
       'bookImage': bookImage,
       'bookDescription': bookDescription,
       'autherImage': autherImage,
+      'categoryImage':categoryImage,
+      'file':file
     };
   }
   factory BookModel.fromSnapShot(DocumentSnapshot documentSnapshot) {
@@ -84,6 +93,8 @@ String autherImage;
       bookImage: map['bookImage'] as String,
       bookDescription: map['bookDescription'] != null ? map['bookDescription'] as String : null,
       autherImage: map['autherImage'] as String,
+      categoryImage: map['categoryImage'] as String,
+      file:map['file'] as String,
       reference: reference
       
     );
@@ -95,7 +106,7 @@ String autherImage;
 
   @override
   String toString() {
-    return 'BookModel(uid: $uid, bookName: $bookName, auther: $auther, category: $category, dateAndTime: $dateAndTime, review: $review, bookImage: $bookImage, bookDescription: $bookDescription, autherImage: $autherImage)';
+    return 'BookModel(uid: $uid, bookName: $bookName, auther: $auther, category: $category, dateAndTime: $dateAndTime, review: $review, bookImage: $bookImage, bookDescription: $bookDescription, autherImage: $autherImage , categoryImage:$categoryImage , file:$file)';
   }
 
   @override
@@ -111,6 +122,8 @@ String autherImage;
       other.review == review &&
       other.bookImage == bookImage &&
       other.bookDescription == bookDescription &&
+      other.categoryImage==categoryImage&&
+      other.file==file&&
       other.autherImage == autherImage;
   }
 
@@ -124,6 +137,8 @@ String autherImage;
       review.hashCode ^
       bookImage.hashCode ^
       bookDescription.hashCode ^
-      autherImage.hashCode;
+      autherImage.hashCode ^
+      file.hashCode ^
+      categoryImage.hashCode;
   }
 }
