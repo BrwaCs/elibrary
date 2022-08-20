@@ -1,14 +1,19 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:elibrary/Screens/pages/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+
 
 class ShowBooks extends StatelessWidget {
-ShowBooks({Key? key, required this.bookname, required this.authername, required this.image, required this.description}) : super(key: key);
+ShowBooks({Key? key, required this.bookname, required this.authername, required this.image, required this.description, required this.PdfFile}) : super(key: key);
 final String bookname;
 final String authername;
 final String image;
 final String description;
+final String PdfFile;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,7 +141,10 @@ body: SingleChildScrollView(
           color: Color.fromARGB(255, 30, 212, 0),
           height: 42,
           width: 209,
-          child: ElevatedButton(onPressed: (){},
+          child: ElevatedButton(onPressed: (){
+            Get.to(()=>View());
+  
+          },
          
            child: Text("Read",
            style: TextStyle(
@@ -196,4 +204,27 @@ body: SingleChildScrollView(
     );
     
   }
+
+
+
 }
+
+class View extends StatelessWidget {
+// final url;
+// View({this.url});
+PdfViewerController? _pdfViewerController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+appBar: AppBar(
+  title:Text("View PDF")
+),
+body:
+ SfPdfViewer.network(
+      'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
+      controller: _pdfViewerController,
+    ),
+    );
+  }
+} 

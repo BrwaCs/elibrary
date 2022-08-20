@@ -45,7 +45,17 @@ dependencies:
   firebase_storage: ^10.3.4
   permission_handler: ^10.0.0
   path: ^1.8.1
-  auto_size_text: ^3.0.0
+  auto_size_text: ^3.0.0 
+  syncfusion_flutter_pdfviewer: ^20.2.44-beta 
+
+
+  
+
+  
+
+
+
+  
 
   
   
@@ -80,6 +90,7 @@ flutter:
     - assets/images/library.jpg
     - assets/images/profile.png
     - assets/images/applogo.png
+    - assets/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

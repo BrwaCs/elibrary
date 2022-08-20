@@ -182,7 +182,7 @@ List<BookModel> books=snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e)).
              child: GestureDetector(
                onTap: (){
            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
-             ShowBooks(authername:books[index].auther, bookname: books[index].bookName, image: books[index].bookImage, description: books[index].bookDescription.toString())
+             ShowBooks(authername:books[index].auther, bookname: books[index].bookName, image: books[index].bookImage, description: books[index].bookDescription.toString(), PdfFile: books[index].file,)
            ));
          },
                child: Row(
@@ -328,7 +328,7 @@ List<BookModel> books=snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e)).
              child: GestureDetector(
                     onTap: (){
            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
-             ShowBooks(authername:books[index].auther, bookname: books[index].bookName, image: books[index].bookImage, description: books[index].bookDescription.toString())
+             ShowBooks(authername:books[index].auther, bookname: books[index].bookName, image: books[index].bookImage, description: books[index].bookDescription.toString(), PdfFile: books[index].file,)
            ));
          },
                child: Row(
