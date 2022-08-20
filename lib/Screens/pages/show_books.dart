@@ -142,7 +142,7 @@ body: SingleChildScrollView(
           height: 42,
           width: 209,
           child: ElevatedButton(onPressed: (){
-            Get.to(()=>View());
+            Get.to(()=>View(pdfname:bookname ,url: PdfFile,));
   
           },
          
@@ -210,19 +210,20 @@ body: SingleChildScrollView(
 }
 
 class View extends StatelessWidget {
-// final url;
-// View({this.url});
+final url;
+final pdfname;
+View({this.url, this.pdfname});
 PdfViewerController? _pdfViewerController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 appBar: AppBar(
-  title:Text("View PDF")
+  title:Text(pdfname)
 ),
 body:
  SfPdfViewer.network(
-      'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
+      url,
       controller: _pdfViewerController,
     ),
     );
