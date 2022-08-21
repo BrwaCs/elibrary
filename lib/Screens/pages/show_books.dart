@@ -1,12 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:elibrary/Screens/pages/test.dart';
+import 'package:elibrary/Screens/pages/Downloade_file.dart';
+import 'package:elibrary/Screens/pages/PDF_Viewr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+
 
 
 class ShowBooks extends StatelessWidget {
@@ -16,6 +13,9 @@ final String authername;
 final String image;
 final String description;
 final String PdfFile;
+
+final Downloadefile = Downloade();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,7 +164,9 @@ body: SingleChildScrollView(
         Container(
           height: 42,
           width: 209,
-          child: ElevatedButton(onPressed: (){},
+          child: ElevatedButton(onPressed: (){
+          Downloadefile.downloadFile(link: PdfFile,filename: bookname);
+          },
            style: ButtonStyle(
             backgroundColor:MaterialStateProperty.all(Color.fromARGB(255, 30, 212, 0),),
           ),
@@ -206,78 +208,16 @@ body: SingleChildScrollView(
     );
     
   }
+  
+
 
 
 
 }
 
-class View extends StatefulWidget {
-final url;
-final pdfname;
-View({this.url, this.pdfname});
 
-  @override
-  State<View> createState() => _ViewState();
-}
 
-class _ViewState extends State<View> {
-PdfViewerController? _pdfViewerController;
 
-@override
-void initState() {
-  _pdfViewerController = PdfViewerController();
-  super.initState();
-}
 
-late OverlayEntry _overlayEntry;
-
-void _showContextMenu(BuildContext context,PdfTextSelectionChangedDetails details) {
-  final OverlayState? _overlayState = Overlay.of(context);
-  _overlayEntry = OverlayEntry(
-    builder: (context) => Positioned(
-      top: details.globalSelectedRegion!.center.dy - 55,
-      left: details.globalSelectedRegion?.bottomLeft.dx,
-      child:
-      RaisedButton(child: Text('Copy',style: TextStyle(fontSize: 17)),onPressed: (){
-        Clipboard.setData(ClipboardData(text: details.selectedText));
-        _pdfViewerController?.clearSelection();
-      },color: Colors.white,elevation: 10,),
-    ),
-  );
-  _overlayState?.insert(_overlayEntry);
-}
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-appBar: AppBar(
-  centerTitle: true,
-  title:Text(
-    
-    widget.pdfname,style: TextStyle(
-      
-    fontSize: 18,
-    fontWeight:FontWeight.w500, 
-    
-  ),
-  ),
-),
-body:
-SfPdfViewer.network(
-      widget.url,
-      onTextSelectionChanged:
-          (PdfTextSelectionChangedDetails details) {
-        if (details.selectedText == null && _overlayEntry != null) {
-          _overlayEntry.remove();
-          _overlayEntry = null as OverlayEntry;
-        } else if (details.selectedText != null && _overlayEntry == null) {
-          _showContextMenu(context, details);
-        }
-      },
-      controller: _pdfViewerController,
-    ),
-    );
-  }
-} 
 
 
