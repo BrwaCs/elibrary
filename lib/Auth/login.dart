@@ -94,6 +94,7 @@ final _auth=FirebaseAuth.instance;
                         },
                      controller: _emailController,
                       decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),
@@ -137,6 +138,7 @@ final passwordFild= Container(
                       controller: _passwordController,
                       obscureText: true, 
                       decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),

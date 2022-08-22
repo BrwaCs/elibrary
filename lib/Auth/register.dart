@@ -52,6 +52,7 @@ final emailfield= Container(
                         },
                       controller: _emailController,  
                       decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),
@@ -86,6 +87,7 @@ final emailfield= Container(
                       },
                       controller: _nameController,  
                       decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),
@@ -120,6 +122,7 @@ final emailfield= Container(
                       obscureText: true,
                       controller: _passwordController,  
                       decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),
@@ -152,6 +155,7 @@ final emailfield= Container(
                       obscureText: true,  
                       controller: _repasswordController,
                       decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15),
                         ),

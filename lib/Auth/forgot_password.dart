@@ -90,6 +90,7 @@ AuthenticationService firebaseauth= AuthenticationService();
                     });
                     },
                     decoration:InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(15)
                       ),

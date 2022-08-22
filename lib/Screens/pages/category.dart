@@ -103,7 +103,7 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
                        width: 75,
   
                         child: CircleAvatar(
-  
+                          backgroundColor: Colors.black,
                         child: ClipRRect(
   
                          child: Image.network(books[index].categoryImage),

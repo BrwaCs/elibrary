@@ -89,12 +89,16 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
                   child: Column(
                     children: [
                       Container(
+                        
                        height: 75,
                        width: 75,
                         child: CircleAvatar(
+                          backgroundColor: Colors.black,
                         child: ClipRRect(
+
+                          borderRadius: BorderRadius.circular(50.0),
                          child: Image.network(books[index].autherImage),
-                         borderRadius: BorderRadius.circular(50.0),
+                         
                                     ),
                                   ),
                       ),

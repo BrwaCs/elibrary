@@ -76,51 +76,53 @@ List<BookModel> books=snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e)).
           children: [
   
             Center(
-  
+            
               child: Padding(
-  
+            
                 padding: const EdgeInsets.all(8.0),
-  
+            
                 child: Container(
-  
-                    height:35,
-  
+            
+                    height:40,
+            
                     width: 302,
-  
+            
                     child: TextFormField(
-  
+                      
+                       autocorrect: true,
                       controller: _searchController,
-  
+            
                       decoration:InputDecoration(
-  
+                        
+            
                         floatingLabelBehavior: FloatingLabelBehavior.never,
-  
+            
                         border: OutlineInputBorder(
-  
+            
                           borderRadius:BorderRadius.circular(15)
-  
+            
                         ),
-  
+            
                         prefixIcon:Icon(Icons.search),
-  
+            
                         labelText: "search for books",
-  
+            
                         labelStyle: TextStyle(
-  
+            
                           fontSize:16,
-  
+            
                           fontWeight: FontWeight.normal,
-  
+            
                         )
-  
+            
                       )
-  
+            
                     ),
-  
+            
                   ),
-  
+            
               ),
-  
+            
             ),
   
             SizedBox(height: 10,),
