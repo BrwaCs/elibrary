@@ -32,10 +32,6 @@ String file;
     this.reference
   });
 
-
-
-
-
   BookModel copyWith({
     String? uid,
     String? bookName,
