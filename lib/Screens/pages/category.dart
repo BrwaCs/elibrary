@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
+import 'package:elibrary/dataModels/Catygory_datamodel.dart';
 import 'package:elibrary/dataModels/books_authers_datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -58,7 +59,7 @@ bottom: PreferredSize(
      drawer: Drawar(),
     
 body:FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-  future: FirebaseFirestore.instance.collection("books").get(),
+  future: FirebaseFirestore.instance.collection("Category").get(),
      builder: (context,snapshot) {
   if(snapshot.connectionState==ConnectionState.waiting){
     return LoadingIndicator();
@@ -68,7 +69,7 @@ body:FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
     return Center(child: Text("Data is null"));
   }
 // create a liat of book models from fire store  query snapshot
-List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) ).toList();
+List<CatygoryDataModel> catygory_model= snapshot.data!.docs.map((e) => CatygoryDataModel.fromMap(e.data()) ).toList();
   return  Padding(
   
           padding: const EdgeInsets.all(8.0),
@@ -83,7 +84,7 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
   
             ), 
   
-            itemCount:books.length,
+            itemCount:catygory_model.length,
   
             itemBuilder: (context, index) {
               return Card(
@@ -103,10 +104,11 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
                        width: 75,
   
                         child: CircleAvatar(
-                          backgroundColor: Colors.black,
+                          
+                          backgroundColor: Colors.white,
                         child: ClipRRect(
   
-                         child: Image.network(books[index].categoryImage),
+                         child: Image.network(catygory_model[index].categoryImage),
   
                          borderRadius: BorderRadius.circular(50.0),
   
@@ -117,7 +119,7 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
                       ),
                       SizedBox(height: 8,),
                       Container( 
-                        child: Text(books[index].category
+                        child: Text(catygory_model[index].category
                           ),
                         ),
                     ],

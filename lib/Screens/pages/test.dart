@@ -15,6 +15,57 @@
 // class _testState extends State<test> {
 //   String name = "";
 
+// List<Map<String,dynamic>> category=[{
+//   "category": "IT",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FIT.jpg?alt=media&token=35a050b6-24e0-44dc-9c59-638a09386f00"
+// }, {
+//   "category": "Science",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2Fscince.jpg?alt=media&token=7fe28a71-a986-4ed2-8bf4-f80f2d0fb48e"
+// }, {
+//   "category": "Economy",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FEconomy.jpg?alt=media&token=948a4f23-4ab0-47e2-bd79-7db5bade78fe"
+// }, {
+//   "category": "Medical",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FMedical.jpg?alt=media&token=2cf203eb-c617-49a7-9af8-ed580f10d041"
+// }, {
+//   "category": "Psychologist",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FPsychologist.jpg?alt=media&token=05ee41b7-9e0c-4c3a-9162-da146d3d04f5"
+// }, {
+//   "category": "History",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FHistory.jpg?alt=media&token=78c1bd47-71aa-4319-93c7-427e4ea3c1e7"
+// }, {
+//   "category": "Story",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FStory.png?alt=media&token=9ff90ad7-bf22-44e7-a630-4808ee54df19"
+// }, {
+//   "category": "Children",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FChildren.jpg?alt=media&token=280e5d9e-ac7c-4f2e-ad09-443a472f5a17"
+// }, {
+//   "category": "Sports",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FSports.png?alt=media&token=7b4e9140-2125-4e6e-92e5-64c757933764"
+// }, {
+//   "category": "Languages",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FLanguages.jpg?alt=media&token=605a5ae2-48bf-407d-b9ba-ad8d3cb154a4"
+// }, {
+//   "category": "Cooking",
+//   "categoryImage": "https://firebasestorage.googleapis.com/v0/b/myapplication-bcaee.appspot.com/o/catugoryImage%2FCooking.jpg?alt=media&token=826874b3-3394-4b3a-a736-5c11fc84366f"
+// }, ];
+
+
+
+
+// addData()async{
+//   for(var element in category){
+//     FirebaseFirestore.instance.collection("Category").add(element);
+//   }
+// }
+
+//   @override
+// void initState(){
+//   super.initState();
+//   addData();
+// }
+
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(

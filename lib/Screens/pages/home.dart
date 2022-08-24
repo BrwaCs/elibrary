@@ -175,13 +175,14 @@ String? searchquery;
                     child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
+                          
                         ),
                         // scrollDirection: Axis.horizontal,
                         itemCount: snapshot.data!.length,
                         itemBuilder: ((context, index) {
 
                           return Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.all(20.0),
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
