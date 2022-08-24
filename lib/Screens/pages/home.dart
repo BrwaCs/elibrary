@@ -168,70 +168,6 @@ String? searchquery;
                       )
                     ],
                   ),
-
-                
-                  //      Container(
-                  //   height: 800,
-                  //   width: double.infinity,
-                  //   child: GridView.builder(
-                  //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  //         crossAxisCount: 2,
-                  //       ),
-                  //       // scrollDirection: Axis.horizontal,
-                  //       itemCount: books.length,
-                  //       itemBuilder: ((context, index) {
-
-                  //         return Padding(
-                  //           padding: const EdgeInsets.all(12.0),
-                  //           child: GestureDetector(
-                  //             onTap: () {
-                  //               Navigator.of(context).push(MaterialPageRoute(
-                  //                   builder: (context) => ShowBooks(
-                  //                         authername: books[index].auther,
-                  //                         bookname: books[index].bookName,
-                  //                         image: books[index].bookImage,
-                  //                         description: books[index]
-                  //                             .bookDescription
-                  //                             .toString(),
-                  //                         PdfFile: books[index].file,
-                  //                       )));
-                  //             },
-                  //             child: Row(
-                  //               children: [
-                  //                 Container(
-                  //                   height: 180,
-                  //                   width: 100,
-                  //                   child: Column(
-                  //                     children: [
-                  //                       Expanded(
-                  //                         child: Row(
-                  //                           children: [
-                  //                             Container(
-                  //                                 height: 133,
-                  //                                 width: 81,
-                  //                                 child: FittedBox(
-                  //                                   child: Image.network(
-                  //                                   books[index].bookImage),
-                  //                                   fit: BoxFit.fill,
-                  //                                 ))
-                  //                           ],
-                  //                         ),
-                  //                       ),
-                  //                       SizedBox(height: 10),
-                  //                       Row(
-                  //                         children: [
-                  //                          Text( books[index].bookName)
-                  //                         ],
-                  //                       )
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ),
-                  //         );
-                  //       })),
-                  // ),
                 
                   Container(
                     height: 800,
@@ -248,16 +184,16 @@ String? searchquery;
                             padding: const EdgeInsets.all(12.0),
                             child: GestureDetector(
                               onTap: () {
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (context) => ShowBooks(
-                                //           authername: books[index].auther,
-                                //           bookname: books[index].bookName,
-                                //           image: books[index].bookImage,
-                                //           description: books[index]
-                                //               .bookDescription
-                                //               .toString(),
-                                //           PdfFile: books[index].file,
-                                //         )));
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ShowBooks(
+                                          authername:  snapshot.data![index].auther,
+                                          bookname:  snapshot.data![index].bookName,
+                                          image:  snapshot.data![index].bookImage,
+                                          description:  snapshot.data![index]
+                                              .bookDescription
+                                              .toString(),
+                                          PdfFile:  snapshot.data![index].file,
+                                        )));
                               },
                               child: Row(
                                 children: [
