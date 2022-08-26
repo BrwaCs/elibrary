@@ -3,13 +3,16 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elibrary/Screens/pages/Auther_details.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
+import 'package:elibrary/dataModels/author_data_model.dart';
 import 'package:elibrary/dataModels/books_authers_datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class Auther extends StatefulWidget {
   const Auther({Key? key}) : super(key: key);
@@ -61,7 +64,7 @@ bottom: PreferredSize(
       ),
        drawer: Drawar(),
 body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        future: FirebaseFirestore.instance.collection("books").get(),
+        future: FirebaseFirestore.instance.collection("Auther").get(),
      builder: (context,snapshot) {
   if(snapshot.connectionState==ConnectionState.waiting){
     return LoadingIndicator();
@@ -71,7 +74,7 @@ body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
     return Text("Data is null");
   }
 // create a liat of book models from fire store  query snapshot
-List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) ).toList();
+List<autherModel> authers= snapshot.data!.docs.map((e) => autherModel.fromMap(e.data()) ).toList();
       
         return Center(  
             child: Padding(
@@ -81,37 +84,42 @@ List<BookModel> books= snapshot.data!.docs.map((e) => BookModel.fromSnapShot(e) 
               crossAxisCount: 3,
             
           ),
-                itemCount: books.length,
+                itemCount: authers.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                  color: Colors.transparent,
-                  elevation: 0,
-                  child: Column(
-                    children: [
-                      Container(
-                        
-                       height: 75,
-                       width: 75,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.black,
-                        child: ClipRRect(
-
-                          borderRadius: BorderRadius.circular(50.0),
-                         child: Image.network(books[index].autherImage),
-                         
-                                    ),
-                                  ),
-                      ),
-                      SizedBox(height: 8,),
-                      Container(
-                        child: Text(books[index].auther
-                        ),
-                        ),
-                      
-                    ],
-                  ),
+                  return GestureDetector(
+                    onTap: (){
+                      Get.to(()=>ShowAutherDetails(autherDescription: authers[index].autherDescribtion, autherImage: authers[index].autherImage, authername:authers[index].auther,));
+                    },
+                    child: Card(
+                    color: Colors.transparent,
+                    elevation: 0,
+                    child: Column(
+                      children: [
+                        Container(
+                          
+                         height: 75,
+                         width: 75,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                          child: ClipRRect(
                   
-                );
+                            borderRadius: BorderRadius.circular(10.0),
+                           child: Image.network(authers[index].autherImage),
+                           
+                                      ),
+                                    ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          child: Text(authers[index].auther
+                          ),
+                          ),
+                        
+                      ],
+                    ),
+                    
+                                  ),
+                  );
                 }
                 ),
             )
