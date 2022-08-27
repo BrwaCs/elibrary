@@ -5,10 +5,11 @@ class UserModel {
   String? email;
   String? fullName;
   String? imageUrl;
+  String? bio;
   DocumentReference? reference;
 // why wen we create data model by data class genarater the profile name always null after relod?
 
-  UserModel({this.uid, this.email, this.fullName,this.reference,this.imageUrl});
+  UserModel({this.uid, this.email, this.fullName,this.reference,this.imageUrl,this.bio});
 
 
 
@@ -23,7 +24,7 @@ class UserModel {
       email: map['email'],
       fullName: map['firstName'],
       imageUrl:map['imageUrl'],
-   
+       bio:map['bio'],
     );
   }
 
@@ -34,6 +35,7 @@ class UserModel {
       'email': email,
       'firstName': fullName,
       'imageUrl':imageUrl,
+       'bio':bio,
     
     };
   }

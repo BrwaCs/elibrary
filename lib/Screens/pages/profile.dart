@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Auth/login.dart';
+import 'package:elibrary/Screens/pages/update_profile.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/User_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +13,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -27,10 +29,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
-  
+  late String fileName;
 //auth statechange
 User? user=FirebaseAuth.instance.currentUser;
 UserModel logedInUser=UserModel();
+
 
 //  initState() {
 //   super.initState();
@@ -42,7 +45,7 @@ UserModel logedInUser=UserModel();
 //   this.logedInUser=UserModel.fromMap(value.data() as Map<String, dynamic>) 
 //   });
 // }
-String? imageUrl;
+ String imageUrl="";
 //   final ImagePicker _picker= ImagePicker();
 // XFile? _selectImage;
   @override
@@ -105,7 +108,9 @@ builder: (context,snapshot) {
                     primary: Color.fromARGB(255, 30, 212, 0),
                               ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0),
                               ),
-                      onPressed: (){},
+                      onPressed: (){
+                      Get.to(()=> EditProfile());
+                      },
                               child: Text("Edit",
                               style: TextStyle(
                     fontWeight: FontWeight.w500,
@@ -170,8 +175,9 @@ builder: (context,snapshot) {
                  CircleAvatar(
                  backgroundColor: Colors.black,
                  radius: 60,
-                  backgroundImage:
-                  AssetImage("assets/images/profile.png"),
+                 
+                  // backgroundImage:
+                  // AssetImage("assets/images/profile.png"),
                )
                 ),
                   Positioned(
@@ -203,10 +209,9 @@ builder: (context,snapshot) {
                     height: 108,
                     width: 100,
                     child:CircleAvatar(
-                   backgroundColor: Colors.transparent,
                    radius: 60,
                     backgroundImage:
-                    NetworkImage(imageUrl!)
+                    NetworkImage(theUserModel.imageUrl.toString())
                  )
                   ),
                  Positioned(
@@ -243,19 +248,19 @@ builder: (context,snapshot) {
               )
             ],
             ),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment:MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Reviews 10",
-                  style: TextStyle(
-                    fontSize:16,
-                    fontWeight: FontWeight.bold
-                  ),
-                )
-              ],
-            ),
+            // SizedBox(height: 10,),
+            // Row(
+            //   mainAxisAlignment:MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       "Reviews 10",
+            //       style: TextStyle(
+            //         fontSize:16,
+            //         fontWeight: FontWeight.bold
+            //       ),
+            //     )
+            //   ],
+            // ),
             SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.only(left:10.0),
@@ -264,7 +269,7 @@ builder: (context,snapshot) {
                 children: [
                   Text("bio",
                   style: TextStyle(
-                    fontSize:16,
+                    fontSize:18,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey
                   ),
@@ -274,14 +279,15 @@ builder: (context,snapshot) {
             ),
             SizedBox(height: 8,),
             Row( 
-              mainAxisAlignment:MainAxisAlignment.spaceAround,
+              mainAxisAlignment:MainAxisAlignment.start,
               children: <Widget>[ 
                 Container( width: 14.0, ),
                  Flexible( 
-                   child: Text("Sit veniam excepteur et commodo consequat velitsdihfioshe reprehenderit reprehenderit veniam voluptate incididunt magna culpa.Cillum duis enim pariatur adipisicing qui do non sint culpa.",
+                   child: Text("${theUserModel.bio}",
                    style: TextStyle(
-                    fontSize: 14,
-                    height: 1.25
+                    fontSize: 16,
+                    height: 1.25,
+                    wordSpacing: 1.1
                    )
                    ),
                  ) 
@@ -323,6 +329,7 @@ Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()
 
 
 
+
 uploadImage() async {
 
     final _firebaseStorage = FirebaseStorage.instance;
@@ -338,16 +345,28 @@ uploadImage() async {
 
       XFile? image=await _imagePicker.pickImage(source: ImageSource.gallery);
       var file=File(image!.path);
-      final fileName = basename(file.path);
+       fileName = basename(file.path);
       if(image !=null){
       //upload image to firebase
-      var snapshot=await _firebaseStorage.ref()
-      .child('images/$fileName').putFile(file);
+      var snapshot=await FirebaseStorage.instance
+        .ref()
+        .child("profile")
+        .child(
+            FirebaseAuth.instance.currentUser!.uid + "_" + basename(file.path))
+        .putFile(file);
       var downlodeURL=await snapshot.ref.getDownloadURL();
       setState(() {
         imageUrl=downlodeURL;
       });
-  
+     Map<String, dynamic> map = Map();
+    if (fileName != null) {
+      String url = downlodeURL;
+      map['imageUrl'] = url;
+    }
+  var uplod=  await FirebaseFirestore.instance
+        .collection("user")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update(map);
       }else{
         print("No Image Path Recived");
       }
@@ -355,4 +374,16 @@ uploadImage() async {
       print("Permission not granted. Try Again with permission access");
     }
   }
+  //   updateProfile(BuildContext context) async {
+  //   Map<String, dynamic> map = Map();
+  //   if (fileName != null) {
+  //     String url = await uploadImage();
+  //     map['imageUrl'] = url;
+  //   }
+  //   await FirebaseFirestore.instance
+  //       .collection("user")
+  //       .doc(FirebaseAuth.instance.currentUser!.uid)
+  //       .update(map);
+  
+  // }
 }

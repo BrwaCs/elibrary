@@ -323,6 +323,7 @@ UserModel usermodel=UserModel();
 usermodel.email=user!.email;
 usermodel.uid=user.uid;
 usermodel.fullName=_nameController.text;
+usermodel.bio=user.uid;
 
 await firebasefirestore.collection("user").doc(user.uid).set(usermodel.toMap());
 Fluttertoast.showToast(msg: "Account created successfully");
