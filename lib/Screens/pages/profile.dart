@@ -188,6 +188,7 @@ builder: (context,snapshot) {
                     child: IconButton(
                       onPressed: ()async{
                        uploadImage();
+                       
                       }, 
                        icon: Icon(Icons.add_circle,color: Colors.red,),   
                        iconSize: 24,
@@ -278,21 +279,24 @@ builder: (context,snapshot) {
               ),
             ),
             SizedBox(height: 8,),
-            Row( 
-              mainAxisAlignment:MainAxisAlignment.start,
-              children: <Widget>[ 
-                Container( width: 14.0, ),
-                 Flexible( 
-                   child: Text("${theUserModel.bio}",
-                   style: TextStyle(
-                    fontSize: 16,
-                    height: 1.25,
-                    wordSpacing: 1.1
-                   )
+            Padding(
+              padding: const EdgeInsets.only(left:7.0,right: 15),
+              child: Row( 
+                mainAxisAlignment:MainAxisAlignment.start,
+                children: <Widget>[ 
+                  Container( width: 14.0, ),
+                   Flexible( 
+                     child: Text("${theUserModel.bio}",
+                     style: TextStyle(
+                      fontSize: 16,
+                      height: 1.25,
+                      wordSpacing: 1.1
+                     )
+                     ),
+                   ) 
+                   ], 
                    ),
-                 ) 
-                 ], 
-                 ),
+            ),
                  SizedBox(height: 20,),
             Row(
               mainAxisAlignment:MainAxisAlignment.start,
@@ -367,6 +371,7 @@ uploadImage() async {
         .collection("user")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update(map);
+         Get.snackbar("Profile Image", "Your profile image is update");
       }else{
         print("No Image Path Recived");
       }
