@@ -30,7 +30,28 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Profile"),
+          backgroundColor:Colors.transparent,
+          elevation:0,
+        title: Text(
+          "Edit Profile ",
+          style: TextStyle(
+            fontSize:24,
+            fontWeight:FontWeight.normal,
+            color:Colors.black
+          )
+          ),
+          centerTitle: true,    
+    
+    // black line of the bottom AppBar
+    bottom: PreferredSize(
+      // ignore: sort_child_properties_last
+      child: Container(
+         color: Colors.black,
+         height: 1.0,
+      ),
+      preferredSize: Size.fromHeight(1.5)
+      ),
+      iconTheme: IconThemeData(color:Theme.of(context).primaryColor),
       ),
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           future: FirebaseFirestore.instance
@@ -81,7 +102,7 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               prefixIcon: Icon(Icons.person),
                               hintText: "Enter Name",
-                                //  errorText: _displayNameValid ? null : "Display Name too short",
+                              //  errorText: _displayNameValid ? null : "Display Name too short",
                               labelText: "${theUserModel.fullName}",
                               labelStyle: TextStyle(
                                 fontSize: 20,
@@ -95,7 +116,6 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextField(
-                         
                           maxLines: 4,
                           controller: bioController,
                           decoration: InputDecoration(
@@ -127,15 +147,19 @@ class _EditProfileState extends State<EditProfile> {
                             onPrimary: Colors.white, // foreground (text) color
                           ),
                           onPressed: () {
-                          //   if (nameController.text == null) {
-                          //   notupdateProfile(context);
-                          //   } else if (bioController.text == null) {
-                          //  notupdateProfile(context);
-                          //   } else {
-                              updateProfile(context);
+                            //   if (nameController.text == null) {
+                            //   notupdateProfile(context);
+                            //   } else if (bioController.text == null) {
+                            //  notupdateProfile(context);
+                            //   } else {
+                            updateProfile(context);
                             // }
                           },
-                          child: const Text('Update Profile'),
+                          child: const Text('Update Profile',
+                          style: TextStyle(
+                            fontSize: 16
+                          ),
+                          ),
                         ),
                       )
                     ],
@@ -153,69 +177,55 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   updateProfile(BuildContext context) async {
-
-   setState(() {
-      nameController.text.length <= 5 
-          ? _displayNameValid = false 
+    setState(() {
+      nameController.text.length <= 5
+          ? _displayNameValid = false
           : _displayNameValid = true;
       bioController.text.length > 150 || bioController.text.isEmpty
           ? _bioValid = false
           : _bioValid = true;
-         
-
     });
 
-        if (_displayNameValid ==true&& _bioValid==true) {
-        Map<String, dynamic> map = Map();
+    if (_displayNameValid == true && _bioValid == true) {
+      Map<String, dynamic> map = Map();
 
-    map['firstName'] = nameController.text;
-    map['bio'] = bioController.text;
-    await FirebaseFirestore.instance
-        .collection("user")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .update(map);
-    Get.snackbar("Updating...", "Profile information updated");
-    Get.to(() => Profile());
+      map['firstName'] = nameController.text;
+      map['bio'] = bioController.text;
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .update(map);
+      Get.snackbar("Updating...", "Profile information updated");
+      Get.to(() => Profile());
 
-    setState(() {});
-     
-  } else if (_bioValid==false&&_displayNameValid==true) {
-        Map<String, dynamic> map = Map();
+      setState(() {});
+    } else if (_bioValid == false && _displayNameValid == true) {
+      Map<String, dynamic> map = Map();
 
-    map['firstName'] = nameController.text;
-    await FirebaseFirestore.instance
-        .collection("user")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .update(map);
-    Get.snackbar("Profile Name", "Profile information updated");
-    Get.to(() => Profile());
+      map['firstName'] = nameController.text;
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .update(map);
+      Get.snackbar("Profile Name", "Profile information updated");
+      Get.to(() => Profile());
 
-    setState(() {});
-     
-  }
-  else if (_bioValid==true&&_displayNameValid==false) {
-        Map<String, dynamic> map = Map();
+      setState(() {});
+    } else if (_bioValid == true && _displayNameValid == false) {
+      Map<String, dynamic> map = Map();
 
-    map['bio'] = bioController.text;
-    await FirebaseFirestore.instance
-        .collection("user")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .update(map);
-    Get.snackbar("Profile Bio", "Profile information updated");
-    Get.to(() => Profile());
+      map['bio'] = bioController.text;
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .update(map);
+      Get.snackbar("Profile Bio", "Profile information updated");
+      Get.to(() => Profile());
 
-    setState(() {});
-     
-  }
-  
-  else{
-     Get.snackbar("Not Update", "not update information");
-    Get.to(() => Profile());
-  }
- 
-
-
-
-
+      setState(() {});
+    } else {
+      Get.snackbar("Not Update", "not update information");
+      Get.to(() => Profile());
+    }
   }
 }
