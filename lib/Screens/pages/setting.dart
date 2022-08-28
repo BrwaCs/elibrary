@@ -91,7 +91,7 @@ bottom: PreferredSize(
               IconButton(
                 onPressed: (){},
                icon: Icon(Icons.update)
-               ), Text("Darkmode",
+               ), Text("Check for update",
                   style:TextStyle(
                     fontSize:16,
                     fontWeight: FontWeight.bold
