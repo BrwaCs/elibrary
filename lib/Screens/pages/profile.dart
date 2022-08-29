@@ -165,7 +165,7 @@ builder: (context,snapshot) {
                      children: [
                 Container(
                 
-                child: imageUrl==null ?
+                child: theUserModel.imageUrl==null ?
                 Stack(
                  children: [
                  Container(
@@ -176,8 +176,8 @@ builder: (context,snapshot) {
                  backgroundColor: Colors.black,
                  radius: 60,
                  
-                  // backgroundImage:
-                  // AssetImage("assets/images/profile.png"),
+                  backgroundImage:
+                  AssetImage("assets/images/profile.png"),
                )
                 ),
                   Positioned(
@@ -286,7 +286,7 @@ builder: (context,snapshot) {
                 children: <Widget>[ 
                   Container( width: 14.0, ),
                    Flexible( 
-                     child: Text("${theUserModel.bio}",
+                     child: theUserModel.bio==null?Text("Write your bio here",style: TextStyle(color:Colors.grey),): Text("${theUserModel.bio}",
                      style: TextStyle(
                       fontSize: 16,
                       height: 1.25,

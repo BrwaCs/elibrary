@@ -180,9 +180,9 @@ final emailfield= Container(
                      color:Theme.of(context).primaryColor,
                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                   
-                onPressed: (){
-                 Signup(_emailController.text.trim(), _passwordController.text,dynamic);
-                 postDetailForFireStore();
+                onPressed: () async{
+                  Signup(_emailController.text.trim(), _passwordController.text,dynamic);
+                await postDetailForFireStore();
                 },
                 child: Text(
                   "Create",
@@ -317,13 +317,14 @@ void Signup(String email,String password,Context)async{
 postDetailForFireStore()async{
   FirebaseFirestore firebasefirestore= FirebaseFirestore.instance;
 
-User? user=_auth.currentUser;
+User? user=await _auth.currentUser;
 UserModel usermodel=UserModel();
 
 usermodel.email=user!.email;
 usermodel.uid=user.uid;
 usermodel.fullName=_nameController.text;
-usermodel.bio=user.uid;
+// usermodel.bio=user.uid;
+// usermodel.imageUrl=user.uid;
 
 await firebasefirestore.collection("user").doc(user.uid).set(usermodel.toMap());
 Fluttertoast.showToast(msg: "Account created successfully");
