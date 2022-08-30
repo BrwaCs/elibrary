@@ -180,9 +180,9 @@ final emailfield= Container(
                      color:Theme.of(context).primaryColor,
                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
                   
-                onPressed: () async{
+                onPressed: () {
                   Signup(_emailController.text.trim(), _passwordController.text,dynamic);
-                await postDetailForFireStore();
+                 postDetailForFireStore();
                 },
                 child: Text(
                   "Create",
@@ -190,7 +190,6 @@ final emailfield= Container(
                     fontSize:16,
                     fontWeight: FontWeight.bold,
                     color:Colors.white,
-    
                   )
                 ),
               ),
@@ -319,8 +318,8 @@ postDetailForFireStore()async{
 
 User? user=await _auth.currentUser;
 UserModel usermodel=UserModel();
-
-usermodel.email=user!.email;
+if(user!=null){
+  usermodel.email=user.email;
 usermodel.uid=user.uid;
 usermodel.fullName=_nameController.text;
 // usermodel.bio=user.uid;
@@ -333,6 +332,10 @@ Navigator.pushAndRemoveUntil(
         (context),
         MaterialPageRoute(builder: (context) => mainpages()),
         (route) => false);
+}else{
+  Text("eroor");
+}
+
 }
 }
 

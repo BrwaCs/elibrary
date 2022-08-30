@@ -1,3 +1,4 @@
+import 'package:elibrary/Auth/register.dart';
 import 'package:elibrary/Screens/pages/auther.dart';
 import 'package:elibrary/Screens/pages/category.dart';
 import 'package:elibrary/Screens/pages/home.dart';
@@ -25,6 +26,8 @@ class _HomeState extends State<mainpages> {
 
   ];
 
+  
+
   final PageStorageBucket bucket=new PageStorageBucket(); //what is this?
   Widget currentscreen=home();  // what is this?
 
@@ -36,6 +39,7 @@ class _HomeState extends State<mainpages> {
       body:PageStorage( // what is this?
         child:currentscreen ,
         bucket: bucket,
+      
       ),
       // floatingActionButton:FloatingActionButton(//what is this ?
   
