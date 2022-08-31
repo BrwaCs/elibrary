@@ -3,6 +3,7 @@ import 'package:elibrary/Screens/pages/Downloade_file.dart';
 import 'package:elibrary/Screens/pages/PDF_Viewr.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 
 class ShowBooks extends StatelessWidget {
   ShowBooks(
@@ -47,16 +48,15 @@ class ShowBooks extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-           Container(
+            Container(
               height: 500,
-               width: MediaQuery.of(context).size.width,
-               decoration: BoxDecoration(
-    image: DecorationImage(
-      fit: BoxFit.fill,
-      image: NetworkImage(image),
-    ),
-  ),
-         
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage(image),
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -152,7 +152,9 @@ class ShowBooks extends StatelessWidget {
                   height: 42,
                   width: 209,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        openDialog(context);
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                           Color.fromARGB(255, 223, 214, 7),
@@ -174,4 +176,75 @@ class ShowBooks extends StatelessWidget {
       ),
     );
   }
+
+  Future openDialog(BuildContext context) {
+    return showDialog(
+   
+        builder: (BuildContext context) {
+          return AlertDialog(
+
+            title: Text("Review ",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black
+            ),
+            ),
+           
+            content: TextFormField(
+              style: TextStyle(
+                wordSpacing: 1.5,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                height: 2
+              ),
+              autofocus: true,
+              autocorrect: true,
+              
+              decoration: InputDecoration(
+                 focusedBorder:OutlineInputBorder(
+            borderSide: const BorderSide(color: Color.fromARGB(255, 223, 214, 7), width: 1.3),
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                hintText: "Add Review",
+                hintStyle: TextStyle(
+                  color:Colors.grey
+                ),
+                border: OutlineInputBorder(
+                
+                  borderRadius: BorderRadius.circular(10)
+                ),
+              ),
+              maxLines: 8,
+            ),
+            actions: [
+              Center(
+                child: SizedBox(
+                  height: 40,
+                  width: 170,
+                  child:
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 223, 214, 7),),
+                            side: MaterialStateProperty.all(BorderSide(color: Color.fromARGB(255, 223, 214, 7),width: 1,style: BorderStyle.solid)),                   
+                        ),
+                        onPressed: () {}, child: Text("Submit",
+                  
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600
+                      ),
+                      )),
+                ),
+              )
+            ],
+          );
+        },
+        context: context);
+  }
 }
+
+
