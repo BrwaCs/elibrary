@@ -68,6 +68,7 @@ class ShowCatyegorybooks extends StatelessWidget {
                                               .bookDescription
                                               .toString(),
                                           PdfFile:  catygoryBooks[index].file,
+                                          
                                         ));
                      },
                       child: Column(

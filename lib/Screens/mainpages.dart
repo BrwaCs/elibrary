@@ -4,6 +4,7 @@ import 'package:elibrary/Screens/pages/category.dart';
 import 'package:elibrary/Screens/pages/home.dart';
 import 'package:elibrary/Screens/pages/review.dart';
 import 'package:elibrary/Screens/pages/setting.dart';
+import 'package:elibrary/dataModels/User_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
