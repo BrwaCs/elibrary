@@ -1,6 +1,8 @@
 
 import 'package:elibrary/Auth/auth.dart';
+import 'package:elibrary/Screens/Provider/user_provider.dart';
 import 'package:elibrary/Screens/handlerScreen/handler_screen.dart';
+import 'package:elibrary/Screens/pages/SecondProfile.dart';
 import 'package:elibrary/Screens/pages/ShowCatyegorybooks.dart';
 import 'package:elibrary/Screens/pages/show_books.dart';
 import 'package:elibrary/Screens/pages/temp.dart';
@@ -8,6 +10,7 @@ import 'package:elibrary/Screens/pages/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'firebase_options.dart';
 
@@ -24,7 +27,16 @@ import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+   runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+    
+      ],
+      child: MyApp(),
+    ),
+  );
+  // runApp(const MyApp());
   
 }
 
@@ -47,7 +59,7 @@ class MyApp extends StatelessWidget {
         ),  
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.light,
-    // home:test
+    // home:SecondProfile
        home:HandlerScreen
        (),
       );

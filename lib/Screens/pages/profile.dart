@@ -348,7 +348,7 @@ uploadImage() async {
       //select images
 
       XFile? image=await _imagePicker.pickImage(source: ImageSource.gallery);
-      var file=File(image!.path);
+      var file=File(image?.path as String);
        fileName = basename(file.path);
       if(image !=null){
       //upload image to firebase

@@ -1,45 +1,49 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elibrary/Screens/Provider/user_provider.dart';
 import 'package:elibrary/Screens/pages/Downloade_file.dart';
 import 'package:elibrary/Screens/pages/PDF_Viewr.dart';
 import 'package:elibrary/Screens/pages/review.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/User_model.dart';
+import 'package:elibrary/dataModels/User_model.dart';
+import 'package:elibrary/dataModels/User_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
+import 'package:provider/provider.dart';
+
+import '../../dataModels/User_model.dart';
 
 class ShowBooks extends StatefulWidget {
-  ShowBooks(
-      {Key? key,
-      required this.bookname,
-      required this.authername,
-      required this.image,
-      required this.description,
-      required this.PdfFile, })
-      : super(key: key);
+  ShowBooks({
+    Key? key,
+    required this.bookname,
+    required this.authername,
+    required this.image,
+    required this.description,
+    required this.PdfFile,
+  }) : super(key: key);
   final String bookname;
   final String authername;
   final String image;
   final String description;
   final String PdfFile;
-   
+
   @override
   State<ShowBooks> createState() => _ShowBooksState();
 }
 
 class _ShowBooksState extends State<ShowBooks> {
- 
-
   final Downloadefile = Downloade();
   bool Review = true;
   TextEditingController ReviewController = TextEditingController();
 
-
- 
   @override
   Widget build(BuildContext context) {
+    UserModel userModel = context.watch<UserProvider>().Userdata!;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -169,7 +173,9 @@ class _ShowBooksState extends State<ShowBooks> {
                   width: 209,
                   child: ElevatedButton(
                       onPressed: () {
-                        openDialog(context);
+                        openDialog(context,
+                            userName: userModel.fullName.toString(),
+                           userImage: userModel.imageUrl.toString());
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
@@ -193,7 +199,7 @@ class _ShowBooksState extends State<ShowBooks> {
     );
   }
 
-  Future openDialog(BuildContext context) {
+  Future openDialog(BuildContext context, {required String userName, required String userImage}) {
     return showDialog(
         builder: (BuildContext context) {
           return AlertDialog(
@@ -244,7 +250,7 @@ class _ShowBooksState extends State<ShowBooks> {
                             style: BorderStyle.solid)),
                       ),
                       onPressed: () {
-                        addReviewToFireStore();
+                        addReviewToFireStore(nameUser: userName, imageUser: userImage);
                         Navigator.of(context).pop();
                       },
                       child: Text(
@@ -261,8 +267,7 @@ class _ShowBooksState extends State<ShowBooks> {
         context: context);
   }
 
-  addReviewToFireStore() async {
-      
+  addReviewToFireStore({required String nameUser, required String imageUser}) async {
     setState(() {
       ReviewController.text.isEmpty ? Review = false : Review = true;
     });
@@ -272,14 +277,11 @@ class _ShowBooksState extends State<ShowBooks> {
       map['review'] = ReviewController.text;
       map['uid'] = FirebaseAuth.instance.currentUser!.uid;
       map['bookName'] = widget.bookname;
+      map['userName'] = nameUser;
+      map['userImage'] = imageUser;
 
       await FirebaseFirestore.instance.collection("Review").doc().set(map);
       ReviewController.clear();
     }
   }
-  
 }
-
-
-
- 

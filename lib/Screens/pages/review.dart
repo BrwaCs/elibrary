@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:elibrary/Screens/pages/SecondProfile.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/ReviewDataModel.dart';
 import 'package:elibrary/dataModels/User_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -85,7 +87,7 @@ bottom: PreferredSize(
                 child: Padding(
                   padding: const EdgeInsets.all(13.0),
                   child: Container(
-                    height: 170,
+                    height: 175,
                     width: 340,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -98,25 +100,84 @@ bottom: PreferredSize(
                            Flexible( 
                           fit: FlexFit.tight,
                              child: Container(
-                               height: 35,
+                               height: 38,
                                width: 320,
                                child: Row(
                                  children: [
-                                   Padding(
-                                     padding: const EdgeInsets.all(8.0),
-                                     child: GestureDetector(
-                                     onTap: () {
+                                       Container(
+                             
+                              child: Review_model[index].userImage?.toString()=="null" ?
+                              GestureDetector(
+                                 onTap: () {
+                                   if(FirebaseAuth.instance.currentUser!.uid== Review_model[index].uid){
+
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+                                   }else{
+
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
+                                   }
                                                },
-                                  child: Icon(
-                                  IconData(0xee35, fontFamily: 'MaterialIcons'),
-                                  size: 26.0,   
-                                     ),
-                                     ),
-                                   ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left:8.0,top:7,right: 5),
+                                  child: Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    image: DecorationImage(
+                                      
+                                      fit: BoxFit.fill,
+                                      image:
+                                          AssetImage("assets/images/profile.png"),
+                                    ),
+                                  ),
+                                  ),
+                                ),
+                              )
+                              : GestureDetector(
+                                 onTap: () {
+                                   if(FirebaseAuth.instance.currentUser!.uid== Review_model[index].uid){
+
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+                                   }else{
+
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
+                                   }
+                                               },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left:8.0,top:7,right: 5),
+                                  child: Container(
+                                     height: 30,
+                                  width: 30,
+                                    decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    image: DecorationImage(
+                                      
+                                      fit: BoxFit.fill,
+                                      image:
+                                          NetworkImage(Review_model[index].userImage.toString()),
+                                    ),
+                                  ),
+                                  ),
+                                ),
+                              )
+           
+                            ),
+                                  //  Padding(
+                                  //    padding: const EdgeInsets.all(8.0),
+                                  //    child: GestureDetector(
+                                  //    onTap: () {
+                                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+                                  //              },
+                                  // child: Icon(
+                                  // IconData(0xee35, fontFamily: 'MaterialIcons'),
+                                  // size: 26.0,   
+                                  //    ),
+                                  //    ),
+                                  //  ),
                                    Padding(
                                      padding: const EdgeInsets.only(top:10),
-                                     child: Text("Name",
+                                     child: Text("${Review_model[index].userName}",
                                      style: TextStyle(
                                        fontSize: 14,fontWeight: FontWeight.normal
                                      ),),

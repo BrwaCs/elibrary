@@ -6,14 +6,14 @@ class ReviewDataModel {
   String review;
   String uid;
   String bookName;
-  // String userName;
-  // String userImage;
+  String? userName;
+  String? userImage;
   ReviewDataModel({
     required this.review,
     required this.uid,
     required this.bookName,
-    // required this.userName,
-    // required this.userImage,
+  this.userName,
+    this.userImage,
   });
 
   ReviewDataModel copyWith({
@@ -25,7 +25,7 @@ class ReviewDataModel {
       review: review ?? this.review,
       uid: uid ?? this.uid,
       bookName: bookName ?? this.bookName, 
-      // userImage:userImage , userName: userName ,
+      userImage:userImage , userName: userName ,
     );
   }
 
@@ -34,6 +34,8 @@ class ReviewDataModel {
       'review': review,
       'uid': uid,
       'bookName': bookName,
+       'userName': userName,
+        'userImage': userImage,
     };
   }
 
@@ -42,6 +44,9 @@ class ReviewDataModel {
       review: map['review'] as String,
       uid: map['uid'] as String,
       bookName: map['bookName'] as String,
+       userImage:map['userImage'] ,
+        userName: map['userName'] ,
+      
     );
   }
 
@@ -50,7 +55,7 @@ class ReviewDataModel {
   factory ReviewDataModel.fromJson(String source) => ReviewDataModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'ReviewDataModel(review: $review, uid: $uid, bookName: $bookName)';
+  String toString() => 'ReviewDataModel(review: $review, uid: $uid, bookName: $bookName,userName:$userName,userImage:$userImage)';
 
   @override
   bool operator ==(covariant ReviewDataModel other) {
@@ -59,11 +64,11 @@ class ReviewDataModel {
     return 
       other.review == review &&
       other.uid == uid &&
-      // other.userName==userName&&
-      // other.userImage==userImage&&
+      other.userName==userName&&
+      other.userImage==userImage&&
       other.bookName == bookName;
   }
 
   @override
-  int get hashCode => review.hashCode ^ uid.hashCode ^ bookName.hashCode ;
+  int get hashCode => review.hashCode ^ uid.hashCode ^ bookName.hashCode ^userImage.hashCode ^userName.hashCode ;
 }

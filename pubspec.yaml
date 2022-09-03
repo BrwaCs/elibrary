@@ -51,6 +51,7 @@ dependencies:
   path_provider: ^2.0.11
   flutter_file_downloader: ^1.1.0+1
   firestore_search: ^0.1.9
+  provider: ^6.0.3
   
 
   
