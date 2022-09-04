@@ -148,7 +148,7 @@ class _homeState extends State<home> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: const EdgeInsets.only(left: 15.0),
                     child: Text(
                       "Books",
                       style:
@@ -158,65 +158,73 @@ class _homeState extends State<home> {
                 ],
               ),
               Container(
-                height: 800,
+                height: 2000,
                 width: double.infinity,
-                child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
-                    // scrollDirection: Axis.horizontal,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: ((context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ShowBooks(
-                                      authername: snapshot.data![index].auther,
-                                      bookname: snapshot.data![index].bookName,
-                                      image: snapshot.data![index].bookImage,
-                                      description: snapshot
-                                          .data![index].bookDescription
-                                          .toString(),
-                                      PdfFile: snapshot.data![index].file,
-                                    )));
-                          },
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 180,
-                                width: 100,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                              height: 133,
-                                              width: 81,
-                                              child: FittedBox(
-                                                child: Image.network(snapshot
-                                                    .data![index].bookImage),
-                                                fit: BoxFit.fill,
-                                              ))
-                                        ],
+        
+                child: Center(
+                  child: GridView.builder(
+                    scrollDirection: Axis.vertical,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                         
+                        crossAxisCount: 2,
+                      ),
+                      // scrollDirection: Axis.horizontal,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: ((context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => ShowBooks(
+                                        authername: snapshot.data![index].auther,
+                                        bookname: snapshot.data![index].bookName,
+                                        image: snapshot.data![index].bookImage,
+                                        description: snapshot
+                                            .data![index].bookDescription
+                                            .toString(),
+                                        PdfFile: snapshot.data![index].file,
+                                      )));
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 180,
+                                  width: 100,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                height: 133,
+                                                width: 81,
+                                                child: FittedBox(
+                                                  child: Image.network(snapshot
+                                                      .data![index].bookImage),
+                                                  fit: BoxFit.fill,
+                                                ))
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        Text(snapshot.data![index].bookName)
-                                      ],
-                                    )
-                                  ],
+                                      SizedBox(height: 10),
+                                      Row(
+                                       
+                                        children: [
+                                          Text(snapshot.data![index].bookName)
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    })),
+                        );
+                      })),
+                ),
               ),
             ]);
           },

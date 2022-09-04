@@ -5,30 +5,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BookModel {
 
-String uid;
+// String uid;
 String bookName;
 String auther;
 String category;
-String categoryImage;
-String dateAndTime;
-String? review;
+// String categoryImage;
+// String dateAndTime;
+// String? review;
 String bookImage;
 String? bookDescription;
-String autherImage;
+// String autherImage;
 String file;
  DocumentReference? reference;
   BookModel({
-    required this.uid,
+    // required this.uid,
     required this.bookName,
     required this.auther,
     required this.category,
-    required this.categoryImage,
-    required this.dateAndTime,
-    this.review,
+    // required this.categoryImage,
+    // required this.dateAndTime,
+    // this.review,
     required this.bookImage,
     required this.file,
     this.bookDescription,
-    required this.autherImage,
+    // required this.autherImage,
     this.reference
   });
 
@@ -46,32 +46,32 @@ String file;
     String? categoryImage,
   }) {
     return BookModel(
-      uid: uid ?? this.uid,
+      // uid: uid ?? this.uid,
       bookName: bookName ?? this.bookName,
       auther: auther ?? this.auther,
       category: category ?? this.category,
-      categoryImage:categoryImage ?? this.categoryImage,
-      dateAndTime: dateAndTime ?? this.dateAndTime,
-      review: review ?? this.review,
+      // categoryImage:categoryImage ?? this.categoryImage,
+      // dateAndTime: dateAndTime ?? this.dateAndTime,
+      // review: review ?? this.review,
       bookImage: bookImage ?? this.bookImage,
       bookDescription: bookDescription ?? this.bookDescription,
-      autherImage: autherImage ?? this.autherImage,
+      // autherImage: autherImage ?? this.autherImage,
       file:file ?? this.file
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'uid': uid,
+      // 'uid': uid,
       'bookName': bookName,
       'auther': auther,
       'category': category,
-      'dateAndTime': dateAndTime,
-      'review': review,
+      // 'dateAndTime': dateAndTime,
+      // 'review': review,
       'bookImage': bookImage,
       'bookDescription': bookDescription,
-      'autherImage': autherImage,
-      'categoryImage':categoryImage,
+      // 'autherImage': autherImage,
+      // 'categoryImage':categoryImage,
       'file':file
     };
   }
@@ -81,16 +81,16 @@ String file;
   }
   factory BookModel.fromMap(Map<String, dynamic> map,{required DocumentReference? reference}) {
     return BookModel(
-      uid: map['uid'] as String,
+      // uid: map['uid'] as String,
       bookName: map['bookName'] as String,
       auther: map['auther'] as String,
       category: map['category'] as String,
-      dateAndTime: map['dateAndTime'] as String,
-      review: map['review'] != null ? map['review'] as String : null,
+      // dateAndTime: map['dateAndTime'] as String,
+      // review: map['review'] != null ? map['review'] as String : null,
       bookImage: map['bookImage'] as String,
       bookDescription: map['bookDescription'] != null ? map['bookDescription'] as String : null,
-      autherImage: map['autherImage'] as String,
-      categoryImage: map['categoryImage'] as String,
+      // autherImage: map['autherImage'] as String,
+      // categoryImage: map['categoryImage'] as String,
       file:map['file'] as String,
       reference: reference
       
@@ -103,7 +103,7 @@ String file;
 
   @override
   String toString() {
-    return 'BookModel(uid: $uid, bookName: $bookName, auther: $auther, category: $category, dateAndTime: $dateAndTime, review: $review, bookImage: $bookImage, bookDescription: $bookDescription, autherImage: $autherImage , categoryImage:$categoryImage , file:$file)';
+    return 'BookModel( bookName: $bookName, auther: $auther, category: $category, bookImage: $bookImage, bookDescription: $bookDescription, file:$file)';
   }
 
   @override
@@ -111,31 +111,32 @@ String file;
     if (identical(this, other)) return true;
   
     return 
-      other.uid == uid &&
+      // other.uid == uid &&
       other.bookName == bookName &&
       other.auther == auther &&
       other.category == category &&
-      other.dateAndTime == dateAndTime &&
-      other.review == review &&
+      // other.dateAndTime == dateAndTime &&
+      // other.review == review &&
       other.bookImage == bookImage &&
       other.bookDescription == bookDescription &&
-      other.categoryImage==categoryImage&&
-      other.file==file&&
-      other.autherImage == autherImage;
+      // other.categoryImage==categoryImage&&
+      other.file==file;
+      // other.autherImage == autherImage;
   }
 
   @override
   int get hashCode {
-    return uid.hashCode ^
+    return
+    //  uid.hashCode ^
       bookName.hashCode ^
       auther.hashCode ^
       category.hashCode ^
-      dateAndTime.hashCode ^
-      review.hashCode ^
+      // dateAndTime.hashCode ^
+      // review.hashCode ^
       bookImage.hashCode ^
       bookDescription.hashCode ^
-      autherImage.hashCode ^
-      file.hashCode ^
-      categoryImage.hashCode;
+      // autherImage.hashCode ^
+      file.hashCode ;
+      // categoryImage.hashCode;
   }
 }

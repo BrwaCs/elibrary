@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:elibrary/Screens/Provider/user_provider.dart';
 import 'package:elibrary/Screens/pages/SecondProfile.dart';
 import 'package:elibrary/Screens/pages/drawar.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
@@ -11,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
 class Review extends StatefulWidget {
    Review({Key? key,  }) : super(key: key);
@@ -23,6 +25,7 @@ class _ReviewState extends State<Review> {
 
   @override
   Widget build(BuildContext context) {
+     UserModel userModel = context.watch<UserProvider>().Userdata!;
     return Scaffold(
       appBar: AppBar(
           backgroundColor:Colors.transparent,
@@ -114,7 +117,7 @@ bottom: PreferredSize(
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
                                    }else{
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile(ModelUser: userModel,)));
                                    }
                                                },
                                 child: Padding(
@@ -141,7 +144,7 @@ bottom: PreferredSize(
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
                                    }else{
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile(ModelUser: userModel,)));
                                    }
                                                },
                                 child: Padding(

@@ -351,7 +351,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
                                    }else{
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
+                                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
                                    }
                                                  },
                                   child: Padding(
@@ -378,7 +378,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
                                    }else{
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
+                                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile()));
                                    }
                                                  },
                                   child: Padding(
