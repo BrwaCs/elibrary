@@ -1,7 +1,11 @@
+import 'package:elibrary/Screens/pages/Rating_app.dart';
+import 'package:elibrary/Screens/pages/about_application.dart';
+import 'package:elibrary/Screens/pages/about_us.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class Drawar extends StatelessWidget {
   const Drawar({Key? key}) : super(key: key);
@@ -33,18 +37,7 @@ class Drawar extends StatelessWidget {
                 ),
         ),
             ),
-            ListTile(
-              leading: Icon(Icons.book,
-              color: Theme.of(context).primaryColor,
-              ),
-              title: Text("New books",
-              style:TextStyle(
-                fontSize:16,
-                fontWeight:FontWeight.w500
-              ),
-              ),
-              onTap: () {},
-            ),
+           
             ListTile(
               leading: Icon(Icons.star,
               color: Theme.of(context).primaryColor,),
@@ -53,7 +46,9 @@ class Drawar extends StatelessWidget {
                 fontSize:16,
                 fontWeight:FontWeight.w500
               ),),
-              onTap: () {},
+              onTap: () {
+                Get.to(()=>RatingApp());
+              },
             ),
             ListTile(
               leading: Icon(Icons.report,
@@ -63,7 +58,9 @@ class Drawar extends StatelessWidget {
                 fontSize:16,
                 fontWeight:FontWeight.w500
               ),),
-              onTap: () {},
+              onTap: () {
+                Get.to(()=>About_Application());
+              },
             ),
             ListTile(
               leading: Icon(Icons.account_box,
@@ -73,7 +70,9 @@ class Drawar extends StatelessWidget {
                 fontSize:16,
                 fontWeight:FontWeight.w500
               ),),
-              onTap: () {},
+              onTap: () {
+                Get.to(()=>AboutUs());
+              },
             )
           ]
         ),
