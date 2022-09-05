@@ -85,19 +85,26 @@ bottom: PreferredSize(
               
             ),
           ),
-          Row(
-            children: [
-              
-              IconButton(
-                onPressed: (){},
-               icon: Icon(Icons.update)
-               ), Text("Check for update",
-                  style:TextStyle(
-                    fontSize:16,
-                    fontWeight: FontWeight.bold
-                  ) ,
-                  ),
-            ],
+          GestureDetector(
+            onTap: (){
+              Get.snackbar("Update", "The current Version is latest");
+            },
+            child: Row(
+              children: [
+                
+                IconButton(
+                  onPressed: (){
+                    Get.snackbar("Update", "The current Version is latest");
+                  },
+                 icon: Icon(Icons.update)
+                 ), Text("Check for update",
+                    style:TextStyle(
+                      fontSize:16,
+                      fontWeight: FontWeight.bold
+                    ) ,
+                    ),
+              ],
+            ),
           )
         ],
       )

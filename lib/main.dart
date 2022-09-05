@@ -2,6 +2,7 @@
 import 'package:elibrary/Auth/auth.dart';
 import 'package:elibrary/Screens/Provider/user_provider.dart';
 import 'package:elibrary/Screens/handlerScreen/handler_screen.dart';
+import 'package:elibrary/Screens/landing/Landing_screen.dart';
 import 'package:elibrary/Screens/pages/SecondProfile.dart';
 import 'package:elibrary/Screens/pages/ShowCatyegorybooks.dart';
 import 'package:elibrary/Screens/pages/show_books.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
         ),  
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.light,
-    // home:SecondProfile
+    // home:LandingScreen
        home:HandlerScreen
        (),
       );

@@ -52,6 +52,8 @@ dependencies:
   flutter_file_downloader: ^1.1.0+1
   firestore_search: ^0.1.9
   provider: ^6.0.3
+  liquid_swipe: ^3.0.0
+  smooth_page_indicator: ^1.0.0+2
   
 
   

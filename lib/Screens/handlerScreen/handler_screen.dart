@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Auth/auth.dart';
 import 'package:elibrary/Auth/login.dart';
 import 'package:elibrary/Screens/Provider/user_provider.dart';
+import 'package:elibrary/Screens/landing/Landing_screen.dart';
 import 'package:elibrary/Screens/mainpages.dart';
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/User_model.dart';
@@ -26,7 +27,7 @@ class HandlerScreen extends StatelessWidget {
              return LoadingIndicator();
            }
            else if (snapshot.data == null){
-             return Auth();
+             return LandingScreen();
            }
            else if(snapshot.hasError){
              return Center(child: Text("error"),);
