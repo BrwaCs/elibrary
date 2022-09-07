@@ -85,7 +85,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       if (page > 2) {
                         Get.to(() => Auth());
                       } else {
-                        controller.animateToPage(page: page, duration: 400);
+                        controller.animateToPage(page: page, duration: 600);
                       }
                     },
                     child: Text(

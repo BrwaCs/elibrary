@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Auth/login.dart';
+import 'package:elibrary/Screens/Provider/user_provider.dart';
 import 'package:elibrary/Screens/pages/SecondProfile.dart';
 import 'package:elibrary/Screens/pages/review.dart';
 import 'package:elibrary/Screens/pages/update_profile.dart';
@@ -20,6 +21,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -53,6 +55,7 @@ UserModel logedInUser=UserModel();
 // XFile? _selectImage;
   @override
   Widget build(BuildContext context) {
+     UserModel userModel = context.watch<UserProvider>().Userdata!;
     //future biulder
     return Scaffold(
         appBar: AppBar(
@@ -80,6 +83,8 @@ UserModel logedInUser=UserModel();
       iconTheme: IconThemeData(color:Theme.of(context).primaryColor),
       ),
  body:FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+
+   
 future: FirebaseFirestore.instance.collection("user").doc(user!.uid).get(),
 builder: (context,snapshot) {
   if(snapshot.connectionState==ConnectionState.waiting){
@@ -392,7 +397,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                         
                                         fit: BoxFit.fill,
                                         image:
-                                            NetworkImage(Review_model[index].userImage.toString()),
+                                            NetworkImage(userModel.imageUrl.toString()),
                                       ),
                                     ),
                                     ),
@@ -549,7 +554,7 @@ Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()
 
 
 uploadImage() async {
-
+User? user=FirebaseAuth.instance.currentUser;
     final _firebaseStorage = FirebaseStorage.instance;
     final _imagePicker = ImagePicker();
     XFile image;
@@ -585,6 +590,7 @@ uploadImage() async {
         .collection("user")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update(map);
+         
          Get.snackbar("Profile Image", "Your profile image is update");
       }else{
         print("No Image Path Recived");

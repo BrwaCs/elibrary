@@ -117,7 +117,7 @@ bottom: PreferredSize(
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
                                    }else{
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile(ModelUser: userModel,)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile(reviewModel: Review_model[index],)));
                                    }
                                                },
                                 child: Padding(
@@ -144,7 +144,7 @@ bottom: PreferredSize(
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
                                    }else{
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile(ModelUser: userModel,)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondProfile(reviewModel: Review_model[index],)));
                                    }
                                                },
                                 child: Padding(

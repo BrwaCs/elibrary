@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elibrary/Auth/login.dart';
 import 'package:elibrary/Screens/Provider/user_provider.dart';
 import 'package:elibrary/Screens/pages/profile.dart';
+import 'package:elibrary/Screens/pages/review.dart';
 
 import 'package:elibrary/Screens/widgets/Loding_indicater.dart';
 import 'package:elibrary/dataModels/ReviewDataModel.dart';
@@ -24,11 +25,11 @@ import 'package:provider/provider.dart';
 
 
 class SecondProfile extends StatelessWidget {
- SecondProfile({Key? key, required this.ModelUser}) : super(key: key);
- final UserModel ModelUser;
+ SecondProfile({Key? key,  required this.reviewModel}) : super(key: key);
+ final ReviewDataModel reviewModel;
    late String fileName;
 //auth statechange
-User? user=FirebaseAuth.instance.currentUser;
+
 UserModel logedInUser=UserModel();
 
 
@@ -41,7 +42,7 @@ UserModel logedInUser=UserModel();
           backgroundColor:Colors.transparent,
           elevation:0,
         title: Text(
-          "${ModelUser.fullName} ",
+          "${reviewModel.userName} ",
           style: TextStyle(
             fontSize:24,
             fontWeight:FontWeight.normal,
@@ -63,7 +64,7 @@ UserModel logedInUser=UserModel();
       ),
  body:StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
 stream: FirebaseFirestore.instance.collection("user")
-.where("uid", isEqualTo: ModelUser.uid)
+.where("uid", isEqualTo: reviewModel.uid)
 .snapshots(),
 builder: (context,snapshot) {
   if(snapshot.connectionState==ConnectionState.waiting){
@@ -211,7 +212,8 @@ List<UserModel> theUserModel = snapshot.data!.docs
                  SizedBox(height: 20,),
       
       FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                future: FirebaseFirestore.instance.collection("Review").get(),
+                future: FirebaseFirestore.instance.collection("Review")
+                .where("uid",isEqualTo: reviewModel.uid).get(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return LoadingIndicator();
