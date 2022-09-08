@@ -33,7 +33,7 @@ class _homeState extends State<home> {
     } else {
       final result = await FirebaseFirestore.instance
           .collection('books')
-          .where('bookName', isEqualTo: query)
+          .where('bookName', isGreaterThanOrEqualTo: query)
           .get();
       return result.docs
           .map(
