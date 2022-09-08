@@ -157,8 +157,8 @@ bottom: PreferredSize(
                                     image: DecorationImage(
                                       
                                       fit: BoxFit.fill,
-                                      image:
-                                          NetworkImage(Review_model[index].userImage.toString()),
+                                      image:FirebaseAuth.instance.currentUser!.uid==Review_model[index].uid?
+                                        NetworkImage(userModel.imageUrl.toString())  :NetworkImage(Review_model[index].userImage.toString())
                                     ),
                                   ),
                                   ),
@@ -166,18 +166,6 @@ bottom: PreferredSize(
                               )
            
                             ),
-                                  //  Padding(
-                                  //    padding: const EdgeInsets.all(8.0),
-                                  //    child: GestureDetector(
-                                  //    onTap: () {
-                                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
-                                  //              },
-                                  // child: Icon(
-                                  // IconData(0xee35, fontFamily: 'MaterialIcons'),
-                                  // size: 26.0,   
-                                  //    ),
-                                  //    ),
-                                  //  ),
                                    Padding(
                                      padding: const EdgeInsets.only(top:10),
                                      child: Text("${Review_model[index].userName}",
