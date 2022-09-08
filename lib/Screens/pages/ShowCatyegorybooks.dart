@@ -20,6 +20,7 @@ class ShowCatyegorybooks extends StatelessWidget {
           elevation: 0,
           title: Text("${catygory.category} books",
               style: TextStyle(
+                 fontFamily: "english",
                   fontSize: 24,
                   fontWeight: FontWeight.normal,
                   color: Colors.black)),
@@ -100,6 +101,7 @@ class ShowCatyegorybooks extends StatelessWidget {
                                             Text(
                                               "${catygoryBooks[index].bookName}",
                                               style: TextStyle(
+                                                 fontFamily: "english",
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w400,
                                               ),
@@ -116,6 +118,7 @@ class ShowCatyegorybooks extends StatelessWidget {
                                             Text(
                                               "${catygoryBooks[index].auther}",
                                               style: TextStyle(
+                                                 fontFamily: "english",
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                               ),
@@ -154,6 +157,7 @@ class ShowCatyegorybooks extends StatelessWidget {
                   )
                       : SafeArea(child: Center(child: Text("No books found ",
                       style: TextStyle(
+                         fontFamily: "english",
                         fontSize: 20,
                         fontWeight: FontWeight.w600
                       ),

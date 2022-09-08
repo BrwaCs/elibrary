@@ -64,6 +64,7 @@ UserModel logedInUser=UserModel();
         title: Text(
           "Profile ",
           style: TextStyle(
+             fontFamily: "english",
             fontSize:24,
             fontWeight:FontWeight.normal,
             color:Colors.black
@@ -121,6 +122,7 @@ builder: (context,snapshot) {
                       },
                               child: Text("Edit",
                               style: TextStyle(
+                                 fontFamily: "english",
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
                               ),
@@ -151,6 +153,7 @@ builder: (context,snapshot) {
                                 children: [
                                   Text("Logout ",
                                   style: TextStyle(
+                                     fontFamily: "english",
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
                                   ),
@@ -243,6 +246,7 @@ builder: (context,snapshot) {
               Text(
                 "${theUserModel.fullName}",
                 style: TextStyle(
+                   fontFamily: "english",
                   fontSize:18,
                   fontWeight: FontWeight.w500
       
@@ -258,6 +262,7 @@ builder: (context,snapshot) {
                 children: [
                   Text("bio",
                   style: TextStyle(
+                     fontFamily: "english",
                     fontSize:18,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey
@@ -274,8 +279,9 @@ builder: (context,snapshot) {
                 children: <Widget>[ 
                   Container( width: 14.0, ),
                    Flexible( 
-                     child: theUserModel.bio==null?Text("Write your bio here",style: TextStyle(color:Colors.grey),): Text("${theUserModel.bio}",
+                     child: theUserModel.bio==null?Text("Write your bio here",style: TextStyle(color:Colors.grey, fontFamily: "english",),): Text("${theUserModel.bio}",
                      style: TextStyle(
+                        fontFamily: "english",
                       fontSize: 16,
                       height: 1.25,
                       wordSpacing: 1.1
@@ -294,6 +300,7 @@ builder: (context,snapshot) {
                   child: Text(
                     "Reviews",
                     style: TextStyle(
+                       fontFamily: "english",
                       fontSize:16,
                       fontWeight: FontWeight.w500
                     ),
@@ -421,6 +428,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                        padding: const EdgeInsets.only(top:10),
                                        child: Text("${Review_model[index].userName}",
                                        style: TextStyle(
+                                          fontFamily: "english",
                                          fontSize: 14,fontWeight: FontWeight.normal
                                        ),),
                                      ),
@@ -454,6 +462,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                 child: Text("${Review_model[index].review}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                   fontFamily: "english",
                               fontSize: 14,
                              height: 1.25
                        )
@@ -482,6 +491,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                    child: Text("${Review_model[index].bookName}", 
                                    style: 
                                    TextStyle(
+                                      fontFamily: "english",
                                      fontSize: 16,
                                      fontWeight: FontWeight.normal,
                                    ),),

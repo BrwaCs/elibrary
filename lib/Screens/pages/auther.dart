@@ -123,7 +123,7 @@ class _AutherState extends State<Auther> {
                               height: 8,
                             ),
                             Container(
-                              child: Text(authers[index].auther),
+                              child: Text(authers[index].auther,style: TextStyle( fontFamily: "english",),),
                             ),
                           ],
                         ),

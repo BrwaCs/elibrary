@@ -102,7 +102,7 @@ class _CategoryState extends State<Category> {
                                 height: 8,
                               ),
                               Container(
-                                child: Text(catygory_model[index].category),
+                                child: Text(catygory_model[index].category,style: TextStyle( fontFamily: "english",),),
                               ),
                             ],
                           ),

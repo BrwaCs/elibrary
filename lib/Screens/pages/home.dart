@@ -53,6 +53,7 @@ class _homeState extends State<home> {
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.normal,
+                  fontFamily: "english",
                   color: Colors.black)),
           centerTitle: true,
           actions: <Widget>[
@@ -135,6 +136,7 @@ class _homeState extends State<home> {
                             ),
                             labelText: "search for books",
                             labelStyle: TextStyle(
+                               fontFamily: "english",
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ))),
@@ -152,7 +154,7 @@ class _homeState extends State<home> {
                     child: Text(
                       "Books",
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500, fontFamily: "english",),
                     ),
                   )
                 ],
@@ -213,7 +215,9 @@ class _homeState extends State<home> {
                                       Row(
                                        
                                         children: [
-                                          Text(snapshot.data![index].bookName)
+                                          Text(snapshot.data![index].bookName,
+                                          style: TextStyle( fontFamily: "english",fontSize: 12),
+                                          )
                                         ],
                                       )
                                     ],

@@ -101,6 +101,7 @@ final _auth=FirebaseAuth.instance;
                       prefixIcon:Icon(Icons.email),
                       labelText: "Email",
                       labelStyle: TextStyle(
+                         fontFamily: "english",
                         fontSize:20,
                         fontWeight: FontWeight.normal,
                         
@@ -145,6 +146,7 @@ final passwordFild= Container(
                       prefixIcon:Icon(Icons.lock),
                       labelText: "Password",
                       labelStyle: TextStyle(
+                         fontFamily: "english",
                         fontSize:20,
                         fontWeight: FontWeight.normal,
                         
@@ -179,6 +181,7 @@ final loginButton=  SizedBox(
                 child: Text(
                   "Login",
                   style:TextStyle(
+                     fontFamily: "english",
                     fontSize:16,
                     fontWeight: FontWeight.bold,
                     color:Colors.white,
@@ -199,6 +202,7 @@ return Scaffold(
                 Text(
                   "Welcome to elibrary",
                   style: TextStyle(
+                     fontFamily: "english",
                     fontSize:32,
                     fontWeight: FontWeight.w400,
                     color:Colors.blue,
@@ -209,6 +213,7 @@ return Scaffold(
                    Text(
                   "sign in to continue",
                   style: TextStyle(
+                     fontFamily: "english",
                     fontSize:16,
                     fontWeight: FontWeight.normal,
                     color:Colors.grey,
@@ -244,6 +249,7 @@ return Scaffold(
                          child: Text(
                            "Forgot Password?",
                            style: TextStyle(
+                              fontFamily: "english",
                              fontSize:14,
                              fontWeight: FontWeight.w500,
                              color:Theme.of(context).primaryColor,
@@ -264,6 +270,7 @@ return Scaffold(
                      Text(
                        "Dont have account?\n",
                        style:TextStyle(
+                          fontFamily: "english",
                          fontSize:16,
                          fontWeight: FontWeight.normal,
                          color:Colors.grey,
@@ -281,6 +288,7 @@ return Scaffold(
                            child: Text(
                            "Create new account",
                            style:TextStyle(
+                              fontFamily: "english",
                            fontSize:16,
                            fontWeight: FontWeight.bold,
                            color:Theme.of(context).primaryColor,

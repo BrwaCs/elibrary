@@ -35,6 +35,7 @@ class _EditProfileState extends State<EditProfile> {
         title: Text(
           "Edit Profile ",
           style: TextStyle(
+             fontFamily: "english",
             fontSize:24,
             fontWeight:FontWeight.normal,
             color:Colors.black
@@ -105,6 +106,7 @@ class _EditProfileState extends State<EditProfile> {
                               //  errorText: _displayNameValid ? null : "Display Name too short",
                               labelText: "${theUserModel.fullName}",
                               labelStyle: TextStyle(
+                                 fontFamily: "english",
                                 fontSize: 20,
                                 fontWeight: FontWeight.normal,
                               )),
@@ -124,6 +126,7 @@ class _EditProfileState extends State<EditProfile> {
                             hintText: "Enter bio",
                             // errorText: _bioValid ? null : "Bio too long",
                             hintStyle: TextStyle(
+                               fontFamily: "english",
                                 fontSize: 16, height: 1.25, wordSpacing: 1.1),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -157,6 +160,7 @@ class _EditProfileState extends State<EditProfile> {
                           },
                           child: const Text('Update Profile',
                           style: TextStyle(
+                             fontFamily: "english",
                             fontSize: 16
                           ),
                           ),

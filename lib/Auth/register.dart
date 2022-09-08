@@ -59,6 +59,7 @@ final emailfield= Container(
                       prefixIcon:Icon(Icons.email),
                       labelText: "Email",
                       labelStyle: TextStyle(
+                         fontFamily: "english",
                         fontSize:20,
                         fontWeight: FontWeight.normal,
                         
@@ -94,6 +95,7 @@ final emailfield= Container(
                       prefixIcon:Icon(Icons.person),
                       labelText: "Full name",
                       labelStyle: TextStyle(
+                         fontFamily: "english",
                         fontSize:20,
                         fontWeight: FontWeight.normal,
                         
@@ -129,6 +131,7 @@ final emailfield= Container(
                       prefixIcon:Icon(Icons.vpn_key),
                       labelText: "Password",
                       labelStyle: TextStyle(
+                         fontFamily: "english",
                         fontSize:20,
                         fontWeight: FontWeight.normal,
                         
@@ -162,6 +165,7 @@ final emailfield= Container(
                       prefixIcon:Icon(Icons.vpn_key),
                       labelText: "Re-Password",
                       labelStyle: TextStyle(
+                         fontFamily: "english",
                         fontSize:20,
                         fontWeight: FontWeight.normal,
                         
@@ -187,6 +191,7 @@ final emailfield= Container(
                 child: Text(
                   "Create",
                   style:TextStyle(
+                     fontFamily: "english",
                     fontSize:16,
                     fontWeight: FontWeight.bold,
                     color:Colors.white,
@@ -201,6 +206,7 @@ final emailfield= Container(
                      Text(
                        "Alredy have a account",
                        style:TextStyle(
+                          fontFamily: "english",
                          fontSize:16,
                          fontWeight: FontWeight.normal,
                          color:Colors.grey,
@@ -211,6 +217,7 @@ final emailfield= Container(
                            child: Text(
                           " Login",
                            style:TextStyle(
+                              fontFamily: "english",
                            fontSize:16,
                            fontWeight: FontWeight.bold,
                            color:Theme.of(context).primaryColor,
@@ -246,6 +253,7 @@ final emailfield= Container(
                   Text(
                     "Create Account",
                     style: TextStyle(
+                       fontFamily: "english",
                       fontSize:32,
                       fontWeight: FontWeight.w400,
                       color:Colors.blue,

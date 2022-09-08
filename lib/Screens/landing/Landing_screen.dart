@@ -66,7 +66,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     },
                     child: Text(
                       "SKIP",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 16, ),
                     )),
                 AnimatedSmoothIndicator(
                   activeIndex: controller.currentPage,
@@ -90,7 +90,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     },
                     child: Text(
                       "NEXT",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 16, ),
                     )),
               ],
             )),
@@ -119,6 +119,7 @@ class _LandingScreenState extends State<LandingScreen> {
             Text(
               title,
               style: TextStyle(
+                
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 40),
@@ -127,6 +128,7 @@ class _LandingScreenState extends State<LandingScreen> {
             Text(
               subTitle,
               style: TextStyle(
+                
                   height: 1.2,
                   wordSpacing: 1.2,
                   color: Colors.white,

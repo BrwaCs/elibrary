@@ -33,6 +33,7 @@ body: SafeArea(
         child: Text("When release is available",
 
         style: TextStyle(
+           fontFamily: "english",
           fontSize: 20,
           fontWeight: FontWeight.bold
         ),

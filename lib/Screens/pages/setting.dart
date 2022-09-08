@@ -24,6 +24,7 @@ class _SettingState extends State<Setting> {
         title: Text(
           "Review ",
           style: TextStyle(
+             fontFamily: "english",
             fontSize:24,
             fontWeight:FontWeight.normal,
             color:Colors.black
@@ -67,6 +68,7 @@ bottom: PreferredSize(
                 IconButton(onPressed: (){}, icon:Icon(Icons.dark_mode)),
                   Text("Darkmode",
                   style:TextStyle(
+                     fontFamily: "english",
                     fontSize:16,
                     fontWeight: FontWeight.bold
                   ) ,
@@ -99,6 +101,7 @@ bottom: PreferredSize(
                  icon: Icon(Icons.update)
                  ), Text("Check for update",
                     style:TextStyle(
+                       fontFamily: "english",
                       fontSize:16,
                       fontWeight: FontWeight.bold
                     ) ,

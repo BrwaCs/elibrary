@@ -50,6 +50,7 @@ class _ShowBooksState extends State<ShowBooks> {
         elevation: 0,
         title: Text(widget.bookname,
             style: TextStyle(
+               fontFamily: "english",
                 fontSize: 24,
                 fontWeight: FontWeight.normal,
                 color: Colors.black)),
@@ -90,7 +91,7 @@ class _ShowBooksState extends State<ShowBooks> {
                   ),
                   Text(
                     widget.authername,
-                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, fontFamily: "english",),
                   ),
                 ],
               ),
@@ -105,7 +106,7 @@ class _ShowBooksState extends State<ShowBooks> {
                     height: 150,
                     child: AutoSizeText(
                       widget.description,
-                      style: TextStyle(fontSize: 16, height: 1.25),
+                      style: TextStyle(fontSize: 16, height: 1.25, fontFamily: "english",),
                       textAlign: TextAlign.center,
                       maxLines: 9,
                     ),
@@ -130,6 +131,7 @@ class _ShowBooksState extends State<ShowBooks> {
                       child: Text(
                         "Read",
                         style: TextStyle(
+                           fontFamily: "english",
                             fontSize: 18, fontWeight: FontWeight.w500),
                       )),
                 )
@@ -157,6 +159,7 @@ class _ShowBooksState extends State<ShowBooks> {
                       child: Text(
                         "Downloade",
                         style: TextStyle(
+                           fontFamily: "english",
                             fontSize: 18, fontWeight: FontWeight.w500),
                       )),
                 )
@@ -185,6 +188,7 @@ class _ShowBooksState extends State<ShowBooks> {
                       child: Text(
                         "Review",
                         style: TextStyle(
+                           fontFamily: "english",
                             fontSize: 18, fontWeight: FontWeight.w500),
                       )),
                 )
@@ -207,6 +211,7 @@ class _ShowBooksState extends State<ShowBooks> {
               "Review ",
               textAlign: TextAlign.center,
               style: TextStyle(
+                 fontFamily: "english",
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
@@ -228,7 +233,7 @@ class _ShowBooksState extends State<ShowBooks> {
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 hintText: "Add Review",
-                hintStyle: TextStyle(color: Colors.grey),
+                hintStyle: TextStyle(color: Colors.grey, fontFamily: "english",),
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
@@ -257,6 +262,7 @@ class _ShowBooksState extends State<ShowBooks> {
                         "Submit",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                           fontFamily: "english",
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )),
                 ),

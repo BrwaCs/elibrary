@@ -76,7 +76,7 @@ class ShowAutherDetails extends StatelessWidget {
                 children: [
                   Text(
                    " About ${authername} :",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16, fontFamily: "english",),
                   ),
                 ],
               ),
@@ -91,7 +91,7 @@ class ShowAutherDetails extends StatelessWidget {
                     height:  MediaQuery.of(context).size.height,
                     child: AutoSizeText(
                       autherDescription,
-                      style: TextStyle(fontSize: 14, height: 1.6),
+                      style: TextStyle(fontSize: 14, height: 1.6, fontFamily: "english",),
                       textAlign: TextAlign.center,
                       maxLines: 5000,
                     ),

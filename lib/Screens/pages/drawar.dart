@@ -43,6 +43,7 @@ class Drawar extends StatelessWidget {
               color: Theme.of(context).primaryColor,),
               title: Text("Rating the app",
               style:TextStyle(
+                 fontFamily: "english",
                 fontSize:16,
                 fontWeight:FontWeight.w500
               ),),
@@ -55,6 +56,7 @@ class Drawar extends StatelessWidget {
               color: Theme.of(context).primaryColor,),
               title: Text("About the application",
               style:TextStyle(
+                 fontFamily: "english",
                 fontSize:16,
                 fontWeight:FontWeight.w500
               ),),
@@ -67,6 +69,7 @@ class Drawar extends StatelessWidget {
               color: Theme.of(context).primaryColor,),
               title: Text("About us",
               style:TextStyle(
+                 fontFamily: "english",
                 fontSize:16,
                 fontWeight:FontWeight.w500
               ),),

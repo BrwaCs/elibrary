@@ -44,6 +44,7 @@ UserModel logedInUser=UserModel();
         title: Text(
           "${reviewModel.userName} ",
           style: TextStyle(
+             fontFamily: "english",
             fontSize:24,
             fontWeight:FontWeight.normal,
             color:Colors.black
@@ -145,6 +146,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                   Text(
                     "${theUserModel[index].fullName}",
                     style: TextStyle(
+                       fontFamily: "english",
                       fontSize:18,
                       fontWeight: FontWeight.w500
           
@@ -161,6 +163,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                     children: [
                       Text("bio",
                       style: TextStyle(
+                         fontFamily: "english",
                         fontSize:18,
                         fontWeight: FontWeight.w400,
                         color: Colors.grey
@@ -177,8 +180,9 @@ List<UserModel> theUserModel = snapshot.data!.docs
                     children: <Widget>[ 
                       Container( width: 14.0, ),
                        Flexible( 
-                         child: theUserModel[index].bio==null?Text("Write your bio here",style: TextStyle(color:Colors.grey),): Text("${theUserModel[index].bio}",
+                         child: theUserModel[index].bio==null?Text("Write your bio here",style: TextStyle( fontFamily: "english",color:Colors.grey),): Text("${theUserModel[index].bio}",
                          style: TextStyle(
+                            fontFamily: "english",
                           fontSize: 16,
                           height: 1.25,
                           wordSpacing: 1.1
@@ -197,6 +201,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                       child: Text(
                         "Reviews",
                         style: TextStyle(
+                           fontFamily: "english",
                           fontSize:16,
                           fontWeight: FontWeight.w500
                         ),
@@ -330,6 +335,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                                            padding: const EdgeInsets.only(top:10),
                                            child: Text("${Review_model[index].userName}",
                                            style: TextStyle(
+                                              fontFamily: "english",
                                              fontSize: 14,fontWeight: FontWeight.normal
                                            ),),
                                          ),
@@ -363,6 +369,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                                     child: Text("${Review_model[index].review}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                       fontFamily: "english",
                                   fontSize: 14,
                                  height: 1.25
                            )
@@ -391,6 +398,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                                        child: Text("${Review_model[index].bookName}", 
                                        style: 
                                        TextStyle(
+                                          fontFamily: "english",
                                          fontSize: 16,
                                          fontWeight: FontWeight.normal,
                                        ),),

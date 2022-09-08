@@ -170,6 +170,7 @@ bottom: PreferredSize(
                                      padding: const EdgeInsets.only(top:10),
                                      child: Text("${Review_model[index].userName}",
                                      style: TextStyle(
+                                        fontFamily: "english",
                                        fontSize: 14,fontWeight: FontWeight.normal
                                      ),),
                                    ),
@@ -203,6 +204,7 @@ bottom: PreferredSize(
                               child: Text("${Review_model[index].review}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                 fontFamily: "english",
                             fontSize: 14,
                            height: 1.25
                      )
@@ -231,6 +233,7 @@ bottom: PreferredSize(
                                  child: Text("${Review_model[index].bookName}", 
                                  style: 
                                  TextStyle(
+                                    fontFamily: "english",
                                    fontSize: 16,
                                    fontWeight: FontWeight.normal,
                                  ),),

@@ -54,6 +54,7 @@ AuthenticationService firebaseauth= AuthenticationService();
                   style: TextStyle(
                     fontSize:24,
                     fontWeight:FontWeight.bold,
+                     fontFamily: "english",
                     color:Theme.of(context).primaryColor,
               
                   )
@@ -63,6 +64,7 @@ AuthenticationService firebaseauth= AuthenticationService();
                 Text(
                   "Did you forgot your password?",
                   style: TextStyle(
+                     fontFamily: "english",
                     fontSize:14,
                     fontWeight: FontWeight.normal,
                     color:Colors.grey,
@@ -97,6 +99,7 @@ AuthenticationService firebaseauth= AuthenticationService();
                       prefixIcon:Icon(Icons.email),
                       labelText: "Email",
                       labelStyle: TextStyle(
+                         fontFamily: "english",
                         fontSize:20,
                         fontWeight: FontWeight.normal,
                       )
@@ -127,6 +130,7 @@ AuthenticationService firebaseauth= AuthenticationService();
                      child: Text(
                        "Send Request",
                        style: TextStyle(
+                          fontFamily: "english",
                          fontSize:16,
                          fontWeight: FontWeight.bold,
                          color:Colors.white,
@@ -157,6 +161,7 @@ AuthenticationService firebaseauth= AuthenticationService();
                         child: Text(
                           "didnt recive the code?",
                           style: TextStyle(
+                             fontFamily: "english",
                             fontSize:16,
                             fontWeight:FontWeight.w400,
                             color:Theme.of(context).primaryColor,

@@ -13,6 +13,7 @@ class AboutUs extends StatelessWidget {
           elevation: 0,
           title: Text("About Us ",
               style: TextStyle(
+                 fontFamily: "english",
                   fontSize: 24,
                   fontWeight: FontWeight.normal,
                   color: Colors.black)),
@@ -63,6 +64,7 @@ class AboutUs extends StatelessWidget {
               Text("Brwa N Muhammad",
               
               style: TextStyle(
+                 fontFamily: "english",
                 fontSize: 20,fontWeight: FontWeight.w400
               ),)
             ],
@@ -75,6 +77,7 @@ class AboutUs extends StatelessWidget {
                    Flexible( 
                      child:Text("my name is Brwa Nahman Muhammad and I  live in chamchamal and I am 21 years old and Student in Halabja university at Computer science department and  also I am created this first Application for educational purpose and I wish that is usefull for all people.",
                      style: TextStyle(
+                        fontFamily: "english",
                       fontSize: 16,
                       height: 1.7,
                       wordSpacing: 1.1
