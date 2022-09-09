@@ -109,7 +109,7 @@ bottom: PreferredSize(
                                  children: [
                                        Container(
                              
-                              child: Review_model[index].userImage?.toString()=="null" ?
+                              child: Review_model[index].userImage.toString().isEmpty ||Review_model[index].userImage.toString()=="null"?
                               GestureDetector(
                                  onTap: () {
                                    if(FirebaseAuth.instance.currentUser!.uid== Review_model[index].uid){
@@ -157,7 +157,7 @@ bottom: PreferredSize(
                                     image: DecorationImage(
                                       
                                       fit: BoxFit.fill,
-                                      image:FirebaseAuth.instance.currentUser!.uid==Review_model[index].uid?
+                                      image:userModel.uid==Review_model[index].uid?
                                         NetworkImage(userModel.imageUrl.toString())  :NetworkImage(Review_model[index].userImage.toString())
                                     ),
                                   ),
