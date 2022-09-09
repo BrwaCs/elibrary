@@ -355,7 +355,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                    children: [
                                          Container(
                                
-                                child: Review_model[index].userImage?.toString()=="null" ?
+                                child: userModel.imageUrl==null ?
                                 GestureDetector(
                                    onTap: () {
                                      if(FirebaseAuth.instance.currentUser!.uid== Review_model[index].uid){
@@ -426,7 +426,7 @@ FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                                     //  ),
                                      Padding(
                                        padding: const EdgeInsets.only(top:10),
-                                       child: Text("${Review_model[index].userName}",
+                                       child: Text("${userModel.fullName}",
                                        style: TextStyle(
                                           fontFamily: "english",
                                          fontSize: 14,fontWeight: FontWeight.normal

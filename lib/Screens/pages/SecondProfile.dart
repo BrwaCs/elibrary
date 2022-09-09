@@ -311,7 +311,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                                             
                                             fit: BoxFit.fill,
                                             image:
-                                                NetworkImage(Review_model[index].userImage.toString()),
+                                                NetworkImage(reviewModel.userImage.toString()),
                                           ),
                                         ),
                                         ),
@@ -333,7 +333,7 @@ List<UserModel> theUserModel = snapshot.data!.docs
                                         //  ),
                                          Padding(
                                            padding: const EdgeInsets.only(top:10),
-                                           child: Text("${Review_model[index].userName}",
+                                           child: Text("${reviewModel.userName}",
                                            style: TextStyle(
                                               fontFamily: "english",
                                              fontSize: 14,fontWeight: FontWeight.normal

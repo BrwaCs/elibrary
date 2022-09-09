@@ -168,7 +168,11 @@ bottom: PreferredSize(
                             ),
                                    Padding(
                                      padding: const EdgeInsets.only(top:10),
-                                     child: Text("${Review_model[index].userName}",
+                                     child: userModel.uid==Review_model[index].uid?Text("${userModel.fullName}",
+                                     style: TextStyle(
+                                        fontFamily: "english",
+                                       fontSize: 14,fontWeight: FontWeight.normal
+                                     ),) : Text("${Review_model[index].userName}",
                                      style: TextStyle(
                                         fontFamily: "english",
                                        fontSize: 14,fontWeight: FontWeight.normal
