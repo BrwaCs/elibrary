@@ -20,6 +20,10 @@ Application screens :
 - auther page
 - User profile
 
+Technology are used in this application :
+
+- **Programing Language :** Dart Language
+
 Details about application :
 - in this application you can downlode books 
 and review books and create profile and 
