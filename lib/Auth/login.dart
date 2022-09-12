@@ -161,9 +161,13 @@ final passwordFild= Container(
 final loginButton=  SizedBox(
                    height:42,
                    width:210,
-                   child: FlatButton(
-                     color:Theme.of(context).primaryColor,
-                   shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
+                   child: ElevatedButton(
+                     style: ElevatedButton.styleFrom(
+                      backgroundColor :Theme.of(context).primaryColor,
+                   shape:new RoundedRectangleBorder(
+               borderRadius: new BorderRadius.circular(20.0),
+               ),
+                     ),
                   
                 onPressed: () async {
                   if(password_strength!=1)
