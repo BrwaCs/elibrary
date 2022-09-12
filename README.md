@@ -23,6 +23,11 @@ Application screens :
 Technology are used in this application :
 
 - **Programing Language :** Dart Language
+- **Framework :** Flutter
+- **Database :** Firebase
+- Firebase Firestore
+- Firebase Storage
+- Firebase Authentication
 
 Details about application :
 - in this application you can downlode books 
