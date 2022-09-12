@@ -38,6 +38,28 @@ Technology are used in this application :
 - Firebase Storage
 - Firebase Authentication
 
+Pakages are used :
+ - cupertino_icons: ^1.0.2
+ - get: ^4.6.5
+ - firebase_core: ^1.20.0
+ - firebase_auth: ^3.6.1
+ - fluttertoast: ^8.0.7
+ - cloud_firestore: ^3.4.2
+ - image_picker: ^0.8.5+3
+ - firebase_storage: ^10.3.4
+ - permission_handler: ^10.0.0
+ - path: ^1.8.1
+ - auto_size_text: ^3.0.0 
+ - syncfusion_flutter_pdfviewer: ^20.2.44-beta 
+ - dio: ^4.0.6
+ - path_provider: ^2.0.11
+ - flutter_file_downloader: ^1.1.0+1
+ - firestore_search: ^0.1.9
+ - provider: ^6.0.3
+ - liquid_swipe: ^3.0.0
+ - smooth_page_indicator: ^1.0.0+2
+ - url_launcher: ^6.1.5
+
 Details about application :
 - in this application you can downlode books 
 and review books and create profile and 
