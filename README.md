@@ -8,6 +8,12 @@ elibrary application project
 ![profile](https://user-images.githubusercontent.com/105513325/178944453-5bb5e082-4c21-462e-aa40-e5f110546dad.PNG)
 
 ## Getting Started with this project details and future 
+Clone repository `git clone https://github.com/BrwaCs/login.git`
+
+and opne `pubspec.yaml`
+
+run `flutter packages get`
+
 Application screens :
 - splash screen
 - landing screen
